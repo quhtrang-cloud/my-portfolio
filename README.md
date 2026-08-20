@@ -4,6 +4,10 @@ A personal portfolio built with React and Vite to showcase my web development, f
 
 The portfolio presents selected work through project summaries and detailed case studies, with a focus on responsive design, accessibility and clear technical implementation.
 
+## Live Demo
+
+[View the live portfolio](https://my-portfolio-ivory-ten-46.vercel.app)
+
 ## Portfolio Highlights
 
 - Responsive React interface
@@ -13,6 +17,7 @@ The portfolio presents selected work through project summaries and detailed case
 - Accessible navigation and semantic markup
 - Interactive project screenshots with image zoom
 - Client-side routing with React Router
+- Production deployment with Vercel
 
 ## Built With
 
@@ -24,6 +29,7 @@ The portfolio presents selected work through project summaries and detailed case
 - React Router
 - React Icons
 - Git & GitHub
+- Vercel
 
 ## Selected Projects
 
@@ -97,6 +103,20 @@ npm run dev
 ```
 
 Vite will display the local development URL in the terminal.
+
+## Production Build
+
+Create an optimised production build:
+
+```bash
+npm run build
+```
+
+The production files will be generated in the `dist` directory.
+
+## Deployment
+
+The portfolio is deployed with Vercel and connected to the GitHub repository for automatic deployment from the main branch.
 
 ## Development Status
 
