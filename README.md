@@ -1,4 +1,4 @@
-# Quynh Trang Nguyen — Web Developer Portfolio
+# Quynh Trang Nguyen - Web Developer Portfolio
 
 A personal portfolio built with React and Vite to showcase my web development, full-stack and UX/UI projects.
 
