@@ -1,16 +1,110 @@
-# React + Vite
+# Quynh Trang Nguyen — Web Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio built with React and Vite to showcase my web development, full-stack and UX/UI projects.
 
-Currently, two official plugins are available:
+The portfolio presents selected work through project summaries and detailed case studies, with a focus on responsive design, accessibility and clear technical implementation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Portfolio Highlights
 
-## React Compiler
+- Responsive React interface
+- Reusable component-based structure
+- Dedicated project case-study pages
+- Responsive layouts across desktop, tablet and mobile
+- Accessible navigation and semantic markup
+- Interactive project screenshots with image zoom
+- Client-side routing with React Router
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Built With
 
-## Expanding the ESLint configuration
+- React
+- Vite
+- JavaScript (ES6+)
+- HTML5
+- CSS3
+- React Router
+- React Icons
+- Git & GitHub
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Selected Projects
+
+### Healthcare Booking System
+
+A full-stack healthcare booking prototype focused on improving appointment flexibility, accessibility and scheduling.
+
+Key features include:
+
+- City-wide appointment discovery
+- Rule-based intelligent scheduling
+- Personalised appointment recommendations
+- Patient-to-patient appointment swapping
+- Google Calendar conflict detection and synchronisation
+- Role-based access
+- Responsive and accessibility-focused design
+
+**Technologies:** Node.js · Express.js · PostgreSQL · JavaScript · EJS · Bootstrap · Google Calendar API
+
+A detailed case study is included in the portfolio, covering the project from research and requirements through design, implementation, testing and reflection.
+
+### Pompey Furniture Company
+
+A database-driven full-stack web application developed as a team project to support core furniture retail operations, including products, stock availability, customer orders, returns and showroom management.
+
+**Technologies:** Node.js · Express.js · PostgreSQL · SQL
+
+### Hampshire Festival App
+
+A UX/UI team project focused on improving festival discovery and planning through user-centred design, prototyping and heuristic evaluation.
+
+**Tools & Methods:** Figma · Prototyping · User-Centred Design · Accessibility
+
+## Project Structure
+
+```text
+src/
+├── assets/        # Images and project assets
+├── components/    # Reusable portfolio sections
+├── pages/         # Individual project case studies
+├── App.jsx        # Application routes and layout
+├── App.css        # Main portfolio styles
+├── index.css      # Global styles
+└── main.jsx       # React entry point
+```
+
+## Run Locally
+
+Clone the repository:
+
+```bash
+git clone https://github.com/quhtrang-cloud/my-portfolio.git
+```
+
+Move into the project:
+
+```bash
+cd my-portfolio
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Vite will display the local development URL in the terminal.
+
+## Development Status
+
+The portfolio is currently being expanded with additional project case studies and final responsive refinements.
+
+## Author
+
+**Quynh Trang Nguyen**
+
+Graduate Web Developer  
+MSc Information Systems - University of Portsmouth
