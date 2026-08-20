@@ -22,6 +22,7 @@ import {
   SiJavascript,
   SiExpress,
   SiPostgresql,
+  SiVercel,
 } from 'react-icons/si'
 
 const skillGroups = [
@@ -129,6 +130,10 @@ const skillGroups = [
       {
         name: 'npm',
         icon: <FaBoxOpen />,
+      },
+      {
+        name: 'Vercel',
+        icon: <SiVercel />,
       },
       {
         name: 'Agile / Scrum',
