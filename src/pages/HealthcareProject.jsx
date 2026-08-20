@@ -1458,8 +1458,7 @@ function HealthcareProject() {
             </p>
 
             <h2>
-              What I learned from taking the system
-              from research to working prototype.
+              What I learned
             </h2>
 
           </div>

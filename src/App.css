@@ -67,7 +67,7 @@ img {
 
 .about,
 .skills {
-  padding-top: 72px;
+  padding-top: 64px;
 }
 
 .section-heading {
@@ -108,7 +108,7 @@ img {
   width: min(760px, 75%);
   height: 1px;
 
-  margin: 72px auto 0;
+  margin: 64px auto 0;
 
   background: linear-gradient(
     to right,
@@ -365,17 +365,17 @@ img {
 }
 
 .primary-button {
-  background: #3b82f6;
+  background: #2563eb;
   color: #ffffff;
 
-  box-shadow: 0 12px 26px rgba(59, 130, 246, 0.24);
+  box-shadow: 0 12px 26px rgba(37, 99, 235, 0.24);
 }
 
 .primary-button:hover,
 .primary-button:focus-visible {
-  background: #2563eb;
+  background: #1d4ed8;
 
-  box-shadow: 0 16px 34px rgba(59, 130, 246, 0.34);
+  box-shadow: 0 16px 34px rgba(37, 99, 235, 0.34);
 }
 
 .secondary-button {
@@ -728,7 +728,7 @@ img {
 =================================== */
 
 .projects {
-  padding-top: 72px;
+  padding-top: 64px;
 }
 
 .projects-heading {
@@ -1001,7 +1001,7 @@ img {
 =================================== */
 
 .experience {
-  padding-top: 72px;
+  padding-top: 64px;
 }
 
 .experience .section-heading {
@@ -1055,7 +1055,7 @@ img {
 .experience-location {
   margin-bottom: 16px;
 
-  color: #64748b;
+  color: #94a3b8;
 
   font-size: 0.86rem;
 }
@@ -1106,7 +1106,7 @@ img {
 =================================== */
 
 .education-block {
-  margin-top: 72px;
+  margin-top: 64px;
 }
 
 .education-heading {
@@ -1162,7 +1162,7 @@ img {
 }
 
 .education-content span {
-  color: #64748b;
+  color: #94a3b8;
 
   font-size: 0.84rem;
 }
@@ -1186,8 +1186,8 @@ img {
 =================================== */
 
 .contact {
-  padding-top: 72px;
-  padding-bottom: 72px;
+  padding-top: 64px;
+  padding-bottom: 64px;
 }
 
 .contact-layout {
@@ -1329,7 +1329,7 @@ img {
 .footer-built {
   margin: 0;
 
-  color: #64748b;
+  color: #94a3b8;
 
   font-size: 0.8rem;
   line-height: 1.5;
@@ -2017,7 +2017,7 @@ img {
 
   margin-bottom: 9px;
 
-  color: #64748b;
+  color: #94a3b8;
 
   font-size: 0.78rem;
   font-weight: 700;
@@ -2079,8 +2079,8 @@ img {
 .case-reflection {
   position: relative;
 
-  padding-top: 56px;
-  padding-bottom: 56px;
+  padding-top: 64px;
+  padding-bottom: 64px;
 }
 
 
@@ -2118,7 +2118,7 @@ img {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
 
-  gap: 80px;
+  gap: 72px;
   align-items: start;
 }
 
@@ -2189,7 +2189,7 @@ img {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
-  margin-top: 44px;
+  margin-top: 40px;
 
   border-top: 1px solid #24324a;
   border-bottom: 1px solid #24324a;
@@ -2247,7 +2247,7 @@ img {
 ========================================================= */
 
 .case-problem-list {
-  margin-top: 44px;
+  margin-top: 40px;
 
   border-top: 1px solid #24324a;
   border-bottom: 1px solid #24324a;
@@ -2301,7 +2301,7 @@ img {
 
   gap: 56px;
 
-  margin-top: 44px;
+  margin-top: 40px;
   padding-top: 42px;
 }
 
@@ -2553,7 +2553,7 @@ img {
 .solution-feature-meta p {
   margin: 0;
 
-  color: #64748b;
+  color: #94a3b8;
 
   font-size: 0.75rem;
   font-weight: 700;
@@ -2627,7 +2627,7 @@ img {
 ========================================================= */
 
 .implementation-list {
-  margin-top: 44px;
+  margin-top: 40px;
 
   border-top: 1px solid #24324a;
 }
@@ -2672,7 +2672,7 @@ img {
 .implementation-meta p {
   margin: 0;
 
-  color: #64748b;
+  color: #94a3b8;
 
   font-size: 0.75rem;
   font-weight: 700;
@@ -2810,7 +2810,7 @@ img {
 
 
 .implementation-foundations {
-  margin-top: 42px;
+  margin-top: 40px;
 }
 
 
@@ -2868,7 +2868,7 @@ img {
 .implementation-foundations-grid p {
   margin: 0;
 
-  color: #64748b;
+  color: #94a3b8;
 
   font-size: 0.82rem;
   line-height: 1.6;
@@ -2880,7 +2880,7 @@ img {
 ========================================================= */
 
 .testing-requirements {
-  margin-top: 44px;
+  margin-top: 40px;
 
   padding: 32px 0;
 
@@ -3046,7 +3046,7 @@ img {
 .testing-caption {
   margin: 20px 0 0;
 
-  color: #64748b;
+  color: #94a3b8;
 
   font-size: 0.78rem;
   line-height: 1.6;
@@ -3125,7 +3125,7 @@ img {
 
 
 .reflection-list {
-  margin-top: 44px;
+  margin-top: 40px;
 
   border-top: 1px solid #24324a;
   border-bottom: 1px solid #24324a;
@@ -3282,7 +3282,7 @@ img {
 .case-reflection-closing {
   max-width: 1100px;
 
-  margin-top: 42px;
+  margin-top: 40px;
 
   padding-left: 22px;
 
