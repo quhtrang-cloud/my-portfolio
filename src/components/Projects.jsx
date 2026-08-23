@@ -11,13 +11,13 @@ const projects = [
     title: 'Healthcare Booking System',
     type: 'Full-Stack Web Application',
     description:
-      'A healthcare appointment platform designed to improve booking flexibility, accessibility and scheduling.',
+      'A full-stack healthcare booking system featuring city-wide appointment search, intelligent scheduling, appointment swapping and Google Calendar integration.',
     technologies: [
+      'JavaScript',
       'Node.js',
       'Express.js',
       'PostgreSQL',
-      'JavaScript',
-      'WCAG',
+      'Google Calendar API',
     ],
     image: healthcareImage,
     imageAlt:
@@ -25,7 +25,6 @@ const projects = [
     featured: true,
     path: '/projects/healthcare-booking-system',
   },
-
   {
     number: '02',
     title: 'Pompey Furniture Company',
@@ -45,7 +44,6 @@ const projects = [
     featured: false,
     path: null,
   },
-
   {
     number: '03',
     title: 'Hampshire Festival App',
@@ -73,12 +71,8 @@ function ProjectLink({ path }) {
   }
 
   return (
-    <Link
-      to={path}
-      className="project-link"
-    >
+    <Link to={path} className="project-link">
       View Project
-
       <FaArrowRight aria-hidden="true" />
     </Link>
   )
@@ -99,21 +93,12 @@ function Projects() {
       id="projects"
     >
       <div className="section-heading projects-heading">
-        <p className="section-label">
-          Projects
-        </p>
-
+        <p className="section-label">Projects</p>
         <h2>Selected work.</h2>
-
         <p className="section-description">
-          A selection of projects across web development,
-          full-stack systems and UX/UI design.
+          A selection of full-stack development and UX/UI projects.
         </p>
       </div>
-
-      {/* =========================
-          FEATURED PROJECT
-      ========================== */}
 
       <article className="project-card project-featured">
         <div className="project-image project-featured-image">
@@ -128,43 +113,24 @@ function Projects() {
             <span className="project-number">
               {featuredProject.number}
             </span>
-
-            <span className="featured-label">
-              Featured
-            </span>
+            <span className="featured-label">Featured</span>
           </div>
 
-          <h3>
-            {featuredProject.title}
-          </h3>
-
-          <p className="project-type">
-            {featuredProject.type}
-          </p>
-
+          <h3>{featuredProject.title}</h3>
+          <p className="project-type">{featuredProject.type}</p>
           <p className="project-description">
             {featuredProject.description}
           </p>
 
           <div className="project-technologies">
-            {featuredProject.technologies.map(
-              (technology) => (
-                <span key={technology}>
-                  {technology}
-                </span>
-              )
-            )}
+            {featuredProject.technologies.map((technology) => (
+              <span key={technology}>{technology}</span>
+            ))}
           </div>
 
-          <ProjectLink
-            path={featuredProject.path}
-          />
+          <ProjectLink path={featuredProject.path} />
         </div>
       </article>
-
-      {/* =========================
-          OTHER PROJECTS
-      ========================== */}
 
       <div className="projects-grid">
         {otherProjects.map((project) => (
@@ -173,10 +139,7 @@ function Projects() {
             key={project.title}
           >
             <div className="project-image">
-              <img
-                src={project.image}
-                alt={project.imageAlt}
-              />
+              <img src={project.image} alt={project.imageAlt} />
             </div>
 
             <div className="project-content">
@@ -186,22 +149,15 @@ function Projects() {
                 </span>
               </div>
 
-              <h3>
-                {project.title}
-              </h3>
+              <h3>{project.title}</h3>
 
               <p className="project-type">
                 {project.type}
-
                 {project.context && (
                   <>
-                    <span
-                      className="project-dot"
-                      aria-hidden="true"
-                    >
+                    <span className="project-dot" aria-hidden="true">
                       •
                     </span>
-
                     {project.context}
                   </>
                 )}
@@ -212,18 +168,12 @@ function Projects() {
               </p>
 
               <div className="project-technologies">
-                {project.technologies.map(
-                  (technology) => (
-                    <span key={technology}>
-                      {technology}
-                    </span>
-                  )
-                )}
+                {project.technologies.map((technology) => (
+                  <span key={technology}>{technology}</span>
+                ))}
               </div>
 
-              <ProjectLink
-                path={project.path}
-              />
+              <ProjectLink path={project.path} />
             </div>
           </article>
         ))}

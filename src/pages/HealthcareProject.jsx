@@ -93,7 +93,7 @@ function HealthcareProject() {
           </p>
 
           <a
-            href="YOUR_HEALTHCARE_GITHUB_URL"
+            href="https://github.com/quhtrang-cloud/gpconnect-healthcare-booking-system"
             className="case-github-link"
             target="_blank"
             rel="noreferrer"
@@ -116,7 +116,7 @@ function HealthcareProject() {
             <span>Role</span>
 
             <p>
-              UX Design & Full-Stack Development
+              Full-Stack Development & UX Design
             </p>
           </div>
 
@@ -124,7 +124,7 @@ function HealthcareProject() {
             <span>Project type</span>
 
             <p>
-              MSc Project
+              MSc Dissertation Project
             </p>
           </div>
 
@@ -1709,7 +1709,7 @@ function HealthcareProject() {
         <div className="case-final-actions">
 
           <a
-            href="YOUR_HEALTHCARE_GITHUB_URL"
+            href="https://github.com/quhtrang-cloud/gpconnect-healthcare-booking-system"
             target="_blank"
             rel="noreferrer"
             className="case-final-primary"
