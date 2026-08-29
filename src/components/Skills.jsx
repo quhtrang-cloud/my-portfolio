@@ -48,6 +48,7 @@ const skillGroups = [
       { name: 'REST APIs', icon: <FaCode /> },
       { name: 'PostgreSQL', icon: <SiPostgresql /> },
       { name: 'SQL', icon: <FaDatabase /> },
+      { name: 'Relational Database Design', icon: <FaDatabase /> },
     ],
   },
   {
@@ -100,6 +101,7 @@ function Skills() {
                   <span className="skill-icon" aria-hidden="true">
                     {skill.icon}
                   </span>
+
                   <span>{skill.name}</span>
                 </div>
               ))}

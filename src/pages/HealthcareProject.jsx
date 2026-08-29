@@ -9,6 +9,7 @@ import {
 } from 'react-icons/fa6'
 
 import healthcareImage from '../assets/projects/healthcare-responsive.png'
+import ProjectSectionNav from '../components/ProjectSectionNav'
 
 import discoveryImage from '../assets/projects/healthcare-discovery.png'
 import swapImage from '../assets/projects/healthcare-swap.png'
@@ -19,6 +20,16 @@ import lighthouseImage from '../assets/projects/healthcare-lighthouse.png'
 
 function HealthcareProject() {
   const [zoomedImage, setZoomedImage] = useState(null)
+
+  const sectionNavItems = [
+    { id: 'overview', label: 'Overview' },
+    { id: 'problem', label: 'Problem' },
+    { id: 'approach', label: 'Approach' },
+    { id: 'solution', label: 'Solution' },
+    { id: 'implementation', label: 'Implementation' },
+    { id: 'testing', label: 'Testing' },
+    { id: 'reflection', label: 'Reflection' },
+  ]
 
 
   const openImage = (src, alt) => {
@@ -172,12 +183,14 @@ function HealthcareProject() {
 
       </section>
 
+      <ProjectSectionNav items={sectionNavItems} />
+
 
       {/* ===================================
           OVERVIEW
       =================================== */}
 
-      <section className="case-overview section-container">
+      <section id="overview" className="case-overview section-container">
 
         <div className="case-overview-layout">
 
@@ -273,7 +286,7 @@ function HealthcareProject() {
           THE PROBLEM
       =================================== */}
 
-      <section className="case-problem section-container">
+      <section id="problem" className="case-problem section-container">
 
         <div className="case-section-layout">
 
@@ -369,7 +382,7 @@ function HealthcareProject() {
           APPROACH
       =================================== */}
 
-      <section className="case-approach section-container">
+      <section id="approach" className="case-approach section-container">
 
         <div className="case-section-layout">
 
@@ -494,7 +507,7 @@ function HealthcareProject() {
           SOLUTION
       =================================== */}
 
-      <section className="case-solution section-container">
+      <section id="solution" className="case-solution section-container">
 
         <div className="case-section-layout">
 
@@ -791,7 +804,7 @@ function HealthcareProject() {
           TECHNICAL IMPLEMENTATION
       =================================== */}
 
-      <section className="case-implementation section-container">
+      <section id="implementation" className="case-implementation section-container">
 
         <div className="case-section-layout">
 
@@ -1182,7 +1195,7 @@ function HealthcareProject() {
           TESTING & EVALUATION
       =================================== */}
 
-      <section className="case-testing section-container">
+      <section id="testing" className="case-testing section-container">
 
         <div className="case-section-layout">
 
@@ -1447,7 +1460,7 @@ function HealthcareProject() {
           REFLECTION
       =================================== */}
 
-      <section className="case-reflection section-container">
+      <section id="reflection" className="case-reflection section-container">
 
         <div className="case-section-layout">
 

@@ -3759,3 +3759,2274 @@ img {
     right: 16px;
   }
 }
+
+/* =========================================================
+   FURNITURE CASE STUDY — FINAL FLOW REFINEMENTS
+   Flow:
+   Hero → Overview → My Contribution → Planning & Design
+   → Database Design → SQL & Business Reporting
+   → Web Application → Outcome → CTA
+
+   These rules intentionally reuse the shared Healthcare
+   case-study system and only refine responsive behaviour
+   needed by the Furniture page.
+========================================================= */
+
+/* Make clickable hero preview behave exactly like a full-width image */
+.case-hero-image .solution-image-button {
+  display: block;
+  width: 100%;
+  padding: 0;
+
+  background: transparent;
+  border: 0;
+
+  cursor: zoom-in;
+}
+
+.case-hero-image .solution-image-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Keep overview highlight spacing balanced when cards stack */
+@media (max-width: 900px) {
+  .case-highlight {
+    padding: 30px 0;
+  }
+
+  .case-highlight + .case-highlight {
+    padding-left: 0;
+
+    border-top: 1px solid #24324a;
+    border-left: 0;
+  }
+
+  .case-highlight span {
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .case-highlight {
+    padding: 26px 0;
+  }
+
+  .case-highlight span {
+    margin-bottom: 20px;
+  }
+}
+
+
+/* =========================================================
+   FURNITURE PROJECT — MY CONTRIBUTION
+========================================================= */
+
+.case-contribution {
+  position: relative;
+
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.case-contribution::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 64px;
+  height: 1px;
+
+  background: #334155;
+}
+
+
+/* ---------- Header ---------- */
+
+.contribution-header {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 72px;
+  align-items: start;
+}
+
+.contribution-heading {
+  max-width: 620px;
+}
+
+.contribution-heading .case-section-label {
+  margin: 0 0 22px;
+}
+
+.contribution-heading h2 {
+  max-width: 620px;
+
+  margin: 0;
+
+  color: #f8fafc;
+
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  font-weight: 750;
+  line-height: 1.08;
+  letter-spacing: -2px;
+}
+
+.contribution-intro {
+  max-width: 720px;
+}
+
+.contribution-intro .case-section-lead {
+  max-width: 720px;
+
+  margin: 0;
+
+  color: #e2e8f0;
+
+  font-size: 1.25rem;
+  line-height: 1.7;
+}
+
+.contribution-intro .case-section-text {
+  max-width: 720px;
+
+  margin: 24px 0 0;
+
+  color: #94a3b8;
+
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+
+/* ---------- Responsibilities ---------- */
+
+.contribution-responsibilities {
+  margin-top: 48px;
+}
+
+.contribution-eyebrow {
+  margin: 0 0 22px;
+
+  color: #60a5fa;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.contribution-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  border-top: 1px solid #24324a;
+  border-bottom: 1px solid #24324a;
+}
+
+.contribution-card {
+  min-width: 0;
+
+  padding: 32px 28px 36px 0;
+}
+
+.contribution-card + .contribution-card {
+  padding-left: 28px;
+
+  border-left: 1px solid #24324a;
+}
+
+.contribution-number {
+  display: block;
+
+  margin-bottom: 28px;
+
+  color: #60a5fa;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.contribution-card h3 {
+  margin: 0 0 14px;
+
+  color: #f8fafc;
+
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.contribution-card p {
+  max-width: 270px;
+
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) {
+
+  .case-contribution {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .contribution-header {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+
+  .contribution-heading,
+  .contribution-heading h2,
+  .contribution-intro {
+    max-width: 760px;
+  }
+
+  .contribution-responsibilities {
+    margin-top: 44px;
+  }
+
+  .contribution-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contribution-card {
+    padding: 30px 26px;
+  }
+
+  .contribution-card + .contribution-card {
+    padding-left: 26px;
+  }
+
+  .contribution-card:nth-child(odd) {
+    padding-left: 0;
+
+    border-left: 0;
+  }
+
+  .contribution-card:nth-child(n + 3) {
+    border-top: 1px solid #24324a;
+  }
+
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 560px) {
+
+  .case-contribution {
+    padding-top: 46px;
+    padding-bottom: 40px;
+  }
+
+  .case-contribution::before {
+    width: 48px;
+  }
+
+  .contribution-header {
+    gap: 32px;
+  }
+
+  .contribution-heading .case-section-label {
+    margin-bottom: 18px;
+  }
+
+  .contribution-heading h2 {
+    font-size: 2.4rem;
+  }
+
+  .contribution-intro .case-section-lead {
+    font-size: 1.1rem;
+  }
+
+  .contribution-intro .case-section-text {
+    margin-top: 20px;
+
+    font-size: 0.98rem;
+  }
+
+  .contribution-responsibilities {
+    margin-top: 38px;
+  }
+
+  .contribution-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contribution-card,
+  .contribution-card + .contribution-card,
+  .contribution-card:nth-child(odd) {
+    padding: 26px 0;
+
+    border-left: 0;
+  }
+
+  .contribution-card + .contribution-card {
+    border-top: 1px solid #24324a;
+  }
+
+  .contribution-card:first-child {
+    border-top: 0;
+  }
+
+  .contribution-number {
+    margin-bottom: 18px;
+  }
+
+  .contribution-card p {
+    max-width: 100%;
+  }
+
+}
+
+
+/* =========================================================
+   FURNITURE PROJECT — PLANNING & DESIGN
+   Process → Information Architecture → Wireframing
+========================================================= */
+
+.case-planning {
+  position: relative;
+
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.case-planning::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 64px;
+  height: 1px;
+
+  background: #334155;
+}
+
+.case-planning-intro {
+  max-width: 720px;
+}
+
+
+/* ---------- Process overview ---------- */
+
+.planning-process {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  margin-top: 46px;
+
+  border-top: 1px solid #24324a;
+  border-bottom: 1px solid #24324a;
+}
+
+.planning-process-step {
+  min-width: 0;
+
+  padding: 30px 26px 34px 0;
+}
+
+.planning-process-step + .planning-process-step {
+  padding-left: 26px;
+
+  border-left: 1px solid #24324a;
+}
+
+.planning-process-number {
+  display: block;
+
+  margin-bottom: 24px;
+
+  color: #60a5fa;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.planning-process-step h3 {
+  margin: 0 0 13px;
+
+  color: #f8fafc;
+
+  font-size: 1.06rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.planning-process-step p {
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+
+/* ---------- Story blocks ---------- */
+
+.planning-story {
+  margin-top: 42px;
+  padding-top: 28px;
+
+  border-top: 1px solid #24324a;
+}
+
+/* Keep Information Architecture visually connected to the process overview */
+.planning-story-architecture {
+  margin-top: 32px;
+}
+
+/* Give Wireframing a little more separation as the next evidence block */
+.planning-story-wireframes {
+  margin-top: 56px;
+}
+
+.planning-story-copy {
+  max-width: 660px;
+
+  margin-bottom: 28px;
+}
+
+.planning-story-index {
+  margin: 0 0 12px;
+
+  color: #60a5fa;
+
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.planning-story-copy h3 {
+  margin: 0 0 14px;
+
+  color: #f8fafc;
+
+  font-size: clamp(1.75rem, 2.7vw, 2.5rem);
+  font-weight: 750;
+  line-height: 1.12;
+  letter-spacing: -1px;
+}
+
+.planning-story-copy > p:last-child {
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+
+
+/* ---------- Architecture visual ---------- */
+
+.planning-architecture-visual {
+  width: 100%;
+  max-width: 920px;
+
+  margin: 0 auto;
+
+  overflow: hidden;
+
+  padding: 16px;
+
+  background: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 16px;
+}
+
+.planning-architecture-visual .solution-image-button {
+  display: block;
+
+  width: 100%;
+  padding: 0;
+
+  background: transparent;
+  border: 0;
+
+  cursor: zoom-in;
+}
+
+.planning-architecture-visual .solution-image-button img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+}
+
+
+/* ---------- Single selected wireframe ---------- */
+
+.wireframe-single {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  align-items: center;
+
+  max-width: 1050px;
+
+  overflow: hidden;
+
+  background: #111c31;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 16px;
+}
+
+.wireframe-single-visual {
+  min-width: 0;
+
+  padding: 22px;
+
+  background: #f8fafc;
+}
+
+.wireframe-single-visual .solution-image-button {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: auto;
+  padding: 0;
+
+  overflow: hidden;
+
+  background: #f8fafc;
+  border: 0;
+
+  cursor: zoom-in;
+}
+
+.wireframe-single-visual .solution-image-button img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+  max-height: 430px;
+
+  object-fit: contain;
+
+  background: #f8fafc;
+}
+
+.wireframe-single-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 38px 42px;
+}
+
+.wireframe-single-copy > span {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #60a5fa;
+
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.wireframe-single-copy h4 {
+  margin: 0 0 16px;
+
+  color: #f8fafc;
+
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.wireframe-single-copy p {
+  max-width: 480px;
+
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+
+.wireframe-single-copy p + p {
+  margin-top: 18px;
+}
+
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) {
+
+  .planning-process {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .planning-process-step {
+    padding: 28px 24px;
+  }
+
+  .planning-process-step + .planning-process-step {
+    padding-left: 24px;
+  }
+
+  .planning-process-step:nth-child(odd) {
+    padding-left: 0;
+
+    border-left: 0;
+  }
+
+  .planning-process-step:nth-child(n + 3) {
+    border-top: 1px solid #24324a;
+  }
+
+  .planning-story {
+    margin-top: 42px;
+  }
+
+  .planning-story-architecture {
+    margin-top: 30px;
+  }
+
+  .planning-story-wireframes {
+    margin-top: 48px;
+  }
+
+  .planning-architecture-visual {
+    max-width: 100%;
+    padding: 14px;
+  }
+
+  .wireframe-single {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+
+  .wireframe-single-visual {
+    padding: 18px;
+  }
+
+  .wireframe-single-visual .solution-image-button img {
+    max-height: 360px;
+  }
+
+  .wireframe-single-copy {
+    padding: 30px;
+  }
+
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 560px) {
+
+  .case-planning {
+    padding-top: 46px;
+    padding-bottom: 40px;
+  }
+
+  .case-planning::before {
+    width: 48px;
+  }
+
+  .planning-process {
+    grid-template-columns: 1fr;
+
+    margin-top: 36px;
+  }
+
+  .planning-process-step,
+  .planning-process-step + .planning-process-step,
+  .planning-process-step:nth-child(odd) {
+    padding: 24px 0;
+
+    border-left: 0;
+  }
+
+  .planning-process-step + .planning-process-step {
+    border-top: 1px solid #24324a;
+  }
+
+  .planning-process-number {
+    margin-bottom: 18px;
+  }
+
+  .planning-story {
+    margin-top: 34px;
+    padding-top: 24px;
+  }
+
+  .planning-story-architecture {
+    margin-top: 24px;
+  }
+
+  .planning-story-wireframes {
+    margin-top: 40px;
+  }
+
+  .planning-story-copy {
+    margin-bottom: 22px;
+  }
+
+  .planning-architecture-visual {
+    max-width: 100%;
+    padding: 10px;
+    border-radius: 12px;
+  }
+
+  .wireframe-single {
+    grid-template-columns: 1fr;
+  }
+
+  .wireframe-single-visual {
+    padding: 16px;
+  }
+
+  .wireframe-single-visual .solution-image-button img {
+    max-height: 360px;
+  }
+
+  .wireframe-single-copy {
+    padding: 24px 20px;
+  }
+
+}
+
+/* =========================================================
+   FURNITURE PROJECT — DATABASE DESIGN REFINEMENTS
+========================================================= */
+
+.case-solution .solution-feature {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.case-solution .solution-feature-image {
+  width: 100%;
+  max-width: 470px;
+}
+
+.case-solution .solution-feature-content {
+  max-width: 560px;
+}
+
+.case-solution .solution-support-label {
+  margin-bottom: 14px;
+}
+
+.case-solution .solution-feature-content h3 {
+  max-width: 520px;
+}
+
+.case-solution .solution-feature-content > p:not(.solution-support-label) {
+  max-width: 540px;
+}
+
+@media (max-width: 900px) {
+  .case-solution .solution-feature {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .case-solution .solution-feature-image {
+    max-width: 620px;
+    justify-self: start;
+  }
+
+  .case-solution .solution-feature-content {
+    max-width: 720px;
+  }
+}
+
+@media (max-width: 560px) {
+  .case-solution .solution-feature {
+    gap: 26px;
+    padding: 30px 0;
+  }
+
+  .case-solution .solution-feature-image {
+    max-width: 100%;
+  }
+}
+
+
+/* =========================================================
+   FURNITURE PROJECT — FINAL SECTION RHYTHM
+   Keeps Database → SQL → Web Application spacing consistent
+========================================================= */
+
+/* Database visual should finish cleanly without an oversized empty tail */
+.case-solution {
+  padding-bottom: 36px;
+}
+
+.case-solution .solution-features {
+  margin-top: 40px;
+}
+
+.case-solution .solution-feature {
+  padding-top: 36px;
+  padding-bottom: 24px;
+}
+
+/* Keep the following section close enough to read as the next stage,
+   while retaining the shared divider and hierarchy */
+.case-solution + .case-implementation {
+  padding-top: 52px;
+}
+
+/* Furniture SQL and Web Application each contain four items.
+   Override the shared five-column Healthcare grid only on these sections. */
+.case-implementation .implementation-foundations-grid,
+.case-testing .implementation-foundations-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Keep the same visual rhythm between SQL and Web Application */
+.case-implementation {
+  padding-bottom: 52px;
+}
+
+.case-implementation + .case-testing {
+  padding-top: 52px;
+}
+
+.case-testing {
+  padding-bottom: 52px;
+}
+
+.case-testing + .case-reflection {
+  padding-top: 52px;
+}
+
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) {
+
+  .case-solution {
+    padding-bottom: 40px;
+  }
+
+  .case-solution + .case-implementation,
+  .case-implementation + .case-testing,
+  .case-testing + .case-reflection {
+    padding-top: 48px;
+  }
+
+  .case-implementation .implementation-foundations-grid,
+  .case-testing .implementation-foundations-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 560px) {
+
+  .case-solution {
+    padding-bottom: 32px;
+  }
+
+  .case-solution .solution-feature {
+    padding-top: 28px;
+    padding-bottom: 18px;
+  }
+
+  .case-solution + .case-implementation,
+  .case-implementation + .case-testing,
+  .case-testing + .case-reflection {
+    padding-top: 42px;
+  }
+
+  .case-implementation,
+  .case-testing {
+    padding-bottom: 40px;
+  }
+
+  .case-implementation .implementation-foundations-grid,
+  .case-testing .implementation-foundations-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+/* =========================================================
+   FURNITURE PROJECT — PLANNING EVIDENCE
+========================================================= */
+
+.planning-evidence-list {
+  margin-top: 48px;
+  border-top: 1px solid #24324a;
+}
+
+.planning-evidence {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  align-items: center;
+  gap: 64px;
+
+  padding: 52px 0;
+
+  border-bottom: 1px solid #24324a;
+}
+
+.planning-evidence-visual {
+  min-width: 0;
+  overflow: hidden;
+
+  background: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 16px;
+}
+
+.planning-evidence-visual .solution-image-button {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: auto;
+  padding: 0;
+
+  background: transparent;
+  border: 0;
+
+  cursor: zoom-in;
+}
+
+.planning-evidence-visual img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+}
+
+.planning-evidence-architecture {
+  padding: 14px;
+}
+
+.planning-evidence-wireframe {
+  padding: 20px;
+}
+
+.planning-evidence-wireframe img {
+  max-height: 430px;
+}
+
+.planning-evidence-copy {
+  max-width: 470px;
+}
+
+.planning-evidence-label {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: #60a5fa;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.planning-evidence-copy h3 {
+  margin: 0 0 18px;
+
+  color: #f8fafc;
+
+  font-size: clamp(1.65rem, 2.4vw, 2.2rem);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -0.7px;
+}
+
+.planning-evidence-copy p {
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 0.96rem;
+  line-height: 1.75;
+}
+
+.planning-evidence-copy p + p {
+  margin-top: 18px;
+}
+
+
+/* =========================================================
+   FURNITURE PROJECT — PLANNING EVIDENCE RESPONSIVE
+========================================================= */
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) {
+  .planning-evidence {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
+    gap: 40px;
+
+    padding: 44px 0;
+  }
+
+  .planning-evidence-wireframe img {
+    max-height: 360px;
+  }
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 560px) {
+  .planning-evidence-list {
+    margin-top: 36px;
+  }
+
+  .planning-evidence {
+    grid-template-columns: 1fr;
+    gap: 26px;
+
+    padding: 34px 0;
+  }
+
+  .planning-evidence-copy {
+    max-width: 100%;
+  }
+
+  .planning-evidence-architecture {
+    padding: 10px;
+  }
+
+  .planning-evidence-wireframe {
+    padding: 14px;
+  }
+
+  .planning-evidence-wireframe img {
+    max-height: 360px;
+  }
+}
+
+
+/* =========================================================
+   FURNITURE PROJECT — SQL SUMMARY
+   Compact business-query overview in the right-hand intro column
+========================================================= */
+
+.sql-query-summary {
+  margin: 28px 0 0;
+  border-top: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.sql-query-summary p {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 20px;
+
+  margin: 0;
+  padding: 14px 0;
+
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.sql-query-summary strong {
+  color: #f8fafc;
+
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.sql-query-summary span {
+  color: #94a3b8;
+
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+/* Tighten the final technical paragraph beneath the summary */
+.case-implementation-intro .sql-query-summary + .case-section-text {
+  margin-top: 24px;
+}
+
+@media (max-width: 900px) {
+  .sql-query-summary p {
+    grid-template-columns: 150px minmax(0, 1fr);
+    gap: 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  .sql-query-summary {
+    margin-top: 24px;
+  }
+
+  .sql-query-summary p {
+    grid-template-columns: 1fr;
+    gap: 4px;
+
+    padding: 13px 0;
+  }
+
+  .sql-query-summary strong,
+  .sql-query-summary span {
+    font-size: 0.9rem;
+  }
+
+}
+
+/* =========================================================
+   FURNITURE PROJECT — SQL EXAMPLES
+   Clean final version
+   Spacing follows the same rhythm used across the case study
+========================================================= */
+
+.case-implementation .sql-examples {
+  margin-top: 40px;
+}
+
+.case-implementation .sql-examples-heading {
+  display: block;
+
+  width: 100%;
+  margin: 0;
+  padding-bottom: 24px;
+
+  border-bottom: 1px solid #24324a;
+}
+
+.case-implementation .sql-examples-heading > span {
+  display: block;
+
+  margin: 0 0 14px;
+
+  color: #60a5fa;
+
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.case-implementation .sql-examples-heading p {
+  width: 100%;
+  max-width: none;
+
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 1rem;
+  line-height: 1.7;
+
+  overflow-wrap: break-word;
+}
+
+.case-implementation .sql-query {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.85fr) minmax(0, 1.15fr);
+  align-items: start;
+  gap: 48px;
+
+  padding: 34px 0 42px;
+
+  border-bottom: 1px solid #24324a;
+}
+
+.case-implementation .sql-query-copy {
+  max-width: 430px;
+}
+
+.case-implementation .sql-query-number {
+  display: block;
+
+  margin: 0 0 20px;
+
+  color: #64748b;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+.case-implementation .sql-query-copy h3 {
+  margin: 0 0 14px;
+
+  color: #f8fafc;
+
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.case-implementation .sql-query-description {
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+.case-implementation .sql-query-techniques {
+  margin: 18px 0 0;
+
+  color: #cbd5e1;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 0.035em;
+}
+
+.case-implementation .sql-code {
+  width: 100%;
+  max-width: 760px;
+  min-width: 0;
+
+  justify-self: end;
+
+  overflow: hidden;
+
+  background: #0b1220;
+
+  border: 1px solid #24324a;
+  border-radius: 14px;
+}
+
+.case-implementation .sql-code-header {
+  display: flex;
+  align-items: center;
+
+  min-height: 42px;
+  padding: 0 18px;
+
+  border-bottom: 1px solid #24324a;
+}
+
+.case-implementation .sql-code-header span {
+  color: #64748b;
+
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.case-implementation .sql-code pre {
+  margin: 0;
+  padding: 18px 20px;
+
+  overflow-x: auto;
+}
+
+.case-implementation .sql-code code {
+  color: #cbd5e1;
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+
+  font-size: 0.8rem;
+  line-height: 1.7;
+
+  white-space: pre;
+}
+
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) {
+  .case-implementation .sql-examples {
+    margin-top: 36px;
+  }
+
+  .case-implementation .sql-examples-heading {
+    padding-bottom: 22px;
+  }
+
+  .case-implementation .sql-query {
+    grid-template-columns: minmax(250px, 0.9fr) minmax(0, 1.1fr);
+    gap: 32px;
+
+    padding: 30px 0 38px;
+  }
+
+  .case-implementation .sql-code {
+    max-width: 100%;
+  }
+
+  .case-implementation .sql-code code {
+    font-size: 0.76rem;
+  }
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 560px) {
+  .case-implementation .sql-examples {
+    margin-top: 30px;
+  }
+
+  .case-implementation .sql-examples-heading {
+    padding-bottom: 20px;
+  }
+
+  .case-implementation .sql-examples-heading > span {
+    margin-bottom: 10px;
+
+    font-size: 0.82rem;
+  }
+
+  .case-implementation .sql-examples-heading p {
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .case-implementation .sql-query {
+    grid-template-columns: 1fr;
+    gap: 24px;
+
+    padding: 28px 0 34px;
+  }
+
+  .case-implementation .sql-query-copy {
+    max-width: 100%;
+  }
+
+  .case-implementation .sql-query-number {
+    margin-bottom: 16px;
+  }
+
+  .case-implementation .sql-query-copy h3 {
+    font-size: 1.22rem;
+  }
+
+  .case-implementation .sql-query-description {
+    font-size: 0.92rem;
+  }
+
+  .case-implementation .sql-code {
+    max-width: 100%;
+
+    justify-self: stretch;
+  }
+
+  .case-implementation .sql-code pre {
+    padding: 18px;
+  }
+
+  .case-implementation .sql-code code {
+    font-size: 0.72rem;
+  }
+}
+
+
+/* =========================================================
+   FURNITURE PROJECT — WEB APPLICATION EVIDENCE
+========================================================= */
+
+.case-testing .web-functionality {
+  margin-top: 48px;
+}
+
+.web-application-evidence {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  align-items: center;
+  gap: 52px;
+  margin-top: 52px;
+  padding: 52px 0;
+  border-top: 1px solid #24324a;
+  border-bottom: 1px solid #24324a;
+}
+
+.web-application-visual {
+  min-width: 0;
+  overflow: hidden;
+  background: #0b1220;
+  border: 1px solid #24324a;
+  border-radius: 14px;
+}
+
+.web-application-visual .solution-image-button {
+  width: 100%;
+}
+
+.web-application-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.web-application-caption {
+  max-width: 360px;
+}
+
+.web-application-caption .planning-evidence-label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.web-application-caption h3 {
+  margin: 0 0 14px;
+  color: #f8fafc;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.web-application-caption p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .web-application-evidence {
+    grid-template-columns: minmax(0, 1.15fr) minmax(250px, 0.85fr);
+    gap: 36px;
+    margin-top: 44px;
+    padding: 44px 0;
+  }
+
+  .web-application-caption {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .case-testing .web-functionality {
+    margin-top: 36px;
+  }
+
+  .web-application-evidence {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    margin-top: 36px;
+    padding: 34px 0;
+  }
+
+  .web-application-caption h3 {
+    font-size: 1.22rem;
+  }
+
+  .web-application-caption p {
+    font-size: 0.92rem;
+  }
+}
+
+
+/* =========================================================
+   FURNITURE PROJECT — FINAL PRESENTATION POLISH
+   Unified rhythm for process, application evidence,
+   validation and outcome.
+========================================================= */
+
+/* ---------- Shared editorial grids ---------- */
+
+.case-planning .planning-process,
+.case-testing .implementation-foundations-grid,
+.case-reflection .outcome-grid {
+  border-color: #24324a;
+}
+
+.case-planning .planning-process-step,
+.case-testing .implementation-foundations-grid > div,
+.case-reflection .outcome-item {
+  min-width: 0;
+}
+
+.case-testing .implementation-foundations-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.case-testing .implementation-foundations-grid > div {
+  padding: 30px 26px 32px 0;
+}
+
+.case-testing .implementation-foundations-grid > div + div {
+  padding-left: 26px;
+}
+
+.case-testing .implementation-foundations-grid span {
+  margin-bottom: 12px;
+
+  color: #f8fafc;
+
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.case-testing .implementation-foundations-grid p {
+  color: #94a3b8;
+
+  font-size: 0.9rem;
+  line-height: 1.68;
+}
+
+.case-testing .implementation-foundations-header {
+  padding-bottom: 16px;
+}
+
+.case-testing .implementation-foundations-header p {
+  color: #60a5fa;
+
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+}
+
+
+/* ---------- Web application evidence ---------- */
+
+.case-testing .web-functionality {
+  margin-top: 44px;
+}
+
+.web-application-evidence {
+  grid-template-columns: minmax(0, 1.32fr) minmax(280px, 0.68fr);
+  gap: 48px;
+
+  margin-top: 44px;
+  padding: 46px 0 42px;
+
+  border-top: 1px solid #24324a;
+  border-bottom: 0;
+}
+
+.web-application-caption {
+  max-width: 370px;
+}
+
+.web-application-caption h3 {
+  margin-bottom: 14px;
+
+  font-size: 1.32rem;
+  line-height: 1.32;
+}
+
+.web-application-caption p {
+  font-size: 0.94rem;
+  line-height: 1.72;
+}
+
+
+/* ---------- Standards validation ---------- */
+
+.standards-validation {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
+  gap: 48px;
+
+  margin-top: 0;
+  padding: 28px 0 0;
+
+  border-top: 1px solid #24324a;
+}
+
+.standards-validation-heading span {
+  display: block;
+
+  color: #f8fafc;
+
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.standards-validation-content {
+  max-width: 620px;
+}
+
+.standards-validation-content > p {
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 0.92rem;
+  line-height: 1.68;
+}
+
+.standards-validation-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-top: 16px;
+}
+
+.standards-validation-results span {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 32px;
+  padding: 6px 10px;
+
+  color: #cbd5e1;
+  background: rgba(59, 130, 246, 0.045);
+
+  border: 1px solid rgba(96, 165, 250, 0.16);
+  border-radius: 999px;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+
+/* ---------- Outcome ---------- */
+
+.outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  margin-top: 44px;
+
+  border-top: 1px solid #24324a;
+  border-bottom: 1px solid #24324a;
+}
+
+.outcome-item {
+  padding: 30px 26px 32px 0;
+}
+
+.outcome-item + .outcome-item {
+  padding-left: 26px;
+
+  border-left: 1px solid #24324a;
+}
+
+.outcome-number {
+  display: block;
+
+  margin-bottom: 20px;
+
+  color: #60a5fa;
+
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+.outcome-item h3 {
+  margin: 0 0 12px;
+
+  color: #f8fafc;
+
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.outcome-item p {
+  margin: 0;
+
+  color: #94a3b8;
+
+  font-size: 0.9rem;
+  line-height: 1.68;
+}
+
+.case-reflection-closing.outcome-continuation {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.72fr) minmax(0, 1.28fr);
+  gap: 48px;
+
+  margin-top: 30px;
+  padding-top: 0;
+
+  border-top: 0;
+}
+
+.outcome-continuation > span {
+  color: #60a5fa;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.outcome-continuation > p {
+  max-width: 620px;
+  margin: 0;
+
+  color: #cbd5e1;
+
+  font-size: 0.94rem;
+  line-height: 1.72;
+}
+
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) {
+  .case-testing .implementation-foundations-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .case-testing .implementation-foundations-grid > div {
+    padding: 26px 22px 28px 0;
+  }
+
+  .case-testing .implementation-foundations-grid > div + div {
+    padding-left: 22px;
+  }
+
+  .case-testing .implementation-foundations-grid > div:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+    border-top: 1px solid #24324a;
+  }
+
+  .case-testing .implementation-foundations-grid > div:nth-child(4) {
+    border-top: 1px solid #24324a;
+  }
+
+  .web-application-evidence {
+    grid-template-columns: minmax(0, 1.12fr) minmax(250px, 0.88fr);
+    gap: 36px;
+
+    margin-top: 40px;
+    padding: 40px 0 38px;
+  }
+
+  .standards-validation {
+    grid-template-columns: minmax(180px, 0.65fr) minmax(0, 1.35fr);
+    gap: 36px;
+
+    padding-top: 26px;
+  }
+
+  .outcome-item {
+    padding-right: 20px;
+  }
+
+  .outcome-item + .outcome-item {
+    padding-left: 20px;
+  }
+
+  .case-reflection-closing.outcome-continuation {
+    grid-template-columns: minmax(160px, 0.65fr) minmax(0, 1.35fr);
+    gap: 36px;
+  }
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 560px) {
+  .case-testing .web-functionality {
+    margin-top: 34px;
+  }
+
+  .case-testing .implementation-foundations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-testing .implementation-foundations-grid > div,
+  .case-testing .implementation-foundations-grid > div + div,
+  .case-testing .implementation-foundations-grid > div:nth-child(3),
+  .case-testing .implementation-foundations-grid > div:nth-child(4) {
+    padding: 24px 0;
+
+    border-left: 0;
+  }
+
+  .case-testing .implementation-foundations-grid > div + div {
+    border-top: 1px solid #24324a;
+  }
+
+  .web-application-evidence {
+    grid-template-columns: 1fr;
+    gap: 24px;
+
+    margin-top: 32px;
+    padding: 32px 0 30px;
+  }
+
+  .web-application-caption {
+    max-width: 100%;
+  }
+
+  .standards-validation {
+    grid-template-columns: 1fr;
+    gap: 12px;
+
+    padding-top: 24px;
+  }
+
+  .standards-validation-results {
+    margin-top: 14px;
+  }
+
+  .outcome-grid {
+    grid-template-columns: 1fr;
+
+    margin-top: 34px;
+  }
+
+  .outcome-item,
+  .outcome-item + .outcome-item {
+    padding: 24px 0;
+
+    border-left: 0;
+  }
+
+  .outcome-item + .outcome-item {
+    border-top: 1px solid #24324a;
+  }
+
+  .outcome-number {
+    margin-bottom: 14px;
+  }
+
+  .case-reflection-closing.outcome-continuation {
+    grid-template-columns: 1fr;
+    gap: 12px;
+
+    margin-top: 26px;
+  }
+}
+
+
+/* =========================================================
+   FURNITURE PROJECT — DIVIDER CLEANUP
+   Keep one separator between content blocks and remove
+   visually repetitive parallel horizontal lines.
+========================================================= */
+
+/* Planning:
+   the process grid already ends with a divider, so the evidence
+   list does not need another line above it. */
+.case-planning .planning-evidence-list {
+  border-top: 0;
+}
+
+/* Database:
+   the section transition already provides enough separation.
+   Remove the extra line directly above the EERD evidence row. */
+.case-solution .solution-feature {
+  border-top: 0;
+}
+
+/* Web Application:
+   the functionality grid already has a bottom border.
+   Remove the second line above the dashboard evidence. */
+.case-testing .web-application-evidence {
+  border-top: 0;
+}
+
+/* Keep Validation as the single separator after the dashboard. */
+.case-testing .standards-validation {
+  border-top: 1px solid #24324a;
+}
+
+/* =========================================================
+   FURNITURE PROJECT — FINAL SPACING & DIVIDER CLEANUP
+   Removes redundant adjacent horizontal rules and tightens
+   transitions between evidence and the following section.
+========================================================= */
+
+/* Planning: the process grid already has its own bottom edge.
+   Remove the extra line before the first evidence row. */
+.case-planning .planning-evidence-list {
+  border-top: 0;
+  margin-top: 38px;
+}
+
+.case-planning .planning-evidence {
+  padding: 42px 0;
+}
+
+/* Do not draw a long divider after the final planning image.
+   Section separation is handled by whitespace + the next section marker. */
+.case-planning .planning-evidence:last-child {
+  border-bottom: 0;
+  padding-bottom: 28px;
+}
+
+/* Reduce the oversized transition into Database Design. */
+.case-planning + .case-solution {
+  margin-top: 0;
+  padding-top: 58px;
+}
+
+/* Database evidence: avoid unnecessary extra horizontal rule. */
+.case-solution .solution-features {
+  border-top: 0;
+  margin-top: 34px;
+}
+
+.case-solution .solution-feature {
+  padding-top: 32px;
+}
+
+/* SQL -> Web Application:
+   remove the long bottom rule after the final SQL example and
+   use a tighter whitespace transition instead. */
+.case-implementation .sql-query:last-child {
+  border-bottom: 0;
+  padding-bottom: 26px;
+}
+
+.case-implementation + .case-testing {
+  margin-top: 0;
+  padding-top: 58px;
+}
+
+/* Web application evidence already reads as a separate editorial row.
+   Keep only the line that introduces validation, not an additional
+   bottom edge on the screenshot row. */
+.case-testing .web-application-evidence {
+  border-bottom: 0;
+  padding-bottom: 34px;
+}
+
+.case-testing .standards-validation {
+  margin-top: 0;
+  padding-top: 26px;
+}
+
+/* Outcome: one enclosing top/bottom rhythm is enough. */
+.case-reflection .outcome-grid {
+  margin-top: 38px;
+}
+
+@media (max-width: 900px) {
+  .case-planning .planning-evidence-list {
+    margin-top: 34px;
+  }
+
+  .case-planning .planning-evidence {
+    padding: 38px 0;
+  }
+
+  .case-planning + .case-solution,
+  .case-implementation + .case-testing {
+    padding-top: 52px;
+  }
+}
+
+@media (max-width: 560px) {
+  .case-planning .planning-evidence-list {
+    margin-top: 28px;
+  }
+
+  .case-planning .planning-evidence {
+    padding: 32px 0;
+  }
+
+  .case-planning .planning-evidence:last-child {
+    padding-bottom: 20px;
+  }
+
+  .case-planning + .case-solution,
+  .case-implementation + .case-testing {
+    padding-top: 44px;
+  }
+
+  .case-implementation .sql-query:last-child {
+    padding-bottom: 20px;
+  }
+
+  .case-testing .web-application-evidence {
+    padding-bottom: 28px;
+  }
+}
+
+
+/* =========================================================
+   SHARED CASE STUDY — FINAL GRID & DIVIDER NORMALISATION
+   Keeps Healthcare and Furniture visually consistent.
+========================================================= */
+
+/* Healthcare Technical Implementation:
+   keep all five implementation foundations on one desktop row. */
+.case-implementation:has(.implementation-list) .implementation-foundations-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-bottom: 0;
+}
+
+.case-implementation:has(.implementation-list) .implementation-foundations-grid > div {
+  min-width: 0;
+  padding: 26px 22px 28px 0;
+}
+
+.case-implementation:has(.implementation-list) .implementation-foundations-grid > div + div {
+  padding-left: 22px;
+  border-left: 1px solid #24324a;
+}
+
+/* Keep one long rule inside the block:
+   the header rule introduces the five-column grid.
+   The next main section is separated by the standard short marker,
+   so a second long rule at the bottom is unnecessary. */
+.case-implementation:has(.implementation-list) .implementation-foundations-header {
+  border-bottom: 1px solid #24324a;
+}
+
+/* Restore the normal main-section rhythm for Healthcare.
+   Furniture-specific spacing rules elsewhere should not visually
+   compress the Healthcare technical section. */
+.case-implementation:has(.implementation-list) {
+  padding-bottom: 56px;
+}
+
+.case-implementation:has(.implementation-list) + .case-testing {
+  padding-top: 56px;
+}
+
+/* Furniture Web Application keeps its four-function row.
+   This selector is intentionally scoped to the section that
+   actually contains the furniture functionality block. */
+.case-testing:has(.web-functionality) .implementation-foundations-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Shared divider principle:
+   internal content may use full-width rules,
+   but transitions between major sections use only the short marker. */
+.case-planning .planning-evidence:last-child,
+.case-implementation .sql-query:last-child,
+.case-implementation:has(.implementation-list) .implementation-foundations-grid {
+  border-bottom: 0;
+}
+
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 900px) and (min-width: 641px) {
+  /* Five compact equal columns still fit comfortably on medium screens
+     and avoid an orphaned fifth item. */
+  .case-implementation:has(.implementation-list) .implementation-foundations-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .case-implementation:has(.implementation-list) .implementation-foundations-grid > div {
+    padding: 22px 14px 24px 0;
+  }
+
+  .case-implementation:has(.implementation-list) .implementation-foundations-grid > div + div {
+    padding-left: 14px;
+  }
+
+  .case-implementation:has(.implementation-list) .implementation-foundations-grid span {
+    font-size: 0.78rem;
+  }
+
+  .case-implementation:has(.implementation-list) .implementation-foundations-grid p {
+    font-size: 0.76rem;
+    line-height: 1.55;
+  }
+}
+
+
+/* ---------- Small tablet / mobile ---------- */
+
+@media (max-width: 640px) {
+  .case-implementation:has(.implementation-list) .implementation-foundations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-implementation:has(.implementation-list) .implementation-foundations-grid > div,
+  .case-implementation:has(.implementation-list) .implementation-foundations-grid > div + div {
+    padding: 20px 0;
+    border-left: 0;
+  }
+
+  .case-implementation:has(.implementation-list) .implementation-foundations-grid > div + div {
+    border-top: 1px solid #24324a;
+  }
+
+  .case-implementation:has(.implementation-list) {
+    padding-bottom: 42px;
+  }
+
+  .case-implementation:has(.implementation-list) + .case-testing {
+    padding-top: 46px;
+  }
+}
+
+
+/* =========================================================
+   HEALTHCARE PROJECT — DUPLICATE DIVIDER CLEANUP
+   Major section transitions already use the shared short
+   marker, so the preceding content does not need a second
+   full-width bottom border.
+========================================================= */
+
+.case-solution:has(.solution-support) .solution-support {
+  border-bottom: 0;
+}
+
+.case-testing:has(.testing-limitations) .testing-limitations {
+  border-bottom: 0;
+}
+
+
+/* =========================================================
+   SHARED PROJECT SECTION NAVIGATION
+========================================================= */
+
+.project-section-nav {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+
+  width: min(100% - 64px, 1080px);
+  margin-inline: auto;
+
+  background: rgba(15, 23, 42, 0.96);
+  border-top: 1px solid #24324a;
+  border-bottom: 1px solid #24324a;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.project-section-nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  min-height: 58px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.project-section-nav-inner::-webkit-scrollbar {
+  display: none;
+}
+
+.project-section-nav a {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+
+  min-height: 58px;
+
+  color: #94a3b8;
+
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+
+  transition: color 0.2s ease;
+}
+
+.project-section-nav a::after {
+  content: "";
+
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+
+  height: 2px;
+
+  background: #60a5fa;
+
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+
+.project-section-nav a:hover,
+.project-section-nav a:focus-visible,
+.project-section-nav a.active {
+  color: #f8fafc;
+}
+
+.project-section-nav a:hover::after,
+.project-section-nav a:focus-visible::after,
+.project-section-nav a.active::after {
+  transform: scaleX(1);
+}
+
+.project-page section[id] {
+  scroll-margin-top: 150px;
+}
+
+@media (max-width: 900px) {
+  .project-section-nav {
+    top: 0;
+    z-index: 1100;
+    width: min(100% - 48px, 1080px);
+  }
+
+  .project-section-nav-inner {
+    justify-content: flex-start;
+    gap: 26px;
+  }
+}
+
+@media (max-width: 560px) {
+  .project-section-nav {
+    width: min(100% - 32px, 1080px);
+  }
+
+  .project-section-nav-inner,
+  .project-section-nav a {
+    min-height: 52px;
+  }
+
+  .project-section-nav-inner {
+    gap: 22px;
+  }
+
+  .project-section-nav a {
+    font-size: 0.78rem;
+  }
+
+  .project-page section[id] {
+    scroll-margin-top: 132px;
+  }
+}

@@ -25,13 +25,14 @@ const projects = [
     featured: true,
     path: '/projects/healthcare-booking-system',
   },
+
   {
     number: '02',
     title: 'Pompey Furniture Company',
-    type: 'Full-Stack Web Development',
+    type: 'Full-Stack Web Application',
     context: 'Team Project',
     description:
-      'A database-driven furniture retail web application supporting product, inventory, order and employee management across core business operations.',
+      'A database-driven furniture retail system supporting multi-showroom inventory, customer orders, returns, loyalty and staff operations.',
     technologies: [
       'Node.js',
       'Express.js',
@@ -40,10 +41,11 @@ const projects = [
     ],
     image: pompeyImage,
     imageAlt:
-      'Pompey Furniture Company website interface',
+      'Pompey Furniture Company retail management system interface',
     featured: false,
-    path: null,
+    path: '/projects/furniture-retail-management-system',
   },
+
   {
     number: '03',
     title: 'Hampshire Festival App',
@@ -94,7 +96,9 @@ function Projects() {
     >
       <div className="section-heading projects-heading">
         <p className="section-label">Projects</p>
+
         <h2>Selected work.</h2>
+
         <p className="section-description">
           A selection of full-stack development and UX/UI projects.
         </p>
@@ -113,18 +117,27 @@ function Projects() {
             <span className="project-number">
               {featuredProject.number}
             </span>
-            <span className="featured-label">Featured</span>
+
+            <span className="featured-label">
+              Featured
+            </span>
           </div>
 
           <h3>{featuredProject.title}</h3>
-          <p className="project-type">{featuredProject.type}</p>
+
+          <p className="project-type">
+            {featuredProject.type}
+          </p>
+
           <p className="project-description">
             {featuredProject.description}
           </p>
 
           <div className="project-technologies">
             {featuredProject.technologies.map((technology) => (
-              <span key={technology}>{technology}</span>
+              <span key={technology}>
+                {technology}
+              </span>
             ))}
           </div>
 
@@ -139,7 +152,10 @@ function Projects() {
             key={project.title}
           >
             <div className="project-image">
-              <img src={project.image} alt={project.imageAlt} />
+              <img
+                src={project.image}
+                alt={project.imageAlt}
+              />
             </div>
 
             <div className="project-content">
@@ -153,11 +169,16 @@ function Projects() {
 
               <p className="project-type">
                 {project.type}
+
                 {project.context && (
                   <>
-                    <span className="project-dot" aria-hidden="true">
+                    <span
+                      className="project-dot"
+                      aria-hidden="true"
+                    >
                       •
                     </span>
+
                     {project.context}
                   </>
                 )}
@@ -169,7 +190,9 @@ function Projects() {
 
               <div className="project-technologies">
                 {project.technologies.map((technology) => (
-                  <span key={technology}>{technology}</span>
+                  <span key={technology}>
+                    {technology}
+                  </span>
                 ))}
               </div>
 

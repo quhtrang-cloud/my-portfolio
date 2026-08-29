@@ -14,7 +14,7 @@ import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 
 import HealthcareProject from './pages/HealthcareProject'
-
+import FurnitureProject from './pages/FurnitureProject'
 
 function Home() {
   return (
@@ -39,14 +39,12 @@ function Home() {
   )
 }
 
-
 function App() {
   return (
     <>
       <ScrollToTop />
 
       <Routes>
-
         <Route
           path="/"
           element={<Home />}
@@ -57,6 +55,10 @@ function App() {
           element={<HealthcareProject />}
         />
 
+        <Route
+          path="/projects/furniture-retail-management-system"
+          element={<FurnitureProject />}
+        />
       </Routes>
     </>
   )
