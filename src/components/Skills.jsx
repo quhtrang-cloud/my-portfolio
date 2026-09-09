@@ -10,6 +10,7 @@ import {
   FaUniversalAccess,
   FaCode,
   FaPenRuler,
+  FaTableColumns,
   FaUsers,
   FaArrowsRotate,
   FaImage,
@@ -57,6 +58,7 @@ const skillGroups = [
     skills: [
       { name: 'Figma', icon: <FaFigma /> },
       { name: 'Adobe Photoshop', icon: <FaImage /> },
+      { name: 'Wireframing', icon: <FaTableColumns /> },
       { name: 'Prototyping', icon: <FaPenRuler /> },
       { name: 'User-Centred Design', icon: <FaUsers /> },
     ],
@@ -101,7 +103,6 @@ function Skills() {
                   <span className="skill-icon" aria-hidden="true">
                     {skill.icon}
                   </span>
-
                   <span>{skill.name}</span>
                 </div>
               ))}

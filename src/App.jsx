@@ -15,6 +15,7 @@ import ScrollToTop from './components/ScrollToTop'
 
 import HealthcareProject from './pages/HealthcareProject'
 import FurnitureProject from './pages/FurnitureProject'
+import HampshireFestivalProject from './pages/HampshireFestivalProject'
 
 function Home() {
   return (
@@ -58,6 +59,11 @@ function App() {
         <Route
           path="/projects/furniture-retail-management-system"
           element={<FurnitureProject />}
+        />
+
+        <Route
+          path="/projects/hampshire-festival-app"
+          element={<HampshireFestivalProject />}
         />
       </Routes>
     </>

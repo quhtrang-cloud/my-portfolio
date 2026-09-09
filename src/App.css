@@ -4747,6 +4747,18 @@ img {
   max-width: 470px;
 }
 
+/* Alternate the second evidence row: copy left, visual right. */
+.planning-evidence:nth-child(even) .planning-evidence-visual {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.planning-evidence:nth-child(even) .planning-evidence-copy {
+  grid-column: 1;
+  grid-row: 1;
+  justify-self: start;
+}
+
 .planning-evidence-label {
   display: block;
 
@@ -4822,6 +4834,14 @@ img {
 
   .planning-evidence-copy {
     max-width: 100%;
+  }
+
+  /* Keep a natural image-then-copy reading order on small screens. */
+  .planning-evidence:nth-child(even) .planning-evidence-visual,
+  .planning-evidence:nth-child(even) .planning-evidence-copy {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: stretch;
   }
 
   .planning-evidence-architecture {
@@ -5680,12 +5700,12 @@ img {
 
 .case-planning .planning-evidence {
   padding: 42px 0;
+  border-bottom: 0;
 }
 
-/* Do not draw a long divider after the final planning image.
+/* Keep the final row slightly tighter before the next main section.
    Section separation is handled by whitespace + the next section marker. */
 .case-planning .planning-evidence:last-child {
-  border-bottom: 0;
   padding-bottom: 28px;
 }
 
@@ -5788,7 +5808,7 @@ img {
    keep all five implementation foundations on one desktop row. */
 .case-implementation:has(.implementation-list) .implementation-foundations-grid {
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  border-bottom: 0;
+  border-bottom: 1px solid #24324a;
 }
 
 .case-implementation:has(.implementation-list) .implementation-foundations-grid > div {
@@ -5801,10 +5821,7 @@ img {
   border-left: 1px solid #24324a;
 }
 
-/* Keep one long rule inside the block:
-   the header rule introduces the five-column grid.
-   The next main section is separated by the standard short marker,
-   so a second long rule at the bottom is unnecessary. */
+/* Frame the five-column block with matching top and bottom rules. */
 .case-implementation:has(.implementation-list) .implementation-foundations-header {
   border-bottom: 1px solid #24324a;
 }
@@ -5831,8 +5848,7 @@ img {
    internal content may use full-width rules,
    but transitions between major sections use only the short marker. */
 .case-planning .planning-evidence:last-child,
-.case-implementation .sql-query:last-child,
-.case-implementation:has(.implementation-list) .implementation-foundations-grid {
+.case-implementation .sql-query:last-child {
   border-bottom: 0;
 }
 
@@ -6028,5 +6044,880 @@ img {
 
   .project-page section[id] {
     scroll-margin-top: 132px;
+  }
+}
+
+/* =========================================================
+   HAMPSHIRE FESTIVAL CASE STUDY
+   Merged into App.css. Shares the existing case-study system.
+========================================================= */
+
+.hampshire-project {
+  --h-blue: #60a5fa;
+  --h-text: #f8fafc;
+  --h-muted: #94a3b8;
+  --h-line: #24324a;
+  --h-panel: #111c31;
+}
+
+/* SECTION RHYTHM */
+
+.hampshire-project .hampshire-section {
+  position: relative;
+  padding-top: 64px;
+  padding-bottom: 64px;
+}
+
+.hampshire-project .hampshire-section + .hampshire-section {
+  border-top: 0;
+}
+
+.hampshire-project .hampshire-section::after {
+  display: none;
+}
+
+/* Match the short section marker used by Healthcare and Furniture. */
+.hampshire-project .hampshire-section:not(.case-overview)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 64px;
+  height: 1px;
+  background: #334155;
+}
+
+.hampshire-project .hampshire-section.case-overview::before {
+  display: none;
+}
+
+.hampshire-project .case-section-lead,
+.hampshire-project .case-section-text,
+.hampshire-project .case-overview-content,
+.hampshire-project .hampshire-contribution > p:last-child,
+.hampshire-project .hampshire-subsection-heading > p:last-child,
+.hampshire-project .hampshire-event-detail-copy > p,
+.hampshire-project .hampshire-reflection-grid article > p:last-child {
+  max-width: 68ch;
+}
+
+.hampshire-block-label {
+  margin: 0;
+  color: var(--h-blue);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hampshire-subsection-heading {
+  max-width: 760px;
+  margin: 0 0 32px;
+}
+
+.hampshire-subsection-heading h3 {
+  margin: 12px 0 0;
+  color: var(--h-text);
+  font-size: clamp(1.55rem, 2.4vw, 2.15rem);
+  line-height: 1.25;
+  letter-spacing: -0.7px;
+}
+
+.hampshire-subsection-heading > p:last-child {
+  margin: 16px 0 0;
+  color: var(--h-muted);
+  font-size: 0.96rem;
+  line-height: 1.75;
+}
+
+/* HERO */
+
+.hampshire-hero-image .solution-image-button,
+.hampshire-hero-image img {
+  width: 100%;
+}
+
+.hampshire-project .hampshire-hero-image {
+  width: min(100%, 1040px);
+  margin-inline: auto;
+}
+
+.hampshire-hero-image .solution-image-button {
+  background: #f8fafc;
+}
+
+.hampshire-hero-image img {
+  display: block;
+  height: auto;
+  object-fit: contain;
+}
+
+/* OVERVIEW */
+
+.hampshire-contribution {
+  display: grid;
+  grid-template-columns: minmax(170px, 0.65fr) minmax(0, 1.35fr);
+  gap: clamp(32px, 7vw, 96px);
+  align-items: start;
+  margin-top: 52px;
+  padding: 0;
+  border: 0;
+}
+
+.hampshire-contribution > p:last-child {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.98rem;
+  line-height: 1.78;
+}
+
+.hampshire-highlights {
+  margin-top: 64px;
+}
+
+/* RESEARCH */
+
+.hampshire-user-index {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.65fr) minmax(0, 1.35fr);
+  margin-top: 48px;
+  border-top: 1px solid var(--h-line);
+  border-bottom: 1px solid var(--h-line);
+}
+
+.hampshire-user-count {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 180px;
+  padding: 26px 32px 26px 0;
+  border-right: 1px solid var(--h-line);
+}
+
+.hampshire-user-count strong {
+  color: var(--h-blue);
+  font-size: clamp(4rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+}
+
+.hampshire-user-count span {
+  color: var(--h-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.hampshire-user-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hampshire-user-list p {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 90px;
+  margin: 0;
+  padding: 22px 30px 22px 54px;
+  color: var(--h-text);
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.hampshire-user-list p::before {
+  content: '';
+  position: absolute;
+  left: 30px;
+  width: 7px;
+  height: 7px;
+  background: var(--h-blue);
+  border-radius: 50%;
+}
+
+.hampshire-user-list p:nth-child(odd) {
+  border-right: 1px solid var(--h-line);
+}
+
+.hampshire-user-list p:nth-child(-n + 2) {
+  border-bottom: 1px solid var(--h-line);
+}
+
+.hampshire-project #research .hampshire-subsection-heading {
+  margin-top: 68px;
+  max-width: 1120px;
+}
+
+.hampshire-project #research .hampshire-subsection-heading > p:last-child {
+  max-width: 72ch;
+}
+
+.hampshire-persona-grid,
+.hampshire-supporting-grid,
+.hampshire-hta-supporting,
+.hampshire-lowfi-supporting {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-items: start;
+}
+
+/* Equal visual stages without cropping the source images. */
+.hampshire-persona-grid .hampshire-image-button {
+  height: 360px;
+  overflow: hidden;
+}
+
+.hampshire-hta-supporting .hampshire-image-button,
+.hampshire-lowfi-supporting .hampshire-image-button {
+  height: 360px;
+  overflow: hidden;
+}
+
+.hampshire-supporting-grid .hampshire-image-button {
+  height: 360px;
+  overflow: hidden;
+}
+
+.hampshire-persona-grid .hampshire-image-button img,
+.hampshire-hta-supporting .hampshire-image-button img,
+.hampshire-lowfi-supporting .hampshire-image-button img,
+.hampshire-supporting-grid .hampshire-image-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* IMAGE CARDS */
+
+.hampshire-visual-card {
+  min-width: 0;
+  overflow: hidden;
+  margin: 0;
+  background: var(--h-panel);
+  border: 1px solid var(--h-line);
+  border-radius: 18px;
+}
+
+.hampshire-visual-card.is-featured {
+  grid-column: 1 / -1;
+}
+
+.hampshire-image-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
+  padding: 0;
+  background: #f8fafc;
+  border: 0;
+  cursor: zoom-in;
+}
+
+.hampshire-image-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+}
+
+.hampshire-visual-card figcaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+  padding: 18px 20px;
+  color: #e2e8f0;
+}
+
+.hampshire-visual-card figcaption span {
+  flex: 0 0 auto;
+  color: var(--h-blue);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.hampshire-visual-card figcaption strong {
+  font-size: 0.88rem;
+  font-weight: 650;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.hampshire-zoom-icon {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: #f8fafc;
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(248, 250, 252, 0.2);
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+button:hover > .hampshire-zoom-icon,
+button:focus-visible > .hampshire-zoom-icon {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* DESIGN PROCESS */
+
+.hampshire-process-block {
+  margin-top: 64px;
+}
+
+.hampshire-process-block + .hampshire-process-block {
+  margin-top: 72px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* Alternating process rows. The evidence column remains wider on either side. */
+.hampshire-process-feature {
+  display: grid;
+  gap: clamp(40px, 6vw, 72px);
+  align-items: start;
+}
+
+.hampshire-process-feature.is-image-right {
+  grid-template-columns: minmax(240px, 0.7fr) minmax(0, 1.3fr);
+}
+
+.hampshire-process-feature.is-image-left {
+  grid-template-columns: minmax(0, 1.3fr) minmax(240px, 0.7fr);
+}
+
+.hampshire-process-feature .hampshire-subsection-heading {
+  max-width: 420px;
+  margin: 0;
+  padding-top: 6px;
+}
+
+.hampshire-process-feature .hampshire-visual-card.is-featured {
+  grid-column: auto;
+  width: 100%;
+  max-width: 680px;
+  margin: 0;
+}
+
+.hampshire-process-feature.is-image-right .hampshire-visual-card.is-featured {
+  justify-self: end;
+}
+
+.hampshire-process-feature.is-image-left .hampshire-subsection-heading {
+  order: 2;
+  justify-self: start;
+}
+
+.hampshire-process-feature.is-image-left .hampshire-visual-card.is-featured {
+  order: 1;
+  justify-self: start;
+}
+
+.hampshire-process-feature .hampshire-image-button {
+  width: 100%;
+  overflow: hidden;
+}
+
+.hampshire-process-feature .hampshire-image-button img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.hampshire-hta-supporting,
+.hampshire-lowfi-supporting {
+  margin-top: 28px;
+}
+
+.hampshire-evaluation-block .hampshire-findings-grid {
+  align-self: start;
+}
+
+.hampshire-findings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.hampshire-findings-grid article,
+.hampshire-findings-grid article:nth-child(even),
+.hampshire-findings-grid article:nth-child(n + 3) {
+  padding: 28px;
+  background: rgba(17, 28, 49, 0.78);
+  border: 1px solid var(--h-line);
+  border-radius: 16px;
+}
+
+.hampshire-findings-grid article > span,
+.hampshire-prototype-copy > span,
+.hampshire-event-detail-copy > span {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--h-blue);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hampshire-findings-grid h3 {
+  margin: 0 0 10px;
+  color: var(--h-text);
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.hampshire-findings-grid p {
+  margin: 0;
+  color: var(--h-muted);
+  font-size: 0.9rem;
+  line-height: 1.68;
+}
+
+/* FINAL PROTOTYPE */
+
+.hampshire-prototype-list {
+  display: grid;
+  gap: clamp(56px, 6vw, 80px);
+  margin-top: 56px;
+  padding: 0;
+  border: 0;
+}
+
+.hampshire-prototype-feature {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: clamp(40px, 7vw, 76px);
+  padding: 0;
+  border: 0;
+}
+
+.hampshire-prototype-feature.is-reversed {
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+}
+
+.hampshire-prototype-feature.is-reversed .hampshire-prototype-copy {
+  order: 2;
+}
+
+.hampshire-prototype-feature.is-reversed .hampshire-prototype-image {
+  order: 1;
+}
+
+.hampshire-prototype-copy {
+  width: 100%;
+  max-width: 480px;
+}
+
+.hampshire-prototype-copy h3,
+.hampshire-event-detail-copy h3 {
+  margin: 0 0 16px;
+  color: var(--h-text);
+  font-size: clamp(1.55rem, 2.4vw, 2.2rem);
+  line-height: 1.25;
+  letter-spacing: -0.8px;
+}
+
+.hampshire-prototype-copy > p,
+.hampshire-event-detail-copy > p {
+  margin: 0;
+  color: var(--h-muted);
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+
+.hampshire-prototype-copy .solution-tags {
+  margin-top: 24px;
+}
+
+.hampshire-prototype-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: none;
+  overflow: hidden;
+  padding: 0;
+  background: #f8fafc;
+  border: 1px solid var(--h-line);
+  border-radius: 18px;
+  cursor: zoom-in;
+}
+
+.hampshire-prototype-image img {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  max-height: 560px;
+  height: auto;
+  object-fit: contain;
+}
+
+.hampshire-event-detail-feature {
+  display: grid;
+  grid-template-columns: minmax(520px, 1.15fr) minmax(300px, 0.85fr);
+  align-items: center;
+  gap: clamp(40px, 5vw, 64px);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.hampshire-event-detail-feature.is-reversed .hampshire-event-detail-copy {
+  order: 2;
+}
+
+.hampshire-event-detail-feature.is-reversed .hampshire-event-detail-gallery {
+  order: 1;
+}
+
+.hampshire-event-detail-copy {
+  justify-self: start;
+  width: 100%;
+  max-width: 440px;
+}
+
+.hampshire-detail-note {
+  margin-top: 18px !important;
+  color: var(--h-muted) !important;
+  font-size: 0.86rem !important;
+  font-weight: 550;
+  line-height: 1.6 !important;
+}
+
+.hampshire-event-detail-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  justify-self: end;
+  gap: 24px;
+  width: 100%;
+  max-width: 650px;
+}
+
+.hampshire-event-detail-panel {
+  display: grid;
+  grid-template-rows: 600px auto;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  background: var(--h-panel);
+  border: 1px solid var(--h-line);
+  border-radius: 18px;
+}
+
+.hampshire-event-detail-panel button {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  padding: 0;
+  background: #f8fafc;
+  border: 0;
+  cursor: zoom-in;
+}
+
+.hampshire-event-detail-panel img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.hampshire-event-detail-panel figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 74px;
+  padding: 18px 20px;
+}
+
+.hampshire-event-detail-panel figcaption span {
+  flex: 0 0 auto;
+  color: var(--h-blue);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.hampshire-event-detail-panel figcaption strong {
+  color: #e2e8f0;
+  font-size: 0.88rem;
+  font-weight: 650;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.hampshire-event-detail-panel button:focus-visible {
+  outline: 3px solid var(--h-blue);
+  outline-offset: -3px;
+}
+
+.hampshire-project #prototype > .hampshire-subsection-heading {
+  margin-top: clamp(64px, 7vw, 88px);
+}
+
+/* OUTCOME */
+
+.hampshire-outcome-grid {
+  margin-top: 56px;
+}
+
+.hampshire-reflection-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 64px;
+}
+
+.hampshire-reflection-grid article {
+  padding: 28px;
+  background: rgba(17, 28, 49, 0.62);
+  border: 1px solid var(--h-line);
+  border-radius: 16px;
+}
+
+.hampshire-reflection-grid article > p:last-child {
+  margin: 16px 0 0;
+  color: #cbd5e1;
+  font-size: 0.94rem;
+  line-height: 1.75;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .hampshire-contribution,
+  .hampshire-prototype-feature,
+  .hampshire-prototype-feature.is-reversed,
+  .hampshire-event-detail-feature {
+    grid-template-columns: 1fr;
+  }
+
+  .hampshire-contribution {
+    gap: 16px;
+  }
+
+  .hampshire-process-feature,
+  .hampshire-process-feature.is-image-right,
+  .hampshire-process-feature.is-image-left {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .hampshire-process-feature .hampshire-subsection-heading,
+  .hampshire-process-feature.is-image-left .hampshire-subsection-heading {
+    order: 1;
+    max-width: 680px;
+    padding-top: 0;
+  }
+
+  .hampshire-process-feature .hampshire-visual-card.is-featured,
+  .hampshire-process-feature.is-image-left .hampshire-visual-card.is-featured {
+    order: 2;
+    justify-self: center;
+    width: min(100%, 720px);
+  }
+
+  .hampshire-event-detail-feature.is-reversed .hampshire-event-detail-copy,
+  .hampshire-event-detail-feature.is-reversed .hampshire-event-detail-gallery {
+    order: initial;
+  }
+
+  .hampshire-prototype-feature.is-reversed .hampshire-prototype-copy {
+    order: 1;
+  }
+
+  .hampshire-prototype-feature.is-reversed .hampshire-prototype-image {
+    order: 2;
+  }
+
+  .hampshire-prototype-copy {
+    max-width: 680px;
+  }
+
+  .hampshire-project .hampshire-hero-image {
+    width: min(100%, 820px);
+  }
+
+  .hampshire-prototype-image img {
+    max-width: 680px;
+    max-height: 520px;
+  }
+
+  .hampshire-event-detail-feature {
+    gap: 32px;
+  }
+
+  .hampshire-event-detail-copy {
+    max-width: 680px;
+  }
+
+  .hampshire-event-detail-gallery {
+    justify-self: center;
+    max-width: 650px;
+  }
+
+  .hampshire-prototype-list {
+    gap: 56px;
+    margin-top: 48px;
+  }
+
+  .hampshire-project #prototype > .hampshire-subsection-heading {
+    margin-top: 64px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hampshire-project .hampshire-section {
+    padding-top: 46px;
+    padding-bottom: 40px;
+  }
+
+  .hampshire-project .hampshire-section:not(.case-overview)::before {
+    width: 48px;
+  }
+
+  .hampshire-persona-grid,
+  .hampshire-supporting-grid,
+  .hampshire-hta-supporting,
+  .hampshire-lowfi-supporting,
+  .hampshire-findings-grid,
+  .hampshire-reflection-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hampshire-persona-grid .hampshire-image-button,
+  .hampshire-hta-supporting .hampshire-image-button,
+  .hampshire-lowfi-supporting .hampshire-image-button,
+  .hampshire-supporting-grid .hampshire-image-button {
+    height: auto;
+  }
+
+  .hampshire-persona-grid .hampshire-image-button img,
+  .hampshire-hta-supporting .hampshire-image-button img,
+  .hampshire-lowfi-supporting .hampshire-image-button img,
+  .hampshire-supporting-grid .hampshire-image-button img {
+    height: auto;
+  }
+
+  .hampshire-user-index {
+    grid-template-columns: 1fr;
+  }
+
+  .hampshire-user-count {
+    min-height: 130px;
+    padding: 22px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--h-line);
+  }
+
+  .hampshire-user-list {
+    grid-template-columns: 1fr;
+  }
+
+  .hampshire-user-list p {
+    min-height: 68px;
+    padding: 18px 18px 18px 40px;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--h-line);
+  }
+
+  .hampshire-user-list p::before {
+    left: 18px;
+  }
+
+  .hampshire-user-list p:last-child {
+    border-bottom: 0;
+  }
+
+  .hampshire-visual-card.is-featured {
+    grid-column: auto;
+  }
+
+  .hampshire-visual-card figcaption {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 7px;
+  }
+
+  .hampshire-visual-card figcaption strong {
+    text-align: left;
+  }
+
+  .hampshire-process-block,
+  .hampshire-process-block + .hampshire-process-block {
+    margin-top: 56px;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .hampshire-prototype-list {
+    gap: 48px;
+  }
+
+  .hampshire-project #prototype > .hampshire-subsection-heading {
+    margin-top: 56px;
+  }
+
+  .hampshire-event-detail-gallery {
+    grid-template-columns: 1fr;
+    justify-self: center;
+    gap: 32px;
+    width: min(100%, 360px);
+  }
+
+  .hampshire-event-detail-panel {
+    grid-template-rows: auto auto;
+  }
+
+  .hampshire-event-detail-panel button {
+    height: auto;
+  }
+
+  .hampshire-event-detail-panel img {
+    height: auto;
+    object-fit: contain;
+  }
+
+  .hampshire-event-detail-panel figcaption {
+    align-items: flex-start;
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hampshire-zoom-icon {
+    transition: none;
   }
 }

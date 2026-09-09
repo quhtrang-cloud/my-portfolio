@@ -20,12 +20,10 @@ const projects = [
       'Google Calendar API',
     ],
     image: healthcareImage,
-    imageAlt:
-      'Healthcare Booking System displayed on desktop and mobile',
+    imageAlt: 'Healthcare Booking System displayed on desktop and mobile',
     featured: true,
     path: '/projects/healthcare-booking-system',
   },
-
   {
     number: '02',
     title: 'Pompey Furniture Company',
@@ -33,37 +31,30 @@ const projects = [
     context: 'Team Project',
     description:
       'A database-driven furniture retail system supporting multi-showroom inventory, customer orders, returns, loyalty and staff operations.',
-    technologies: [
-      'Node.js',
-      'Express.js',
-      'PostgreSQL',
-      'SQL',
-    ],
+    technologies: ['JavaScript', 'Node.js', 'Express.js', 'PostgreSQL'],
     image: pompeyImage,
-    imageAlt:
-      'Pompey Furniture Company retail management system interface',
+    imageAlt: 'Pompey Furniture Company retail management system interface',
     featured: false,
     path: '/projects/furniture-retail-management-system',
   },
-
   {
     number: '03',
     title: 'Hampshire Festival App',
     type: 'UX/UI Design',
     context: 'Team Project',
     description:
-      'A mobile festival experience designed through user research, prototyping and heuristic evaluation to make event discovery and planning easier.',
+      'An interactive mobile prototype developed through user analysis, task modelling, iterative prototyping and heuristic evaluation to support festival discovery, planning and event management.',
     technologies: [
       'Figma',
-      'Prototyping',
-      'User-Centred Design',
-      'Accessibility',
+      'UX Research',
+      'High-Fidelity Prototype',
+      'Heuristic Evaluation',
     ],
     image: hampshireImage,
     imageAlt:
-      'Hampshire Festival mobile application prototype',
+      'High-fidelity screens from the Hampshire Festival mobile application prototype',
     featured: false,
-    path: null,
+    path: '/projects/hampshire-festival-app',
   },
 ]
 
@@ -81,13 +72,8 @@ function ProjectLink({ path }) {
 }
 
 function Projects() {
-  const featuredProject = projects.find(
-    (project) => project.featured
-  )
-
-  const otherProjects = projects.filter(
-    (project) => !project.featured
-  )
+  const featuredProject = projects.find((project) => project.featured)
+  const otherProjects = projects.filter((project) => !project.featured)
 
   return (
     <section
@@ -96,9 +82,7 @@ function Projects() {
     >
       <div className="section-heading projects-heading">
         <p className="section-label">Projects</p>
-
         <h2>Selected work.</h2>
-
         <p className="section-description">
           A selection of full-stack development and UX/UI projects.
         </p>
@@ -106,38 +90,22 @@ function Projects() {
 
       <article className="project-card project-featured">
         <div className="project-image project-featured-image">
-          <img
-            src={featuredProject.image}
-            alt={featuredProject.imageAlt}
-          />
+          <img src={featuredProject.image} alt={featuredProject.imageAlt} />
         </div>
 
         <div className="project-content">
           <div className="project-meta">
-            <span className="project-number">
-              {featuredProject.number}
-            </span>
-
-            <span className="featured-label">
-              Featured
-            </span>
+            <span className="project-number">{featuredProject.number}</span>
+            <span className="featured-label">Featured</span>
           </div>
 
           <h3>{featuredProject.title}</h3>
-
-          <p className="project-type">
-            {featuredProject.type}
-          </p>
-
-          <p className="project-description">
-            {featuredProject.description}
-          </p>
+          <p className="project-type">{featuredProject.type}</p>
+          <p className="project-description">{featuredProject.description}</p>
 
           <div className="project-technologies">
             {featuredProject.technologies.map((technology) => (
-              <span key={technology}>
-                {technology}
-              </span>
+              <span key={technology}>{technology}</span>
             ))}
           </div>
 
@@ -147,52 +115,35 @@ function Projects() {
 
       <div className="projects-grid">
         {otherProjects.map((project) => (
-          <article
-            className="project-card project-small"
-            key={project.title}
-          >
+          <article className="project-card project-small" key={project.title}>
             <div className="project-image">
-              <img
-                src={project.image}
-                alt={project.imageAlt}
-              />
+              <img src={project.image} alt={project.imageAlt} />
             </div>
 
             <div className="project-content">
               <div className="project-meta">
-                <span className="project-number">
-                  {project.number}
-                </span>
+                <span className="project-number">{project.number}</span>
               </div>
 
               <h3>{project.title}</h3>
 
               <p className="project-type">
                 {project.type}
-
                 {project.context && (
                   <>
-                    <span
-                      className="project-dot"
-                      aria-hidden="true"
-                    >
+                    <span className="project-dot" aria-hidden="true">
                       •
                     </span>
-
                     {project.context}
                   </>
                 )}
               </p>
 
-              <p className="project-description">
-                {project.description}
-              </p>
+              <p className="project-description">{project.description}</p>
 
               <div className="project-technologies">
                 {project.technologies.map((technology) => (
-                  <span key={technology}>
-                    {technology}
-                  </span>
+                  <span key={technology}>{technology}</span>
                 ))}
               </div>
 
