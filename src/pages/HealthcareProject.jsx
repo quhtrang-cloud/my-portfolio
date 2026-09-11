@@ -85,7 +85,7 @@ function HealthcareProject() {
         <div className="case-hero-header">
 
           <p className="case-eyebrow">
-            01 / Featured Project
+            01 / FULL-STACK DEVELOPMENT
           </p>
 
           <h1>
@@ -135,7 +135,7 @@ function HealthcareProject() {
             <span>Project type</span>
 
             <p>
-              MSc Dissertation Project
+              Individual Project
             </p>
           </div>
 

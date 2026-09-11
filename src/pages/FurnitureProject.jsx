@@ -132,7 +132,7 @@ ORDER BY r.return_date DESC;`,
         <div className="case-hero-header">
 
           <p className="case-eyebrow">
-            02 / Team Project
+            02 / FULL-STACK DEVELOPMENT
           </p>
 
           <h1>
@@ -184,7 +184,7 @@ ORDER BY r.return_date DESC;`,
             <span>Project type</span>
 
             <p>
-              University Team Project
+              Team Project
             </p>
           </div>
 

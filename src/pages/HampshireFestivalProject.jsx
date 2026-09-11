@@ -113,10 +113,10 @@ function HampshireFestivalProject() {
         </Link>
 
         <div className="case-hero-header">
-          <p className="case-eyebrow">03 / UX/UI Case Study</p>
+          <p className="case-eyebrow">03 / UX/UI DESIGN</p>
           <h1>Hampshire Festival App</h1>
           <p className="case-tagline">
-            Designing a connected mobile experience for festival discovery,
+            Designing a unified mobile experience for festival discovery,
             planning and event management.
           </p>
           <p className="case-intro">
@@ -129,7 +129,7 @@ function HampshireFestivalProject() {
           <div><span>Role</span><p>UX/UI Designer</p></div>
           <div><span>Project type</span><p>Team Project</p></div>
           <div><span>Year</span><p>2025</p></div>
-          <div><span>Deliverable</span><p>Interactive Figma Prototype</p></div>
+          <div><span>Deliverable</span><p>High-Fidelity Prototype</p></div>
           <div className="case-meta-stack">
             <span>Tools &amp; methods</span>
             <p>
@@ -166,9 +166,9 @@ function HampshireFestivalProject() {
               staff, exhibitors and administrators in one role-based mobile prototype.
             </p>
             <p>
-              Each user group can access functions relevant to its responsibilities,
-              while shared navigation and feedback patterns create a consistent
-              experience across visitor and operational workflows.
+              The interface organises functions around each user group&apos;s
+              responsibilities, while shared navigation and feedback patterns
+              support consistency across visitor and operational workflows.
             </p>
           </div>
         </div>
@@ -178,9 +178,9 @@ function HampshireFestivalProject() {
           <p>
             I contributed to user analysis, personas, use-case modelling,
             Hierarchical Task Analysis, low-fidelity design and heuristic evaluation.
-            I independently designed and connected the interactive high-fidelity
-            prototype in Figma, translating the team&apos;s research into coherent
-            screens and task flows.
+            I independently designed the high-fidelity prototype in Figma,
+            translating the team&apos;s research into coherent screen sequences
+            and clearly defined task flows.
           </p>
         </div>
 
@@ -205,9 +205,9 @@ function HampshireFestivalProject() {
 
           <article className="case-highlight">
             <span>03</span>
-            <h3>Interactive prototype</h3>
+            <h3>High-fidelity prototype</h3>
             <p>
-              Connected screens demonstrate key journeys across discovery,
+              Screen sequences illustrate key journeys across discovery,
               planning, event management and support.
             </p>
           </article>
@@ -468,10 +468,10 @@ function HampshireFestivalProject() {
           <article>
             <p className="hampshire-block-label">Prototype limitations</p>
             <p>
-              The outcome was an interactive design prototype, not a production
-              application. It was reviewed through heuristic evaluation but not tested
-              with participants. Further work requires usability and accessibility
-              testing before technical implementation.
+              The outcome was a high-fidelity design prototype rather than a
+              production application. It was reviewed through heuristic evaluation
+              but not tested with participants. Further work requires usability and
+              accessibility testing before technical implementation.
             </p>
           </article>
         </div>

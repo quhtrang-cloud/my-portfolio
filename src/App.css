@@ -147,11 +147,12 @@ img {
   display: inline-flex;
   align-items: center;
   color: #f8fafc;
-  font-size: 1.32rem;
+  font-size: 1.22rem;
   font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.2px;
-  transition: color 0.2s ease;;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+  transition: color 0.2s ease;
 }
 
 .logo:hover {
@@ -211,7 +212,7 @@ img {
   min-height: calc(100vh - 72px);
 
   display: grid;
-  grid-template-columns: 1.08fr 0.92fr;
+  grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
   gap: 24px;
 
@@ -323,6 +324,71 @@ img {
   font-size: 0.98rem;
   font-weight: 600;
   line-height: 1.75;
+}
+
+/* ===================================
+   HERO CONTENT ENTRANCE
+=================================== */
+
+.hero-text .intro,
+.hero-text > h2,
+.hero-summary,
+.tech-stack,
+.hero-buttons {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: heroItemFade 0.55s ease-out forwards;
+}
+
+.hero-text .intro {
+  animation-delay: 0.05s;
+}
+
+.hero-text > h2 {
+  animation-delay: 0.42s;
+}
+
+.hero-summary {
+  animation-delay: 0.52s;
+}
+
+.tech-stack {
+  animation-delay: 0.62s;
+}
+
+.hero-buttons {
+  animation-delay: 0.72s;
+}
+
+.scroll-indicator {
+  opacity: 0;
+  animation-delay: 0.82s;
+  animation-name: heroIndicatorFade;
+  animation-duration: 0.55s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes heroItemFade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroIndicatorFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* ===================================
@@ -475,10 +541,11 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translate(0, -18px);
 }
 
 .image-frame {
-  width: 305px;
+  width: 325px;
   aspect-ratio: 1;
 
   padding: 5px;
@@ -490,7 +557,19 @@ img {
     0 24px 56px rgba(0, 0, 0, 0.34),
     0 0 0 10px rgba(96, 165, 250, 0.07);
 
-  animation: imageFade 0.75s ease 0.2s both;
+  animation: imageFade 0.75s ease 0.2s backwards;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.image-frame:hover {
+  transform: translateY(-4px) scale(1.02);
+
+  box-shadow:
+    0 30px 64px rgba(0, 0, 0, 0.38),
+    0 0 0 12px rgba(96, 165, 250, 0.1);
 }
 
 .image-frame img {
@@ -1402,6 +1481,8 @@ img {
 
   .hero-image {
     grid-row: 1;
+    justify-content: center;
+    transform: none;
   }
 
   .image-frame {
@@ -1836,6 +1917,12 @@ img {
   }
 
   .hero-name span,
+  .hero-text .intro,
+  .hero-text > h2,
+  .hero-summary,
+  .tech-stack,
+  .hero-buttons,
+  .scroll-indicator,
   .image-frame,
   .mouse-wheel {
     opacity: 1;
@@ -1844,6 +1931,7 @@ img {
   }
 
   .hero-buttons a,
+  .image-frame,
   .nav-links a,
   .nav-links a::after,
   .scroll-indicator,
@@ -1854,6 +1942,10 @@ img {
   .project-image img,
   .project-link {
     transition: none;
+  }
+
+  .image-frame:hover {
+    transform: none;
   }
 }
 

@@ -6,32 +6,38 @@ function Hero({ name, job }) {
   return (
     <section className="hero" id="home">
       <div className="hero-text">
-        <p className="intro">Hi, I'm</p>
+        <p className="intro hero-reveal hero-delay-1">
+          Hi, I&apos;m
+        </p>
 
         <h1 className="hero-name" aria-label={name}>
           {nameLetters.map((letter, index) => (
             <span
               key={`${letter}-${index}`}
               aria-hidden="true"
-              style={{ animationDelay: `${index * 0.12}s` }}
+              style={{
+                animationDelay: `${0.2 + index * 0.1}s`,
+              }}
             >
               {letter === ' ' ? '\u00A0' : letter}
             </span>
           ))}
         </h1>
 
-        <h2>{job}</h2>
+        <h2 className="hero-job hero-reveal hero-delay-2">
+          {job}
+        </h2>
 
-        <p className="hero-summary">
+        <p className="hero-summary hero-reveal hero-delay-3">
           Building clean, responsive and accessible web experiences.
         </p>
 
-        <p className="tech-stack">
+        <p className="tech-stack hero-reveal hero-delay-4">
           Front-End focused • React • JavaScript • HTML • CSS • Node.js •
           PostgreSQL
         </p>
 
-        <div className="hero-buttons">
+        <div className="hero-buttons hero-reveal hero-delay-5">
           <a href="#projects" className="primary-button">
             View Projects
           </a>
@@ -40,7 +46,7 @@ function Hero({ name, job }) {
             href="/Quynh-Trang-Nguyen-CV.pdf"
             className="secondary-button"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             Download CV
           </a>
@@ -48,20 +54,25 @@ function Hero({ name, job }) {
 
         <a
           href="#about"
-          className="scroll-indicator"
-          aria-label="Scroll to About section"
+          className="scroll-indicator hero-reveal hero-delay-6"
+          aria-label="Scroll to the About section"
         >
           <span className="mouse" aria-hidden="true">
-            <span className="mouse-wheel"></span>
+            <span className="mouse-wheel" />
           </span>
 
           <span className="scroll-text">Scroll</span>
         </a>
       </div>
 
-      <div className="hero-image">
-        <div className="image-frame">
-          <img src={profileImage} alt="Portrait of Trang" />
+      <div className="hero-image hero-image-reveal">
+        <div className="image-float">
+          <div className="image-frame">
+            <img
+              src={profileImage}
+              alt="Portrait of Quynh Trang Nguyen"
+            />
+          </div>
         </div>
       </div>
     </section>
