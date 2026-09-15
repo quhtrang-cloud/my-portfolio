@@ -47,8 +47,9 @@ function Hero({ name, job }) {
             className="secondary-button"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="View Quynh Trang Nguyen's CV in a new tab"
           >
-            Download CV
+            View CV
           </a>
         </div>
 
