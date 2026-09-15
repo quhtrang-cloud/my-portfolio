@@ -10,6 +10,7 @@ import {
 
 import healthcareImage from '../assets/projects/healthcare-responsive.png'
 import ProjectSectionNav from '../components/ProjectSectionNav'
+import BackToTop from '../components/BackToTop'
 
 import discoveryImage from '../assets/projects/healthcare-discovery.png'
 import swapImage from '../assets/projects/healthcare-swap.png'
@@ -1752,6 +1753,8 @@ function HealthcareProject() {
       {/* ===================================
           LIGHTBOX
       =================================== */}
+
+      <BackToTop />
 
       {zoomedImage && (
         <div

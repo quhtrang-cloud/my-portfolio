@@ -8,6 +8,7 @@ import {
 } from 'react-icons/fa6'
 
 import ProjectSectionNav from '../components/ProjectSectionNav'
+import BackToTop from '../components/BackToTop'
 
 import authenticationImage from '../assets/projects/hampshire/hampshire-authentication.png'
 import discoveryImage from '../assets/projects/hampshire/hampshire-discovery.png'
@@ -484,6 +485,8 @@ function HampshireFestivalProject() {
           View all projects <FaArrowRight aria-hidden="true" />
         </Link>
       </section>
+
+      <BackToTop />
 
       {zoomedImage && (
         <div className="image-lightbox" role="dialog" aria-modal="true" aria-label="Expanded project image" onClick={closeImage}>

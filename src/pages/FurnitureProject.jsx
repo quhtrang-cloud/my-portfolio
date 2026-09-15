@@ -14,6 +14,7 @@ import furnitureSiteArchitecture from '../assets/projects/furniture-site-archite
 import furnitureWireframeHome from '../assets/projects/furniture-wireframe-home.png'
 import furnitureAdminDashboard from '../assets/projects/furniture-admin-dashboard.png'
 import ProjectSectionNav from '../components/ProjectSectionNav'
+import BackToTop from '../components/BackToTop'
 
 
 function FurnitureProject() {
@@ -1172,6 +1173,8 @@ ORDER BY r.return_date DESC;`,
       {/* ===================================
           LIGHTBOX
       =================================== */}
+
+      <BackToTop />
 
       {zoomedImage && (
         <div
