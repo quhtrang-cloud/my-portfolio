@@ -9,6 +9,7 @@ import {
 } from 'react-icons/fa6'
 
 import furnitureHomepage from '../assets/projects/furniture-homepage.png'
+import furnitureProducts from '../assets/projects/furniture-products.png'
 import furnitureEerd from '../assets/projects/furniture-eerd.png'
 import furnitureSiteArchitecture from '../assets/projects/furniture-site-architecture.png'
 import furnitureWireframeHome from '../assets/projects/furniture-wireframe-home.png'
@@ -33,23 +34,24 @@ function FurnitureProject() {
 
   const sqlQueries = [
     {
-      label: 'Revenue reporting',
-      title: 'Monthly revenue by showroom',
+      title: 'Monthly pickup revenue by showroom',
       description:
-        'Aggregates order-item values by showroom and month to support revenue comparison across locations.',
+        'Aggregates order-item values for showroom pickup orders by location and month to support revenue comparison.',
       techniques: 'JOIN · SUM · GROUP BY · DATE_TRUNC',
       code: `SELECT
   s.name AS showroom_name,
   DATE_TRUNC('month', o.order_date) AS month,
   SUM(oi.unit_price * oi.quantity) AS monthly_income
-FROM "order" o
-JOIN order_item oi
+FROM "order" AS o
+JOIN order_item AS oi
   ON o.order_id = oi.order_id
-JOIN delivery_info d
+JOIN delivery_info AS d
   ON d.order_id = o.order_id
-JOIN showroom s
+JOIN showroom AS s
   ON s.showroom_id = d.showroom_id
+WHERE d.delivery_type = 'pickup'
 GROUP BY
+  s.showroom_id,
   s.name,
   DATE_TRUNC('month', o.order_date)
 ORDER BY
@@ -57,7 +59,6 @@ ORDER BY
   month;`,
     },
     {
-      label: 'Returns monitoring',
       title: 'Recent customer returns',
       description:
         'Connects customers, orders and return records to identify return activity within the previous 28 days.',
@@ -141,7 +142,7 @@ ORDER BY r.return_date DESC;`,
           </h1>
 
           <p className="case-tagline">
-            Building a full-stack retail platform for
+            Building a full-stack retail prototype for
             multi-showroom operations.
           </p>
 
@@ -176,7 +177,7 @@ ORDER BY r.return_date DESC;`,
             <span>Role</span>
 
             <p>
-              Project Manager · Web & System Development
+              Project Manager · Database & System Development
             </p>
           </div>
 
@@ -279,19 +280,15 @@ ORDER BY r.return_date DESC;`,
           <div className="case-overview-content">
 
             <p className="case-overview-lead">
-              Pompey Furniture Company was designed around the
-              operational needs of a fictional multi-showroom
-              furniture retailer, bringing customer-facing
-              services and internal management workflows into
-              one connected system.
+              Pompey Furniture Company was designed for a simulated
+              multi-showroom retailer requiring consistent data across
+              product discovery, inventory and after-sales services.
             </p>
 
             <p>
-              Rather than treating products, orders and staff
-              functions as isolated features, the application
-              links them through shared workflows spanning
-              inventory, purchasing, delivery, returns and
-              loyalty.
+              The prototype supports public, customer, staff and
+              administrative tasks through a shared relational model
+              and role-specific workflows.
             </p>
 
           </div>
@@ -379,15 +376,15 @@ ORDER BY r.return_date DESC;`,
           <div className="contribution-intro">
 
             <p className="case-section-lead">
-              As Project Manager, I coordinated the project while
-              contributing directly to system planning, database
-              development and web implementation.
+              As Project Manager, I coordinated project planning and
+              team delivery while contributing primarily to database
+              design, SQL development and system integration.
             </p>
 
             <p className="case-section-text">
-              Working collaboratively with the team, I helped translate
-              project requirements into a structured system and contributed
-              across both the data and web layers.
+              I also contributed to requirements analysis, information
+              architecture and initial wireframes. The final frontend
+              implementation was developed collaboratively by the team.
             </p>
 
           </div>
@@ -415,7 +412,7 @@ ORDER BY r.return_date DESC;`,
               </h3>
 
               <p>
-                Project planning, task coordination and team delivery.
+                Led project planning, task coordination and team delivery.
               </p>
 
             </article>
@@ -428,12 +425,12 @@ ORDER BY r.return_date DESC;`,
               </span>
 
               <h3>
-                System & interface planning
+                System planning
               </h3>
 
               <p>
-                Competitor research, information architecture, use cases,
-                site architecture and wireframes.
+                Contributed to competitor research, use cases, information
+                architecture, site architecture and wireframes.
               </p>
 
             </article>
@@ -450,7 +447,7 @@ ORDER BY r.return_date DESC;`,
               </h3>
 
               <p>
-                EERD, relational modelling, PostgreSQL database design
+                Designed the EERD, relational schema, PostgreSQL database
                 and business-focused SQL queries.
               </p>
 
@@ -464,12 +461,12 @@ ORDER BY r.return_date DESC;`,
               </span>
 
               <h3>
-                Web development
+                System integration
               </h3>
 
               <p>
-                Contributed to web implementation and system integration,
-                with selected workflows later independently refined.
+                Connected browser workflows with Node.js, Express.js and
+                PostgreSQL, then strengthened authentication and configuration.
               </p>
 
             </article>
@@ -760,7 +757,7 @@ ORDER BY r.return_date DESC;`,
 
             <div className="solution-feature-content">
 
-<h3>
+              <h3>
                 Structured for multi-showroom operations
               </h3>
 
@@ -770,7 +767,7 @@ ORDER BY r.return_date DESC;`,
                 delivery and returns, and employees to showroom,
                 management and payroll records.
               </p>
-</div>
+            </div>
 
           </article>
 
@@ -800,15 +797,15 @@ ORDER BY r.return_date DESC;`,
           <div className="case-implementation-intro">
 
             <p className="case-section-lead">
-              SQL queries were developed to support practical reporting
-              needs across the relational model.
+              Four business queries were developed for revenue,
+              inventory, delivery and return analysis.
             </p>
 
             <div className="sql-query-summary">
 
               <p>
                 <strong>Revenue reporting</strong>
-                <span>Monthly revenue by showroom.</span>
+                <span>Monthly revenue from showroom pickup orders.</span>
               </p>
 
               <p>
@@ -848,8 +845,9 @@ ORDER BY r.return_date DESC;`,
             </span>
 
             <p>
-              Two representative queries demonstrate how the relational
-              model supports financial and operational reporting.
+              Two representative implementations are shown below,
+              demonstrating financial and operational reporting across
+              the relational model.
             </p>
 
           </div>
@@ -869,7 +867,7 @@ ORDER BY r.return_date DESC;`,
                   <span className="sql-query-number">
                     {String(index + 1).padStart(2, '0')}
                   </span>
-<h3>
+                  <h3>
                     {query.title}
                   </h3>
 
@@ -979,14 +977,75 @@ ORDER BY r.return_date DESC;`,
             <div>
               <span>Management</span>
               <p>
-                Manage products, inventory, customers, showrooms,
-                orders and employee records.
+                Add products, manage inventory, customers, showrooms and
+                employee records, and review order information.
+              </p>
+            </div>
+
+            <div>
+              <span>Role-based access</span>
+              <p>
+                Protect customer, staff and administrator workflows
+                through server-side sessions, role checks and record
+                ownership validation.
+              </p>
+            </div>
+
+            <div>
+              <span>Stripe Checkout</span>
+              <p>
+                Start test-mode Checkout sessions using product names
+                and prices retrieved from PostgreSQL and verified by
+                the server.
               </p>
             </div>
 
           </div>
 
         </div>
+
+
+        <article className="web-application-evidence is-reversed">
+
+          <div className="web-application-visual">
+            <button
+              type="button"
+              className="solution-image-button"
+              onClick={() =>
+                openImage(
+                  furnitureProducts,
+                  'Furniture product catalogue with showroom availability and purchasing actions'
+                )
+              }
+              aria-label="View Pompey Furniture Company product catalogue"
+            >
+              <img
+                src={furnitureProducts}
+                alt="Furniture product catalogue showing prices, showroom availability, stock quantities and purchasing actions"
+              />
+
+              <span className="solution-image-zoom">
+                <FaMagnifyingGlassPlus aria-hidden="true" />
+              </span>
+            </button>
+          </div>
+
+          <div className="web-application-caption">
+            <span className="planning-evidence-label">
+              Customer interface
+            </span>
+
+            <h3>Product discovery and checkout</h3>
+
+            <p>
+              The database-backed catalogue displays product pricing,
+              showroom-specific stock and availability, allowing customers
+              to review details, add items to their cart and begin a
+              test-mode Stripe Checkout session.
+            </p>
+          </div>
+
+        </article>
 
 
         <article className="web-application-evidence">
@@ -1067,13 +1126,13 @@ ORDER BY r.return_date DESC;`,
 
           <div className="case-reflection-content">
             <p className="case-section-lead">
-              The project delivered a working retail management prototype that brought customer-facing and internal workflows into a single web application.
+              The team translated the planned data model and role
+              requirements into a functional database-backed prototype.
             </p>
             <p className="case-section-text">
-              Working across planning, interface development and
-              server-side integration strengthened my understanding
-              of how the different layers of a full-stack web
-              application work together.
+              The project gave me practical ownership of database design
+              and SQL development while strengthening my experience in
+              project coordination and application integration.
             </p>
           </div>
         </div>
@@ -1081,20 +1140,18 @@ ORDER BY r.return_date DESC;`,
         <div className="outcome-grid">
           <article className="outcome-item">
             <span className="outcome-number">01</span>
-            <h3>Full-stack development</h3>
+            <h3>Database &amp; reporting</h3>
             <p>
-              Contributed across interface development, server-side
-              functionality and data integration to support a connected
-              web experience.
+              Designed a relational PostgreSQL schema and business-focused
+              SQL queries to support multi-showroom operations and reporting.
             </p>
           </article>
           <article className="outcome-item">
             <span className="outcome-number">02</span>
-            <h3>Web application development</h3>
+            <h3>System integration</h3>
             <p>
-              Strengthened my understanding of building structured web
-              applications by connecting user interfaces with server-side
-              logic and persistent data.
+              Connected browser-based interfaces with Express routes,
+              parameterised queries and persistent PostgreSQL data.
             </p>
           </article>
           <article className="outcome-item">
@@ -1102,8 +1159,8 @@ ORDER BY r.return_date DESC;`,
             <h3>Team delivery</h3>
             <p>
               Developed practical experience coordinating a team project
-              while contributing directly across planning, design and
-              implementation.
+              while contributing directly to system planning, database
+              development and implementation.
             </p>
           </article>
         </div>
@@ -1111,10 +1168,12 @@ ORDER BY r.return_date DESC;`,
         <div className="case-reflection-closing outcome-continuation">
           <span>Continued development</span>
           <p>
-            Following the team project, I independently refined selected
-            customer workflows, improved application configuration and
-            integration, and prepared the codebase for public release on
-            GitHub.
+            Following the team delivery, I independently introduced
+            salted password hashing, strengthened session and ownership
+            checks, moved configuration to environment variables and
+            ensured Stripe Checkout used server-verified product data.
+            I also improved the technical documentation and overall
+            maintainability.
           </p>
         </div>
       </section>

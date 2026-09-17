@@ -832,6 +832,10 @@ img {
 .project-card {
   overflow: hidden;
 
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
   background: #111c31;
   border: 1px solid rgba(148, 163, 184, 0.16);
   border-radius: 18px;
@@ -852,6 +856,11 @@ img {
 
   box-shadow:
     0 18px 42px rgba(2, 6, 23, 0.22);
+}
+
+.project-card:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 5px;
 }
 
 /* ===================================
@@ -1039,8 +1048,8 @@ img {
     gap 0.2s ease;
 }
 
-.project-link:hover,
-.project-link:focus-visible {
+.project-card:hover .project-link,
+.project-card:focus-visible .project-link {
   color: #60a5fa;
   gap: 12px;
 }
@@ -5927,11 +5936,20 @@ img {
   padding-top: 56px;
 }
 
-/* Furniture Web Application keeps its four-function row.
+/* Furniture Web Application uses a balanced six-function grid.
    This selector is intentionally scoped to the section that
    actually contains the furniture functionality block. */
 .case-testing:has(.web-functionality) .implementation-foundations-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.case-testing:has(.web-functionality) .implementation-foundations-grid > div:nth-child(3n + 1) {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.case-testing:has(.web-functionality) .implementation-foundations-grid > div:nth-child(n + 4) {
+  border-top: 1px solid #24324a;
 }
 
 /* Shared divider principle:
@@ -5946,6 +5964,28 @@ img {
 /* ---------- Tablet ---------- */
 
 @media (max-width: 900px) and (min-width: 641px) {
+  .case-testing:has(.web-functionality) .implementation-foundations-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .case-testing:has(.web-functionality) .implementation-foundations-grid > div {
+    border-top: 0;
+  }
+
+  .case-testing:has(.web-functionality) .implementation-foundations-grid > div:nth-child(odd) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .case-testing:has(.web-functionality) .implementation-foundations-grid > div:nth-child(even) {
+    padding-left: 20px;
+    border-left: 1px solid #24324a;
+  }
+
+  .case-testing:has(.web-functionality) .implementation-foundations-grid > div:nth-child(n + 3) {
+    border-top: 1px solid #24324a;
+  }
+
   /* Five compact equal columns still fit comfortably on medium screens
      and avoid an orphaned fifth item. */
   .case-implementation:has(.implementation-list) .implementation-foundations-grid {
@@ -5974,6 +6014,26 @@ img {
 /* ---------- Small tablet / mobile ---------- */
 
 @media (max-width: 640px) {
+  .case-testing:has(.web-functionality) .implementation-foundations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .case-testing:has(.web-functionality) .implementation-foundations-grid > div,
+  .case-testing:has(.web-functionality) .implementation-foundations-grid > div + div,
+  .case-testing:has(.web-functionality) .implementation-foundations-grid > div:nth-child(odd),
+  .case-testing:has(.web-functionality) .implementation-foundations-grid > div:nth-child(even) {
+    padding: 20px 0;
+    border-left: 0;
+  }
+
+  .case-testing:has(.web-functionality) .implementation-foundations-grid > div + div {
+    border-top: 1px solid #24324a;
+  }
+
+  .case-testing:has(.web-functionality) .implementation-foundations-grid > div:first-child {
+    border-top: 0;
+  }
+
   .case-implementation:has(.implementation-list) .implementation-foundations-grid {
     grid-template-columns: 1fr;
   }
@@ -7096,5 +7156,91 @@ button:focus-visible > .hampshire-zoom-icon {
 
   .floating-back-to-top:hover {
     transform: none;
+  }
+}
+
+
+/* ===================================
+   FURNITURE SQL — ALTERNATING LAYOUT
+=================================== */
+
+/*
+  Query 01: explanation left, SQL right.
+  Query 02: SQL left, explanation right.
+  The source order stays unchanged so mobile and assistive
+  technology continue to read the explanation before the code.
+*/
+@media (min-width: 561px) {
+  .case-implementation .sql-query:nth-child(even) {
+    grid-template-columns:
+      minmax(0, 1.15fr)
+      minmax(300px, 0.85fr);
+  }
+
+  .case-implementation .sql-query:nth-child(even) .sql-code {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  .case-implementation .sql-query:nth-child(even) .sql-query-copy {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+}
+
+/* ===================================
+   FURNITURE WEB APPLICATION — EVIDENCE
+=================================== */
+
+.case-testing .web-application-evidence.is-reversed {
+  grid-template-columns:
+    minmax(280px, 0.68fr)
+    minmax(0, 1.32fr);
+}
+
+.case-testing
+  .web-application-evidence.is-reversed
+  .web-application-visual {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.case-testing
+  .web-application-evidence.is-reversed
+  .web-application-caption {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.case-testing
+  .web-application-evidence
+  + .web-application-evidence {
+  margin-top: 0;
+  border-top: 1px solid #24324a;
+}
+
+@media (max-width: 900px) {
+  .case-testing .web-application-evidence.is-reversed {
+    grid-template-columns:
+      minmax(250px, 0.88fr)
+      minmax(0, 1.12fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .case-testing .web-application-evidence.is-reversed {
+    grid-template-columns: 1fr;
+  }
+
+  .case-testing
+    .web-application-evidence.is-reversed
+    .web-application-visual,
+  .case-testing
+    .web-application-evidence.is-reversed
+    .web-application-caption {
+    grid-column: auto;
+    grid-row: auto;
   }
 }

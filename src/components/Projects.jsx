@@ -65,15 +65,85 @@ const projects = [
   },
 ]
 
-function ProjectLink({ path }) {
-  if (!path) {
+function ProjectAction() {
+  return (
+    <span className="project-link">
+      View Project
+      <FaArrowRight aria-hidden="true" />
+    </span>
+  )
+}
+
+function ProjectCard({ project, featured = false }) {
+  if (!project.path) {
     return null
   }
 
   return (
-    <Link to={path} className="project-link">
-      View Project
-      <FaArrowRight aria-hidden="true" />
+    <Link
+      to={project.path}
+      className={`project-card ${
+        featured ? 'project-featured' : 'project-small'
+      }`}
+      aria-label={`View ${project.title} project`}
+    >
+      <div
+        className={`project-image ${
+          featured ? 'project-featured-image' : ''
+        }`}
+      >
+        <img
+          src={project.image}
+          alt={project.imageAlt}
+        />
+      </div>
+
+      <div className="project-content">
+        <div className="project-meta">
+          <span className="project-number">
+            {project.number}
+          </span>
+
+          {featured && (
+            <span className="featured-label">
+              Featured
+            </span>
+          )}
+        </div>
+
+        <h3>{project.title}</h3>
+
+        <p className="project-type">
+          {project.type}
+
+          {project.context && (
+            <>
+              <span
+                className="project-dot"
+                aria-hidden="true"
+              >
+                •
+              </span>
+
+              {project.context}
+            </>
+          )}
+        </p>
+
+        <p className="project-description">
+          {project.description}
+        </p>
+
+        <div className="project-technologies">
+          {project.technologies.map((technology) => (
+            <span key={technology}>
+              {technology}
+            </span>
+          ))}
+        </div>
+
+        <ProjectAction />
+      </div>
     </Link>
   )
 }
@@ -103,102 +173,18 @@ function Projects() {
       </div>
 
       {featuredProject && (
-        <article className="project-card project-featured">
-          <div className="project-image project-featured-image">
-            <img
-              src={featuredProject.image}
-              alt={featuredProject.imageAlt}
-            />
-          </div>
-
-          <div className="project-content">
-            <div className="project-meta">
-              <span className="project-number">
-                {featuredProject.number}
-              </span>
-
-              <span className="featured-label">
-                Featured
-              </span>
-            </div>
-
-            <h3>{featuredProject.title}</h3>
-
-            <p className="project-type">
-              {featuredProject.type}
-            </p>
-
-            <p className="project-description">
-              {featuredProject.description}
-            </p>
-
-            <div className="project-technologies">
-              {featuredProject.technologies.map((technology) => (
-                <span key={technology}>
-                  {technology}
-                </span>
-              ))}
-            </div>
-
-            <ProjectLink path={featuredProject.path} />
-          </div>
-        </article>
+        <ProjectCard
+          project={featuredProject}
+          featured
+        />
       )}
 
       <div className="projects-grid">
         {otherProjects.map((project) => (
-          <article
-            className="project-card project-small"
+          <ProjectCard
             key={project.title}
-          >
-            <div className="project-image">
-              <img
-                src={project.image}
-                alt={project.imageAlt}
-              />
-            </div>
-
-            <div className="project-content">
-              <div className="project-meta">
-                <span className="project-number">
-                  {project.number}
-                </span>
-              </div>
-
-              <h3>{project.title}</h3>
-
-              <p className="project-type">
-                {project.type}
-
-                {project.context && (
-                  <>
-                    <span
-                      className="project-dot"
-                      aria-hidden="true"
-                    >
-                      •
-                    </span>
-
-                    {project.context}
-                  </>
-                )}
-              </p>
-
-              <p className="project-description">
-                {project.description}
-              </p>
-
-              <div className="project-technologies">
-                {project.technologies.map((technology) => (
-                  <span key={technology}>
-                    {technology}
-                  </span>
-                ))}
-              </div>
-
-              <ProjectLink path={project.path} />
-            </div>
-          </article>
+            project={project}
+          />
         ))}
       </div>
     </section>
