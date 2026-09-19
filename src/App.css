@@ -1528,6 +1528,8 @@ img {
 
   .about-details {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: auto;
   }
 
   .skills-grid {
@@ -3655,6 +3657,11 @@ img {
   }
 
 
+  .implementation-item {
+    gap: 36px;
+  }
+
+
   .solution-feature-image,
   .solution-support-image {
     aspect-ratio: auto;
@@ -3721,6 +3728,10 @@ img {
 ========================================================= */
 
 @media (max-width: 560px) {
+
+  .implementation-item {
+    gap: 28px;
+  }
 
   .case-hero h1 {
     font-size: clamp(2.8rem, 14vw, 4rem);
