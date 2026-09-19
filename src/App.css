@@ -1641,11 +1641,14 @@ img {
   }
 
   .nav-links {
-    gap: 16px;
+    width: 100%;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: clamp(12px, 3.8vw, 18px);
   }
 
   .nav-links a {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 3.6vw, 0.9rem);
   }
 
   .hero {
@@ -3623,6 +3626,7 @@ img {
   .approach-process {
     grid-template-columns: 1fr;
 
+    margin-top: 80px;
     padding-top: 0;
     padding-left: 52px;
   }
@@ -3642,6 +3646,24 @@ img {
   .solution-support,
   .implementation-item {
     grid-template-columns: 1fr;
+  }
+
+
+  .solution-feature,
+  .solution-support {
+    gap: 36px;
+  }
+
+
+  .solution-feature-image,
+  .solution-support-image {
+    aspect-ratio: auto;
+  }
+
+
+  .solution-feature-image .solution-image-button,
+  .solution-support-image .solution-image-button {
+    height: auto;
   }
 
 
@@ -6079,6 +6101,8 @@ img {
 ========================================================= */
 
 .project-section-nav {
+  --project-nav-height: 58px;
+
   position: sticky;
   top: 0;
   z-index: 900;
@@ -6092,6 +6116,8 @@ img {
 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+
+  overflow: hidden;
 }
 
 .project-section-nav-inner {
@@ -6100,9 +6126,14 @@ img {
   justify-content: space-between;
   gap: 24px;
 
-  min-height: 58px;
+  min-height: var(--project-nav-height);
   overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 2px;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .project-section-nav-inner::-webkit-scrollbar {
@@ -6116,7 +6147,7 @@ img {
   align-items: center;
   flex: 0 0 auto;
 
-  min-height: 58px;
+  min-height: var(--project-nav-height);
 
   color: #94a3b8;
 
@@ -6124,6 +6155,7 @@ img {
   font-weight: 600;
   line-height: 1;
   white-space: nowrap;
+  scroll-snap-align: start;
 
   transition: color 0.2s ease;
 }
@@ -6157,39 +6189,115 @@ img {
   transform: scaleX(1);
 }
 
+.project-nav-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+
+  width: 40px;
+  height: 100%;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  border: 0;
+
+  color: #f8fafc;
+  background: transparent;
+
+  cursor: pointer;
+  transform: translateY(-50%);
+
+  transition: color 0.2s ease;
+}
+
+.project-nav-arrow svg {
+  width: 12px;
+  height: 12px;
+}
+
+.project-nav-arrow-left {
+  left: 0;
+
+  background: linear-gradient(
+    to right,
+    #0f172a 58%,
+    rgba(15, 23, 42, 0)
+  );
+}
+
+.project-nav-arrow-right {
+  right: 0;
+
+  background: linear-gradient(
+    to left,
+    #0f172a 58%,
+    rgba(15, 23, 42, 0)
+  );
+}
+
+.project-nav-arrow:hover,
+.project-nav-arrow:focus-visible {
+  color: #60a5fa;
+}
+
+.project-nav-arrow:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: -4px;
+}
+
 .project-page section[id] {
   scroll-margin-top: 150px;
 }
 
 @media (max-width: 900px) {
   .project-section-nav {
-    top: 0;
-    z-index: 1100;
     width: min(100% - 48px, 1080px);
   }
 
   .project-section-nav-inner {
-    justify-content: flex-start;
+    justify-content: space-between;
     gap: 26px;
+    padding-right: 24px;
+  }
+
+  .project-section-nav.has-left-arrow
+    .project-section-nav-inner,
+  .project-section-nav.has-right-arrow
+    .project-section-nav-inner {
+    justify-content: flex-start;
+  }
+
+  .project-nav-arrow {
+    display: inline-flex;
+  }
+
+  .project-section-nav.has-left-arrow
+    .project-section-nav-inner {
+    padding-left: 40px;
+  }
+
+  .project-section-nav.has-right-arrow
+    .project-section-nav-inner {
+    padding-right: 40px;
   }
 }
 
 @media (max-width: 560px) {
   .project-section-nav {
+    --project-nav-height: 52px;
     width: min(100% - 32px, 1080px);
   }
 
-  .project-section-nav-inner,
-  .project-section-nav a {
-    min-height: 52px;
-  }
-
   .project-section-nav-inner {
-    gap: 22px;
+    gap: 26px;
+    padding-right: 32px;
   }
 
   .project-section-nav a {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
   }
 
   .project-page section[id] {
