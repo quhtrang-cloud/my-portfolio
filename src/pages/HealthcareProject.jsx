@@ -128,7 +128,7 @@ function HealthcareProject() {
             <span>Role</span>
 
             <p>
-              Full-Stack Development & UX Design
+              Full-Stack Developer & UX Designer
             </p>
           </div>
 
@@ -252,12 +252,12 @@ function HealthcareProject() {
             <span>02</span>
 
             <h3>
-              Smarter recommendations
+              Guided recommendations
             </h3>
 
             <p>
-              Surface appointments that better match
-              patient needs.
+              Rank available appointments using patient
+              preferences and transparent scheduling rules.
             </p>
 
           </article>
@@ -594,14 +594,14 @@ function HealthcareProject() {
                 Patients can search for available
                 appointments across practices within
                 the same city rather than being limited
-                to one practice. Intelligent Scheduling
-                can also help surface suitable options
-                when additional guidance is needed.
+                to one practice. The optional Intelligent
+                Scheduling workflow applies transparent
+                rules to rank suitable options.
               </p>
 
               <div className="solution-tags">
                 <span>City-wide search</span>
-                <span>Intelligent scheduling</span>
+                <span>Rule-based scheduling</span>
                 <span>Personalised results</span>
               </div>
 
@@ -655,11 +655,11 @@ function HealthcareProject() {
 
               <p>
                 Patients can request to exchange an
-                existing appointment with another booked
-                slot. Requests are reviewed by an
-                administrator before appointments are
-                reassigned, providing a controlled way
-                to manage changing plans.
+                existing appointment with another eligible
+                booked slot at the same practice. Requests
+                are reviewed by an administrator before
+                appointment ownership is exchanged, and
+                both affected users receive notifications.
               </p>
 
               <div className="solution-tags">
@@ -1180,8 +1180,8 @@ function HealthcareProject() {
               <span>Integrations</span>
 
               <p>
-                Google Calendar OAuth 2.0 ·
-                Brevo Email
+                Google Calendar API · OAuth 2.0 ·
+                Nodemailer · Brevo SMTP
               </p>
             </div>
 
@@ -1217,16 +1217,15 @@ function HealthcareProject() {
 
             <p className="case-section-lead">
               The final prototype was evaluated through
-              functional, non-functional and
-              requirements-based testing to verify core
-              workflows, usability and technical
-              reliability.
+              requirements-based manual testing, workflow
+              validation and local quality audits.
             </p>
 
             <p className="case-section-text">
-              Testing combined end-to-end workflow checks
-              with local performance, accessibility,
-              security and cross-browser validation.
+              Testing covered functional behaviour,
+              responsive presentation, accessibility
+              checks, performance indicators and
+              role-based access.
             </p>
 
           </div>
@@ -1299,7 +1298,7 @@ function HealthcareProject() {
             </h3>
 
             <p>
-              Component, integration and end-to-end testing
+              Manual functional and integration checks
               covered the major appointment, scheduling,
               access and supporting workflows. Validation
               focused on correct system states, ownership
@@ -1417,16 +1416,15 @@ function HealthcareProject() {
 
             <p>
               Responsive rendering and key user journeys
-              were manually checked across major browsers
-              and device sizes to identify layout or
-              interaction inconsistencies.
+              were manually checked across selected
+              browsers and device sizes to identify layout
+              or interaction inconsistencies.
             </p>
 
             <div className="testing-tags">
               <span>Chrome</span>
               <span>Edge</span>
               <span>Firefox</span>
-              <span>Safari</span>
               <span>Desktop</span>
               <span>Tablet</span>
               <span>Mobile</span>
