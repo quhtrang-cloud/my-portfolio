@@ -39,14 +39,14 @@ An individual full-stack prototype designed to improve appointment discovery, sc
 Key features include:
 
 - City-wide appointment discovery.
-- Rule-based intelligent scheduling and personalised recommendations.
-- Controlled appointment swapping with administrator review.
+- Rule-based scheduling recommendations informed by urgency and user preferences.
+- Same-practice appointment swap requests with administrator approval.
 - Appointment-conflict detection and Google Calendar synchronisation.
 - Email notifications and lightweight chatbot guidance.
 - Role-based access control.
 - Responsive interfaces informed by accessibility requirements.
 
-**Technologies:** Node.js · Express.js · PostgreSQL · JavaScript · EJS · Bootstrap · Google Calendar API · Brevo
+**Technologies:** Node.js · Express.js · PostgreSQL · JavaScript · EJS · Bootstrap · Google Calendar API · OAuth 2.0 · Nodemailer · Brevo SMTP
 
 The project page follows the work from problem analysis and requirements through interface design, implementation, testing, limitations and reflection.
 
