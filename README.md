@@ -95,7 +95,7 @@ The outcome is a high-fidelity design prototype rather than a production applica
 ```text
 .
 ├── public/
-│   ├── icons.svg
+│   ├── favicon.png
 │   ├── Quynh-Trang-Nguyen-CV.pdf
 │   └── robots.txt
 ├── src/
