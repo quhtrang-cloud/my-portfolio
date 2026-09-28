@@ -21,7 +21,7 @@ function Contact() {
         <div className="contact-content">
           <p className="contact-description">
             I'm currently open to graduate and junior web
-            development opportunities in the UK.
+            development opportunities.
           </p>
 
           <a

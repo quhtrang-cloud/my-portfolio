@@ -66,7 +66,7 @@ function About() {
 
             <div>
               <h3>Location</h3>
-              <p>Portsmouth, United Kingdom</p>
+              <p>United Kingdom</p>
             </div>
           </article>
 
