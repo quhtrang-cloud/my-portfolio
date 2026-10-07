@@ -14,6 +14,7 @@ The portfolio combines concise project summaries with detailed project pages cov
 - Dedicated project pages with detailed design and implementation documentation.
 - Responsive layouts for desktop, tablet and mobile.
 - Semantic markup and accessibility-aware navigation.
+- Section navigation with scroll-based active states and distinct hover styling.
 - Image previews with zoom and Escape-key dismissal.
 - Client-side routing with React Router.
 - Automated deployment through Vercel.
@@ -34,7 +35,7 @@ The portfolio combines concise project summaries with detailed project pages cov
 
 ### Healthcare Booking System
 
-An individual full-stack prototype designed to improve appointment discovery, scheduling flexibility and accessibility within a simulated healthcare-booking environment.
+An individual full-stack prototype designed to explore improved appointment discovery, scheduling flexibility and accessibility within a simulated healthcare booking environment.
 
 Key features include:
 
@@ -46,7 +47,11 @@ Key features include:
 - Role-based access control.
 - Responsive interfaces informed by accessibility requirements.
 
-**Technologies:** Node.js · Express.js · PostgreSQL · JavaScript · EJS · Bootstrap · Google Calendar API · OAuth 2.0 · Nodemailer · Brevo SMTP
+**Technologies:** Node.js · Express.js · PostgreSQL · JavaScript · EJS · Bootstrap · Google Calendar API · OAuth 2.0 · Nodemailer · Brevo SMTP · Jest · Supertest
+
+Evaluation combines requirements-based manual testing, workflow checks and local Lighthouse audits. Automated testing includes 27 tests across 4 test suites using Jest and Supertest, covering authentication middleware, scheduling rules and selected booking, swap and admin routes. Database queries and external services are mocked to isolate application behaviour; these tests do not validate live integrations end to end.
+
+Regression tests cover a red-flag parsing bug where the string `"false"` incorrectly triggered an urgent scheduling result, along with checks for boolean and string inputs and rule precedence.
 
 The project page follows the work from problem analysis and requirements through interface design, implementation, testing, limitations and reflection.
 
@@ -68,7 +73,7 @@ The system covers:
 
 My primary responsibilities focused on project coordination, database design, SQL development and system integration. Following the team delivery, I independently strengthened password storage, session-based authentication, server-side authorisation, record-ownership checks, environment configuration and Stripe Checkout data validation.
 
-The project page presents requirements and planning, information architecture, low-fidelity wireframing, relational database design, business-focused SQL queries, browser–server–database integration, HTML and CSS standards validation, and technical reflection.
+The project page presents requirements and planning, information architecture, low-fidelity wireframing, relational database design, business-focused SQL queries, browser-server-database integration, HTML and CSS standards validation, and technical reflection.
 
 ### Hampshire Festival App
 
@@ -92,29 +97,19 @@ The outcome is a high-fidelity design prototype rather than a production applica
 
 ## Project Structure
 
-```text
-.
-├── public/
-│   ├── favicon.png
-│   ├── Quynh-Trang-Nguyen-CV.pdf
-│   └── robots.txt
-├── src/
-│   ├── assets/        # Images and project assets
-│   ├── components/    # Reusable portfolio components
-│   ├── pages/         # Individual project pages
-│   ├── App.css        # Main portfolio styles
-│   ├── App.jsx        # Application routes and layout
-│   ├── index.css      # Global styles
-│   └── main.jsx       # Application entry point
-├── .gitignore
-├── eslint.config.js
-├── index.html
-├── package.json
-├── package-lock.json
-├── README.md
-├── vercel.json
-└── vite.config.js
-```
+- `public/` - Static assets, downloadable CV, favicon and robots.txt.
+- `src/assets/` - Images and project assets.
+- `src/components/` - Reusable portfolio components.
+- `src/pages/` - Individual project pages.
+- `src/App.css` - Main portfolio styles.
+- `src/App.jsx` - Application routes and layout.
+- `src/index.css` - Global styles.
+- `src/main.jsx` - Application entry point.
+- `package.json` and `package-lock.json` - Dependencies and npm scripts.
+- `eslint.config.js` - ESLint configuration.
+- `vite.config.js` - Vite configuration.
+- `vercel.json` - Vercel configuration.
+- `index.html` - HTML entry point.
 
 ## Run Locally
 
@@ -152,7 +147,7 @@ Create an optimised production build:
 npm run build
 ```
 
-The production-ready files will be generated in the `dist` directory.
+The build output is generated in the `dist` directory.
 
 ## Deployment
 
@@ -163,4 +158,5 @@ The portfolio is deployed with Vercel and connected to the GitHub repository for
 **Quynh Trang Nguyen**
 
 - [Portfolio](https://my-portfolio-ivory-ten-46.vercel.app/)
+
 - [LinkedIn](https://www.linkedin.com/in/quynh-trang-nguyen-21a559334/)
