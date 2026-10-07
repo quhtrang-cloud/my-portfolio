@@ -17,13 +17,14 @@ import {
   FaBoxOpen,
   FaBootstrap,
   FaDatabase,
+  FaFlask,
 } from 'react-icons/fa6'
-
 import {
   SiJavascript,
   SiExpress,
   SiPostgresql,
   SiVercel,
+  SiJest,
 } from 'react-icons/si'
 
 const skillGroups = [
@@ -72,6 +73,8 @@ const skillGroups = [
       { name: 'VS Code', icon: <FaCode /> },
       { name: 'npm', icon: <FaBoxOpen /> },
       { name: 'Vercel', icon: <SiVercel /> },
+      { name: 'Jest', icon: <SiJest /> },
+      { name: 'Supertest', icon: <FaFlask /> },
       { name: 'Testing & Debugging', icon: <FaCode /> },
       { name: 'Agile / Scrum', icon: <FaArrowsRotate /> },
     ],
@@ -88,7 +91,6 @@ function Skills() {
         <p className="section-label">Skills</p>
         <h2>Technologies and tools I work with.</h2>
       </div>
-
       <div className="skills-grid">
         {skillGroups.map((group) => (
           <article className="skill-card" key={group.title}>
@@ -96,7 +98,6 @@ function Skills() {
               <span className="skill-number">{group.number}</span>
               <h3>{group.title}</h3>
             </div>
-
             <div className="skill-list">
               {group.skills.map((skill) => (
                 <div className="skill-item" key={skill.name}>
