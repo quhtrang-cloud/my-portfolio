@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6'
 function ProjectSectionNav({ items }) {
   const navigationRef = useRef(null)
+  const containerRef = useRef(null)
   const [activeSection, setActiveSection] = useState(items[0]?.id ?? '')
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(false)
@@ -21,16 +22,53 @@ function ProjectSectionNav({ items }) {
       behavior: 'smooth',
     })
   }
+  const getScrollOffset = () => {
+    const navigation = containerRef.current
+    if (!navigation) return 76
+    const stickyTop = parseFloat(getComputedStyle(navigation).top) || 0
+    return stickyTop + navigation.getBoundingClientRect().height + 16
+  }
+  const getSectionTop = (section) => {
+    const paddingTop = parseFloat(getComputedStyle(section).paddingTop) || 0
+    return window.scrollY + section.getBoundingClientRect().top + paddingTop
+  }
+  const handleSectionClick = (event, id) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    const section = document.getElementById(id)
+    if (!section) return
+    event.preventDefault()
+    window.history.pushState(null, '', `#${id}`)
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    window.scrollTo({
+      top: Math.max(0, getSectionTop(section) - getScrollOffset()),
+      behavior: reduceMotion ? 'instant' : 'smooth',
+    })
+  }
   useEffect(() => {
-    const sections = items.map((item) => document.getElementById(item.id)).filter(Boolean)
-    if (!sections.length) return undefined
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) setActiveSection(entry.target.id)
+    const handleScroll = () => {
+      const sections = items.map((item) => document.getElementById(item.id)).filter(Boolean)
+      if (!sections.length) return
+      const position = window.scrollY + getScrollOffset() + 2
+      let current = sections[0].id
+      sections.forEach((section) => {
+        if (getSectionTop(section) <= position) current = section.id
       })
-    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 })
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
+      const pageHeight = document.documentElement.scrollHeight
+      if (pageHeight > window.innerHeight + 5 && window.scrollY + window.innerHeight >= pageHeight - 5) {
+        current = sections[sections.length - 1].id
+      }
+      setActiveSection(current)
+    }
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll)
+    const resizeObserver = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(handleScroll)
+    if (containerRef.current) resizeObserver?.observe(containerRef.current)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+      resizeObserver?.disconnect()
+    }
   }, [items])
   useEffect(() => {
     const navigation = navigationRef.current
@@ -61,7 +99,7 @@ function ProjectSectionNav({ items }) {
     canScrollRight ? 'has-right-arrow' : '',
   ].filter(Boolean).join(' ')
   return (
-    <nav className={navigationClassName} aria-label="Project sections">
+    <nav ref={containerRef} className={navigationClassName} aria-label="Project sections">
       {canScrollLeft && (
         <button type="button" className="project-nav-arrow project-nav-arrow-left" onClick={() => scrollNavigation('left')} aria-label="Show previous project sections">
           <FaChevronLeft aria-hidden="true" />
@@ -71,7 +109,7 @@ function ProjectSectionNav({ items }) {
         {items.map((item) => {
           const isActive = activeSection === item.id
           return (
-            <a key={item.id} href={`#${item.id}`} className={isActive ? 'active' : ''} aria-current={isActive ? 'location' : undefined}>
+            <a key={item.id} href={`#${item.id}`} onClick={(event) => handleSectionClick(event, item.id)} className={isActive ? 'active' : ''} aria-current={isActive ? 'location' : undefined}>
               {item.label}
             </a>
           )

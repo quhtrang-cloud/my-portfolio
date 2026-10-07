@@ -4440,7 +4440,7 @@ img {
   outline-offset: -4px;
 }
 .project-page section[id] {
-  scroll-margin-top: 150px;
+  scroll-margin-top: 0;
 }
 @media (max-width: 900px) {
   .project-section-nav {
@@ -4482,7 +4482,7 @@ img {
     font-size: 0.8rem;
   }
   .project-page section[id] {
-    scroll-margin-top: 132px;
+    scroll-margin-top: 0;
   }
 }
 /* =========================================================
