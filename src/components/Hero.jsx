@@ -43,7 +43,7 @@ function Hero({ name, job }) {
           </a>
 
           <a
-            href="/Quynh-Trang-Nguyen-CV.pdf?v=20260928"
+            href="/Quynh-Trang-Nguyen-CV.pdf?v=20261007-2300"
             className="secondary-button"
             target="_blank"
             rel="noopener noreferrer"
