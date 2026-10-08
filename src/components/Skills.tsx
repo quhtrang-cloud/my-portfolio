@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import {
   FaReact,
   FaHtml5,
@@ -21,19 +22,29 @@ import {
 } from 'react-icons/fa6'
 import {
   SiJavascript,
+  SiTypescript,
   SiExpress,
   SiPostgresql,
   SiVercel,
   SiJest,
 } from 'react-icons/si'
-
-const skillGroups = [
+type Skill = {
+  name: string
+  icon: ReactNode
+}
+type SkillGroup = {
+  number: string
+  title: string
+  skills: Skill[]
+}
+const skillGroups: SkillGroup[] = [
   {
     number: '01',
     title: 'Front-End',
     skills: [
       { name: 'React', icon: <FaReact /> },
       { name: 'JavaScript ES6+', icon: <SiJavascript /> },
+      { name: 'TypeScript', icon: <SiTypescript /> },
       { name: 'HTML5', icon: <FaHtml5 /> },
       { name: 'CSS3', icon: <FaCss3Alt /> },
       { name: 'Bootstrap', icon: <FaBootstrap /> },
@@ -80,7 +91,6 @@ const skillGroups = [
     ],
   },
 ]
-
 function Skills() {
   return (
     <section
@@ -114,5 +124,4 @@ function Skills() {
     </section>
   )
 }
-
 export default Skills

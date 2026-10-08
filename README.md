@@ -17,6 +17,7 @@ The portfolio combines concise project summaries with detailed project pages cov
 - Section navigation with scroll-based active states and distinct hover styling.
 - Image previews with zoom and Escape-key dismissal.
 - Client-side routing with React Router.
+- Typed skill data in the Skills component.
 - Automated deployment through Vercel.
 
 ## Built With
@@ -24,12 +25,15 @@ The portfolio combines concise project summaries with detailed project pages cov
 - React
 - Vite
 - JavaScript (ES6+)
+- TypeScript
 - HTML5
 - CSS3
 - React Router
 - React Icons
 - Git and GitHub
 - Vercel
+
+TypeScript is being adopted incrementally, starting with the Skills component. The remaining components currently use JavaScript.
 
 ## Selected Projects
 
@@ -47,7 +51,7 @@ Key features include:
 - Role-based access control.
 - Responsive interfaces informed by accessibility requirements.
 
-**Technologies:** Node.js · Express.js · PostgreSQL · JavaScript · EJS · Bootstrap · Google Calendar API · OAuth 2.0 · Nodemailer · Brevo SMTP · Jest · Supertest
+**Technologies:** Node.js, Express.js, PostgreSQL, JavaScript, EJS, Bootstrap, Google Calendar API, OAuth 2.0, Nodemailer, Brevo SMTP, Jest and Supertest.
 
 Evaluation combines requirements-based manual testing, workflow checks and local Lighthouse audits. Automated testing includes 27 tests across 4 test suites using Jest and Supertest, covering authentication middleware, scheduling rules and selected booking, swap and admin routes. Database queries and external services are mocked to isolate application behaviour; these tests do not validate live integrations end to end.
 
@@ -69,7 +73,7 @@ The system covers:
 - Role-based customer, staff and administrative interfaces.
 - Test-mode Stripe Checkout using server-verified product data.
 
-**Technologies:** Node.js · Express.js · PostgreSQL · SQL · JavaScript · HTML5 · CSS3 · Stripe Checkout
+**Technologies:** Node.js, Express.js, PostgreSQL, SQL, JavaScript, HTML5, CSS3 and Stripe Checkout.
 
 My primary responsibilities focused on project coordination, database design, SQL development and system integration. Following the team delivery, I independently strengthened password storage, session-based authentication, server-side authorisation, record-ownership checks, environment configuration and Stripe Checkout data validation.
 
@@ -89,7 +93,7 @@ The design process includes:
 - High-fidelity interface design.
 - Heuristic evaluation and design iteration.
 
-**Tools and methods:** Figma · Miro · draw.io · Personas · Task modelling · Use cases · Low- and high-fidelity prototyping · Heuristic evaluation
+**Tools and methods:** Figma, Miro, draw.io, personas, task modelling, use cases, low- and high-fidelity prototyping, and heuristic evaluation.
 
 I contributed to user analysis, personas, use-case modelling, Hierarchical Task Analysis, low-fidelity design and heuristic evaluation. I independently designed the high-fidelity prototype in Figma, translating the team's research into coherent screen sequences and clearly defined task flows.
 
@@ -99,13 +103,14 @@ The outcome is a high-fidelity design prototype rather than a production applica
 
 - `public/` - Static assets, downloadable CV, favicon and robots.txt.
 - `src/assets/` - Images and project assets.
-- `src/components/` - Reusable portfolio components.
+- `src/components/` - Reusable portfolio components, including Skills.tsx.
 - `src/pages/` - Individual project pages.
 - `src/App.css` - Main portfolio styles.
 - `src/App.jsx` - Application routes and layout.
 - `src/index.css` - Global styles.
 - `src/main.jsx` - Application entry point.
 - `package.json` and `package-lock.json` - Dependencies and npm scripts.
+- `tsconfig.json` - TypeScript configuration supporting gradual migration from JavaScript.
 - `eslint.config.js` - ESLint configuration.
 - `vite.config.js` - Vite configuration.
 - `vercel.json` - Vercel configuration.
@@ -139,15 +144,33 @@ npm run dev
 
 Vite will display the local development URL in the terminal.
 
+## Type Checking
+
+Check the TypeScript files:
+
+```bash
+npm run typecheck
+```
+
+The command runs `tsc --noEmit` to check types without generating JavaScript output.
+
+JavaScript files are not currently type-checked because `checkJs` is disabled to support gradual migration.
+
 ## Production Build
 
-Create an optimised production build:
+Run TypeScript checks and create an optimised production build:
 
 ```bash
 npm run build
 ```
 
 The build output is generated in the `dist` directory.
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
 
 ## Deployment
 
