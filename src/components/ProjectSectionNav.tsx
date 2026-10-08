@@ -1,8 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import type { MouseEvent } from 'react'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6'
-function ProjectSectionNav({ items }) {
-  const navigationRef = useRef(null)
-  const containerRef = useRef(null)
+type SectionItem = {
+  id: string
+  label: string
+}
+type ProjectSectionNavProps = {
+  items: SectionItem[]
+}
+function ProjectSectionNav({ items }: ProjectSectionNavProps) {
+  const navigationRef = useRef<HTMLDivElement | null>(null)
+  const containerRef = useRef<HTMLElement | null>(null)
   const [activeSection, setActiveSection] = useState(items[0]?.id ?? '')
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(false)
@@ -11,9 +19,12 @@ function ProjectSectionNav({ items }) {
     if (!navigation) return
     const maximumScroll = navigation.scrollWidth - navigation.clientWidth
     setCanScrollLeft(navigation.scrollLeft > 4)
-    setCanScrollRight(maximumScroll > 4 && navigation.scrollLeft < maximumScroll - 4)
+    setCanScrollRight(
+      maximumScroll > 4 &&
+      navigation.scrollLeft < maximumScroll - 4
+    )
   }, [])
-  const scrollNavigation = (direction) => {
+  const scrollNavigation = (direction: 'left' | 'right') => {
     const navigation = navigationRef.current
     if (!navigation) return
     const scrollDistance = Math.min(navigation.clientWidth * 0.7, 280)
@@ -28,17 +39,28 @@ function ProjectSectionNav({ items }) {
     const stickyTop = parseFloat(getComputedStyle(navigation).top) || 0
     return stickyTop + navigation.getBoundingClientRect().height + 16
   }
-  const getSectionTop = (section) => {
+  const getSectionTop = (section: HTMLElement) => {
     const paddingTop = parseFloat(getComputedStyle(section).paddingTop) || 0
     return window.scrollY + section.getBoundingClientRect().top + paddingTop
   }
-  const handleSectionClick = (event, id) => {
-    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+  const handleSectionClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    id: string
+  ) => {
+    if (
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) return
     const section = document.getElementById(id)
     if (!section) return
     event.preventDefault()
     window.history.pushState(null, '', `#${id}`)
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
     window.scrollTo({
       top: Math.max(0, getSectionTop(section) - getScrollOffset()),
       behavior: reduceMotion ? 'instant' : 'smooth',
@@ -46,7 +68,9 @@ function ProjectSectionNav({ items }) {
   }
   useEffect(() => {
     const handleScroll = () => {
-      const sections = items.map((item) => document.getElementById(item.id)).filter(Boolean)
+      const sections = items
+        .map((item) => document.getElementById(item.id))
+        .filter((section): section is HTMLElement => section !== null)
       if (!sections.length) return
       const position = window.scrollY + getScrollOffset() + 2
       let current = sections[0].id
@@ -54,7 +78,10 @@ function ProjectSectionNav({ items }) {
         if (getSectionTop(section) <= position) current = section.id
       })
       const pageHeight = document.documentElement.scrollHeight
-      if (pageHeight > window.innerHeight + 5 && window.scrollY + window.innerHeight >= pageHeight - 5) {
+      if (
+        pageHeight > window.innerHeight + 5 &&
+        window.scrollY + window.innerHeight >= pageHeight - 5
+      ) {
         current = sections[sections.length - 1].id
       }
       setActiveSection(current)
@@ -62,8 +89,12 @@ function ProjectSectionNav({ items }) {
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     window.addEventListener('resize', handleScroll)
-    const resizeObserver = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(handleScroll)
-    if (containerRef.current) resizeObserver?.observe(containerRef.current)
+    const resizeObserver = typeof ResizeObserver === 'undefined'
+      ? null
+      : new ResizeObserver(handleScroll)
+    if (containerRef.current) {
+      resizeObserver?.observe(containerRef.current)
+    }
     return () => {
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', handleScroll)
@@ -72,11 +103,15 @@ function ProjectSectionNav({ items }) {
   }, [items])
   useEffect(() => {
     const navigation = navigationRef.current
-    if (!navigation) return undefined
+    if (!navigation) return
     const animationFrame = requestAnimationFrame(updateScrollButtons)
-    navigation.addEventListener('scroll', updateScrollButtons, { passive: true })
+    navigation.addEventListener('scroll', updateScrollButtons, {
+      passive: true,
+    })
     window.addEventListener('resize', updateScrollButtons)
-    const resizeObserver = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(updateScrollButtons)
+    const resizeObserver = typeof ResizeObserver === 'undefined'
+      ? null
+      : new ResizeObserver(updateScrollButtons)
     resizeObserver?.observe(navigation)
     return () => {
       cancelAnimationFrame(animationFrame)
@@ -88,10 +123,17 @@ function ProjectSectionNav({ items }) {
   useEffect(() => {
     const navigation = navigationRef.current
     if (!navigation || !activeSection) return
-    const activeLink = Array.from(navigation.querySelectorAll('a')).find((link) => link.getAttribute('href') === `#${activeSection}`)
+    const activeLink = Array.from(
+      navigation.querySelectorAll('a')
+    ).find((link) => link.getAttribute('href') === `#${activeSection}`)
     if (!activeLink) return
-    const targetScroll = activeLink.offsetLeft + activeLink.offsetWidth / 2 - navigation.clientWidth / 2
-    navigation.scrollTo({ left: Math.max(0, targetScroll), behavior: 'smooth' })
+    const targetScroll = activeLink.offsetLeft +
+      activeLink.offsetWidth / 2 -
+      navigation.clientWidth / 2
+    navigation.scrollTo({
+      left: Math.max(0, targetScroll),
+      behavior: 'smooth',
+    })
   }, [activeSection])
   const navigationClassName = [
     'project-section-nav',
@@ -99,24 +141,47 @@ function ProjectSectionNav({ items }) {
     canScrollRight ? 'has-right-arrow' : '',
   ].filter(Boolean).join(' ')
   return (
-    <nav ref={containerRef} className={navigationClassName} aria-label="Project sections">
+    <nav
+      ref={containerRef}
+      className={navigationClassName}
+      aria-label="Project sections"
+    >
       {canScrollLeft && (
-        <button type="button" className="project-nav-arrow project-nav-arrow-left" onClick={() => scrollNavigation('left')} aria-label="Show previous project sections">
+        <button
+          type="button"
+          className="project-nav-arrow project-nav-arrow-left"
+          onClick={() => scrollNavigation('left')}
+          aria-label="Show previous project sections"
+        >
           <FaChevronLeft aria-hidden="true" />
         </button>
       )}
-      <div ref={navigationRef} className="project-section-nav-inner">
+      <div
+        ref={navigationRef}
+        className="project-section-nav-inner"
+      >
         {items.map((item) => {
           const isActive = activeSection === item.id
           return (
-            <a key={item.id} href={`#${item.id}`} onClick={(event) => handleSectionClick(event, item.id)} className={isActive ? 'active' : ''} aria-current={isActive ? 'location' : undefined}>
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              onClick={(event) => handleSectionClick(event, item.id)}
+              className={isActive ? 'active' : ''}
+              aria-current={isActive ? 'location' : undefined}
+            >
               {item.label}
             </a>
           )
         })}
       </div>
       {canScrollRight && (
-        <button type="button" className="project-nav-arrow project-nav-arrow-right" onClick={() => scrollNavigation('right')} aria-label="Show more project sections">
+        <button
+          type="button"
+          className="project-nav-arrow project-nav-arrow-right"
+          onClick={() => scrollNavigation('right')}
+          aria-label="Show more project sections"
+        >
           <FaChevronRight aria-hidden="true" />
         </button>
       )}
