@@ -17,7 +17,8 @@ The portfolio combines concise project summaries with detailed project pages cov
 - Section navigation with scroll-based active states and distinct hover styling.
 - Image previews with zoom and Escape-key dismissal.
 - Client-side routing with React Router.
-- Typed skill data in the Skills component.
+- TypeScript types for skill data, project navigation props, DOM refs and click events.
+- Type checking included in the production build process.
 - Automated deployment through Vercel.
 
 ## Built With
@@ -33,7 +34,7 @@ The portfolio combines concise project summaries with detailed project pages cov
 - Git and GitHub
 - Vercel
 
-TypeScript is being adopted incrementally, starting with the Skills component. The remaining components currently use JavaScript.
+TypeScript is being adopted incrementally. The Skills and ProjectSectionNav components use TypeScript, while the remaining components currently use JavaScript.
 
 ## Selected Projects
 
@@ -103,7 +104,7 @@ The outcome is a high-fidelity design prototype rather than a production applica
 
 - `public/` - Static assets, downloadable CV, favicon and robots.txt.
 - `src/assets/` - Images and project assets.
-- `src/components/` - Reusable portfolio components, including Skills.tsx.
+- `src/components/` - Reusable portfolio components, including Skills.tsx and ProjectSectionNav.tsx.
 - `src/pages/` - Individual project pages.
 - `src/App.css` - Main portfolio styles.
 - `src/App.jsx` - Application routes and layout.
@@ -130,10 +131,10 @@ Open the project directory:
 cd my-portfolio
 ```
 
-Install the dependencies:
+Install the dependencies from the lockfile:
 
 ```bash
-npm install
+npm ci
 ```
 
 Start the development server:
@@ -154,7 +155,7 @@ npm run typecheck
 
 The command runs `tsc --noEmit` to check types without generating JavaScript output.
 
-JavaScript files are not currently type-checked because `checkJs` is disabled to support gradual migration.
+JavaScript files are not currently type-checked because `checkJs` is disabled to support gradual migration. Type checking does not replace runtime or interaction testing.
 
 ## Production Build
 
