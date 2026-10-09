@@ -11,6 +11,7 @@ import {
   FaUniversalAccess,
   FaCode,
   FaPenRuler,
+  FaPalette,
   FaTableColumns,
   FaUsers,
   FaArrowsRotate,
@@ -70,6 +71,7 @@ const skillGroups: SkillGroup[] = [
     skills: [
       { name: 'Figma', icon: <FaFigma /> },
       { name: 'Adobe Photoshop', icon: <FaImage /> },
+      { name: 'Canva', icon: <FaPalette /> },
       { name: 'Wireframing', icon: <FaTableColumns /> },
       { name: 'Prototyping', icon: <FaPenRuler /> },
       { name: 'User-Centred Design', icon: <FaUsers /> },
