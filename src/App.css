@@ -8035,3 +8035,251 @@ html {
 .experience-timeline-section .education-thesis-grade {
   font-weight: 600;
 }
+
+/* Project navigation aligns with the full section width. */
+.work-gallery .work-project-selector {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+  max-width: none;
+  margin: 28px 0 0;
+  gap: 8px 24px;
+}
+.work-gallery .work-project-selector button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+  min-height: 48px;
+  padding: 12px 0;
+  font-size: 0.875rem;
+  text-align: left;
+  line-height: 1.55;
+}
+.work-gallery .work-project-selector button > span {
+  flex: 0 0 20px;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+.work-gallery .work-project-selector button.is-active::after {
+  left: 28px;
+  right: auto;
+  bottom: 3px;
+  width: 32px;
+  height: 2px;
+  transform: none;
+}
+@media (max-width: 1099px) {
+  .work-gallery .work-project-selector {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px 28px;
+  }
+}
+@media (max-width: 600px) {
+  .work-gallery .work-project-selector {
+    grid-template-columns: 1fr;
+    gap: 2px;
+    margin-top: 20px;
+  }
+}
+
+/* Gallery with a shared project selector and summary. */
+.work-gallery .work-project-layout {
+  display: grid;
+  grid-template-columns: minmax(210px, 0.3fr) minmax(0, 0.7fr);
+  align-items: start;
+  gap: clamp(32px, 5vw, 72px);
+  margin-top: 32px;
+}
+.work-gallery .work-project-layout .work-project-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+.work-gallery .work-project-layout .work-project-selector button {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  text-align: left;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+.work-gallery .work-project-layout .work-project-selector button > span {
+  flex: 0 0 22px;
+  font-size: 0.8125rem;
+}
+.work-gallery .work-project-layout .work-project-selector button:hover {
+  color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 5%, transparent);
+}
+.work-gallery .work-project-layout .work-project-selector button.is-active {
+  color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 9%, transparent);
+}
+.work-gallery .work-project-layout .work-project-selector button::after {
+  display: none;
+}
+.work-gallery .work-project-layout .work-project-selector button.is-active::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 15px;
+  bottom: 15px;
+  right: auto;
+  width: 2px;
+  height: auto;
+  background: var(--color-accent);
+  border-radius: 2px;
+  transform: none;
+}
+.work-gallery .work-project-layout .work-project-selector button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+.work-gallery .work-project-layout .work-project-details {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+.work-gallery .work-project-layout .work-project-evidence {
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+.work-gallery .work-project-layout .work-case-link {
+  margin-top: 24px;
+}
+@media (max-width: 800px) {
+  .work-gallery .work-project-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-top: 24px;
+  }
+  .work-gallery .work-project-layout .work-project-selector {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .work-gallery .work-project-layout .work-project-selector button {
+    height: 100%;
+    padding: 12px;
+    font-size: 0.875rem;
+    gap: 8px;
+  }
+}
+@media (max-width: 420px) {
+  .work-gallery .work-project-layout .work-project-selector {
+    grid-template-columns: 1fr;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .work-gallery .work-project-layout .work-project-selector button {
+    transition: none;
+  }
+}
+
+/* Consistent preview proportions across all projects. */
+.work-gallery .work-image-canvas {
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  padding: clamp(8px, 1.2vw, 14px);
+  overflow: hidden;
+  background: var(--color-background-gallery);
+}
+.work-gallery .work-image-canvas img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 5px;
+}
+.work-gallery .work-preview {
+  box-sizing: border-box;
+  aspect-ratio: 16 / 9;
+  padding: 8px;
+  overflow: hidden;
+  background: var(--color-background-gallery);
+}
+.work-gallery .work-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+.work-gallery .work-project-layout .work-project-type {
+  margin-top: 0;
+}
+@media (min-width: 801px) {
+  .work-gallery .work-project-layout .work-project-selector {
+    margin-top: -14px;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .work-gallery .work-active-image:hover .work-image-canvas img {
+    transform: none;
+  }
+}
+
+/* Skills: quiet labels with contextual information controls. */
+.skills .skill-card { overflow: visible; }
+.skills .skill-card:first-child { border-top-color: var(--color-accent); }
+.skills .skill-card-heading { display: flex; align-items: center; }
+.skills .skill-item {
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+.skills .skill-item:hover {
+  border-color: transparent;
+  background: color-mix(in srgb, var(--color-accent) 7%, transparent);
+  box-shadow: none;
+  transform: none;
+}
+.skill-info { position: relative; margin-left: auto; flex: 0 0 auto; }
+.skill-info-button {
+  display: grid; place-items: center; width: 44px; height: 44px;
+  padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+  background: transparent; color: var(--color-text-muted); font-size: 17px;
+}
+.skill-info-button:hover, .skill-info-button[aria-expanded="true"] {
+  color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+}
+.skill-info-button:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.skill-info-tooltip {
+  position: absolute; z-index: 20; top: 100%; right: 0;
+  width: min(290px, 70vw); padding: 16px 18px;
+  border: 1px solid var(--color-border-secondary); border-radius: 10px;
+  background: var(--color-background-panel); color: var(--color-text-body);
+  box-shadow: 0 12px 28px rgba(0,0,0,.18); text-align: left;
+}
+.skill-info-tooltip[hidden] { display: none; }
+.skill-info-tooltip strong { color: var(--color-text-primary); font-size: .875rem; font-weight: 600; }
+.skill-info-tooltip p { margin: 6px 0 0; font-size: .875rem; line-height: 1.65; }

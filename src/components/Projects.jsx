@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FaArrowRight, FaChevronLeft, FaChevronRight } from 'react-icons/fa6'
+import { FaArrowRight, FaArrowUpRightFromSquare, FaChevronLeft, FaChevronRight } from 'react-icons/fa6'
 import healthcareImage from '../assets/projects/healthcare.jpg'
 import pompeyImage from '../assets/projects/furniture-homepage.png'
 import hampshireImage from '../assets/projects/hampshire.jpg'
+import portfolioImage from '../assets/projects/portfolio.png'
 
 const projects = [
   {
@@ -26,7 +27,7 @@ const projects = [
     context: 'Team Project',
     role: 'I coordinated project tasks, designed the database, wrote SQL reports and helped integrate application workflows.',
     quality: 'I validated SQL queries and HTML/CSS, then independently strengthened access controls and payment data validation.',
-    description: 'Our team built this prototype to connect customer orders with showroom stock, returns and staff workflows.',
+    description: 'Our team built this prototype to manage customer orders, showroom stock, returns and delivery information, with role-based workflows for staff.',
     technologies: ['JavaScript', 'Node.js', 'Express.js', 'PostgreSQL'],
     image: pompeyImage,
     imageAlt: 'Preview of the Pompey Furniture Company website',
@@ -34,6 +35,20 @@ const projects = [
   },
   {
     number: '03',
+    title: 'React Developer Portfolio',
+    type: 'Front-End Web Application',
+    context: 'Personal Project',
+    role: 'I designed the interface, built reusable React components and deployed the site. Features include client-side routing and a light/dark theme switch.',
+    quality: 'I introduced TypeScript in selected components, with type checks integrated into the build. I also added keyboard navigation, visible focus states and reduced-motion support.',
+    qualityLabel: 'Quality and accessibility',
+    description: 'I built this responsive portfolio to present my web development and UX projects, with clear summaries and detailed case studies.',
+    technologies: ['React', 'JavaScript', 'TypeScript', 'Vite', 'React Router', 'CSS'],
+    image: portfolioImage,
+    imageAlt: 'Homepage of Quynh Trang Nguyen’s React developer portfolio in dark mode',
+    sourceUrl: 'https://github.com/quhtrang-cloud/my-portfolio',
+  },
+  {
+    number: '04',
     title: 'Hampshire Festival App',
     type: 'UX/UI Design',
     context: 'Team Project',
@@ -77,18 +92,26 @@ function Projects() {
           {projects.map((project, index) => {
             const isActive = index === activeIndex
             const isPrevious = index === (activeIndex - 1 + projects.length) % projects.length
+            const isNext = index === (activeIndex + 1) % projects.length
+            if (!isActive && !isPrevious && !isNext) return null
             const position = isActive ? 'center' : isPrevious ? 'left' : 'right'
             return (
               <div key={project.number} className={`work-slide work-slide-${position}`}>
                 {isActive ? (
-                  <Link to={project.path} className="work-active-image" aria-label={`View ${project.title} case study`}>
-                    <div className="work-browser-bar" aria-hidden="true"><span /><span /><span /><p>Project preview</p><FaArrowRight /></div>
-                    <div className="work-image-canvas"><img src={project.image} alt={project.imageAlt} decoding="async" /></div>
-                  </Link>
+                  project.sourceUrl ? (
+                    <a href={project.sourceUrl} className="work-active-image" target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} source on GitHub (opens in a new tab)`}>
+                      <div className="work-browser-bar" aria-hidden="true"><span /><span /><span /><p>Project preview</p><FaArrowUpRightFromSquare /></div>
+                      <div className="work-image-canvas"><img src={project.image} alt={project.imageAlt} decoding="async" /></div>
+                    </a>
+                  ) : (
+                    <Link to={project.path} className="work-active-image" aria-label={`View ${project.title} case study`}>
+                      <div className="work-browser-bar" aria-hidden="true"><span /><span /><span /><p>Project preview</p><FaArrowRight /></div>
+                      <div className="work-image-canvas"><img src={project.image} alt={project.imageAlt} decoding="async" /></div>
+                    </Link>
+                  )
                 ) : (
                   <button type="button" className={`work-preview work-preview-${position}`} onClick={() => setActiveIndex(index)} aria-label={`Select project: ${project.title}`}>
                     <img src={project.image} alt="" decoding="async" />
-                    <span className="work-preview-number" aria-hidden="true">{project.number}</span>
                   </button>
                 )}
               </div>
@@ -98,34 +121,43 @@ function Projects() {
 
         <div className="work-gallery-controls">
           <button type="button" className="work-arrow" onClick={() => changeProject(-1)} aria-label="Previous project"><FaChevronLeft aria-hidden="true" /></button>
-          <p className="work-position"><span>{activeProject.number}</span> / 03</p>
+          <p className="work-position"><span>{activeProject.number}</span> / {String(projects.length).padStart(2, '0')}</p>
           <button type="button" className="work-arrow" onClick={() => changeProject(1)} aria-label="Next project"><FaChevronRight aria-hidden="true" /></button>
         </div>
         <p className="work-screen-reader" aria-live="polite" aria-atomic="true">Project {activeIndex + 1} of {projects.length}: {activeProject.title}</p>
 
-        <div className="work-project-details">
+        <div className="work-project-layout">
+        <div className="work-project-selector" role="group" aria-label="Choose a project">
+          {projects.map((project, index) => (
+            <button type="button" key={project.number} className={activeIndex === index ? 'is-active' : ''} aria-pressed={activeIndex === index} aria-controls="project-summary" onClick={() => setActiveIndex(index)}>
+              <span>{project.number}</span>{project.title}
+            </button>
+          ))}
+        </div>
+
+        <div className="work-project-details" id="project-summary">
           <div className="work-details-content" key={activeProject.number}>
           <p className="work-project-type">{activeProject.type}<span aria-hidden="true"> / </span>{activeProject.context}</p>
           <h3>{activeProject.title}</h3>
           <p className="work-project-description">{activeProject.description}</p>
           <div className="work-project-evidence">
             <p className="work-project-role"><strong>What I worked on</strong>{activeProject.role}</p>
-            <p className="work-project-proof"><strong>{activeProject.type === 'UX/UI Design' ? 'How I reviewed it' : 'How I tested it'}</strong>{activeProject.quality}</p>
+            <p className="work-project-proof"><strong>{activeProject.qualityLabel || (activeProject.type === 'UX/UI Design' ? 'How I reviewed it' : 'How I tested it')}</strong>{activeProject.quality}</p>
           </div>
           <ul className="work-project-technologies" aria-label="Technologies and methods">
             {activeProject.technologies.map((technology) => <li key={technology}>{technology}</li>)}
           </ul>
           </div>
-          <Link to={activeProject.path} className="work-case-link">View case study <FaArrowRight aria-hidden="true" /></Link>
+          {activeProject.sourceUrl ? (
+            <a href={activeProject.sourceUrl} className="work-case-link" target="_blank" rel="noopener noreferrer" aria-label={`View ${activeProject.title} source on GitHub (opens in a new tab)`}>
+              View source <FaArrowUpRightFromSquare aria-hidden="true" />
+            </a>
+          ) : (
+            <Link to={activeProject.path} className="work-case-link">View case study <FaArrowRight aria-hidden="true" /></Link>
+          )}
+        </div>
         </div>
 
-        <div className="work-project-selector" role="group" aria-label="Choose a project">
-          {projects.map((project, index) => (
-            <button type="button" key={project.number} className={activeIndex === index ? 'is-active' : ''} aria-pressed={activeIndex === index} onClick={() => setActiveIndex(index)}>
-              <span>{project.number}</span>{project.title}
-            </button>
-          ))}
-        </div>
       </div>
     </section>
   )
