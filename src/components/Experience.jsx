@@ -6,20 +6,22 @@ const roles = [
     title: 'Planning Officer',
     organisation: 'Ministry of Health',
     location: 'Hanoi, Vietnam',
-    period: '2020–2023',
+    period: '2020 – 2023',
     points: [
-      'Supported planning, progress reporting and stakeholder coordination for an ADB-funded healthcare programme delivered across 16 provinces.',
-      'Helped coordinate training workshops and conferences, and designed the programme’s official logo.',
+      'Contributed to the master plan, annual work plans and implementation schedules for an ADB-funded healthcare programme delivered across 16 provinces.',
+      'Coordinated with provincial programme teams and health authorities to support implementation, monitoring and evaluation, and prepare progress reports.',
+      'Helped coordinate training workshops and conferences, and designed the official programme logo used across materials and communications.',
     ],
   },
   {
     title: 'Web Design Intern',
-    organisation: 'Profile Investment Joint Stock Company',
+    organisation: 'Prolife Investment Joint Stock Company',
     location: 'Hanoi, Vietnam',
     period: '2019',
     points: [
-      'Maintained WordPress content and refined page layouts using stakeholder feedback.',
-      'Created website banners and campaign assets, working with the social media team to keep branding consistent.',
+      'Maintained and updated WordPress content, applying stakeholder feedback to improve page layouts, visual design and user experience.',
+      'Designed website banners and promotional assets for online campaigns, working with the social media team to maintain consistent branding.',
+      'Supported customer service, sales transactions and stocktaking within the company’s retail operations.',
     ],
   },
 ]
@@ -29,14 +31,26 @@ const education = [
     degree: 'MSc Information Systems',
     university: 'University of Portsmouth',
     location: 'Portsmouth, United Kingdom',
-    period: '2024–2025',
+    period: '2024 – 2025',
     result: 'Distinction',
+    thesis: {
+      label: 'Dissertation',
+      title: 'Web-Based Healthcare Booking System with Enhanced Usability',
+      path: '/projects/healthcare-booking-system',
+    },
+    coursework: 'Web Product Development and Management, User Experience Design, Managing Information Systems, and Cyber Security for Information Systems.',
   },
   {
     degree: 'BSc Management Information Systems',
     university: 'Thuongmai University',
     location: 'Hanoi, Vietnam',
-    period: '2015–2019',
+    period: '2015 – 2019',
+    thesis: {
+      label: 'Graduation thesis',
+      title: 'Analysis and Design of a Human Resource Management Information System for Prolife Investment Joint Stock Company',
+      grade: 'A',
+    },
+    coursework: 'Databases, data structures and algorithms, software technology, information systems analysis and design, and e-commerce.',
   },
 ]
 
@@ -114,13 +128,26 @@ function Experience() {
                 </div>
                 <p>{item.university}</p>
                 <span>{item.location}</span>
-                {item.result && (
-                  <p className="education-dissertation">
-                    <span>Dissertation:</span>{' '}
-                    <Link to="/projects/healthcare-booking-system">
-                      Healthcare Booking System with Enhanced Usability
-                      <FaArrowRight aria-hidden="true" />
-                    </Link>
+                {item.thesis && (
+                  <p className="education-dissertation education-study-note">
+                    <span>{item.thesis.label}:</span>{' '}
+                    {item.thesis.path ? (
+                      <Link to={item.thesis.path}>
+                        {item.thesis.title}
+                        <FaArrowRight aria-hidden="true" />
+                      </Link>
+                    ) : (
+                      <>
+                        {item.thesis.title}.
+                        {item.thesis.grade && (<> <strong className="education-thesis-grade">Grade: {item.thesis.grade}</strong>.</>)}
+                      </>
+                    )}
+                  </p>
+                )}
+                {item.coursework && (
+                  <p className="education-coursework education-study-note">
+                    <span>Relevant coursework:</span>{' '}
+                    {item.coursework}
                   </p>
                 )}
               </div>
