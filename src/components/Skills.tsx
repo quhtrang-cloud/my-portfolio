@@ -1,3 +1,4 @@
+import SkillsTagline from './SkillsTagline'
 import type { ReactNode } from 'react'
 import {
   FaReact,
@@ -102,6 +103,7 @@ function Skills() {
       <div className="section-heading">
         <p className="section-label">Skills</p>
         <h2>Technologies and tools I work with.</h2>
+        <SkillsTagline />
       </div>
       <div className="skills-grid">
         {skillGroups.map((group) => (

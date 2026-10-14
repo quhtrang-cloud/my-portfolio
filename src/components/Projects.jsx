@@ -1,8 +1,8 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FaArrowRight } from 'react-icons/fa6'
-
+import { FaArrowRight, FaChevronLeft, FaChevronRight } from 'react-icons/fa6'
 import healthcareImage from '../assets/projects/healthcare.jpg'
-import pompeyImage from '../assets/projects/pompey.jpg'
+import pompeyImage from '../assets/projects/furniture-homepage.png'
 import hampshireImage from '../assets/projects/hampshire.jpg'
 
 const projects = [
@@ -10,19 +10,13 @@ const projects = [
     number: '01',
     title: 'Healthcare Booking System',
     type: 'Full-Stack Web Application',
-    description:
-      'A full-stack healthcare booking system featuring city-wide appointment search, intelligent scheduling, appointment swapping and Google Calendar integration.',
-    technologies: [
-      'JavaScript',
-      'Node.js',
-      'Express.js',
-      'PostgreSQL',
-      'Google Calendar API',
-    ],
+    context: 'Individual Project',
+    role: 'I researched requirements, mapped user journeys, and developed the application and database.',
+    quality: 'I checked key workflows against requirements and added 27 automated tests using Jest and Supertest.',
+    description: 'I built this prototype to explore a simpler way to find and manage GP appointments, with scheduling suggestions, appointment swaps and Google Calendar integration.',
+    technologies: ['JavaScript', 'Node.js', 'Express.js', 'PostgreSQL', 'Jest / Supertest'],
     image: healthcareImage,
-    imageAlt:
-      'Healthcare Booking System displayed on desktop and mobile',
-    featured: true,
+    imageAlt: 'Preview of the Healthcare Booking System interface',
     path: '/projects/healthcare-booking-system',
   },
   {
@@ -30,18 +24,12 @@ const projects = [
     title: 'Pompey Furniture Company',
     type: 'Full-Stack Web Application',
     context: 'Team Project',
-    description:
-      'A database-driven full-stack furniture retail platform developed to connect customer-facing services with multi-showroom inventory, product availability, orders, returns, loyalty programmes and role-based staff operations.',
-    technologies: [
-      'JavaScript',
-      'Node.js',
-      'Express.js',
-      'PostgreSQL',
-    ],
+    role: 'I coordinated project tasks, designed the database, wrote SQL reports and helped integrate application workflows.',
+    quality: 'I validated SQL queries and HTML/CSS, then independently strengthened access controls and payment data validation.',
+    description: 'Our team built this prototype to connect customer orders with showroom stock, returns and staff workflows.',
+    technologies: ['JavaScript', 'Node.js', 'Express.js', 'PostgreSQL'],
     image: pompeyImage,
-    imageAlt:
-      'Pompey Furniture Company retail management system interface',
-    featured: false,
+    imageAlt: 'Preview of the Pompey Furniture Company website',
     path: '/projects/furniture-retail-management-system',
   },
   {
@@ -49,143 +37,95 @@ const projects = [
     title: 'Hampshire Festival App',
     type: 'UX/UI Design',
     context: 'Team Project',
-    description:
-      'A role-based mobile prototype developed through user analysis, task modelling, low- and high-fidelity design, and heuristic evaluation to support festival discovery, planning and event management.',
-    technologies: [
-      'Figma',
-      'User Analysis',
-      'High-Fidelity Prototype',
-      'Heuristic Evaluation',
-    ],
+    role: 'I contributed to user analysis and task modelling, then independently created the high-fidelity prototype in Figma.',
+    quality: 'I contributed to heuristic evaluation to identify usability issues in the proposed user journeys.',
+    description: 'Our team explored how a mobile app could help visitors discover festivals and plan their visit, while supporting event management.',
+    technologies: ['Figma', 'User Analysis', 'High-Fidelity Prototype', 'Heuristic Evaluation'],
     image: hampshireImage,
-    imageAlt:
-      'High-fidelity screens from the Hampshire Festival mobile application prototype',
-    featured: false,
+    imageAlt: 'High-fidelity screens from the Hampshire Festival App prototype',
     path: '/projects/hampshire-festival-app',
   },
 ]
 
-function ProjectAction() {
-  return (
-    <span className="project-link">
-      View Project
-      <FaArrowRight aria-hidden="true" />
-    </span>
-  )
-}
-
-function ProjectCard({ project, featured = false }) {
-  if (!project.path) {
-    return null
+function Projects() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const activeProject = projects[activeIndex]
+  const changeProject = (direction) => {
+    setActiveIndex((current) => (current + direction + projects.length) % projects.length)
+  }
+  const handleGalleryKeyDown = (event) => {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault()
+      changeProject(event.key === 'ArrowRight' ? 1 : -1)
+    }
   }
 
   return (
-    <Link
-      to={project.path}
-      className={`project-card ${
-        featured ? 'project-featured' : 'project-small'
-      }`}
-      aria-label={`View ${project.title} project`}
-    >
-      <div
-        className={`project-image ${
-          featured ? 'project-featured-image' : ''
-        }`}
-      >
-        <img
-          src={project.image}
-          alt={project.imageAlt}
-        />
+    <section className="projects section-container section-divider work-gallery" id="projects" aria-labelledby="selected-work-title">
+      <div className="work-gallery-heading">
+        <div className="section-heading projects-heading">
+          <p className="section-label">Selected projects</p>
+          <h2 id="selected-work-title">From ideas to interfaces.</h2>
+          <p className="section-description">A few projects I’ve worked on, from building web applications to exploring user experience.</p>
+        </div>
+        <span className="work-gallery-count">{projects.length} projects</span>
       </div>
 
-      <div className="project-content">
-        <div className="project-meta">
-          <span className="project-number">
-            {project.number}
-          </span>
-
-          {featured && (
-            <span className="featured-label">
-              Featured
-            </span>
-          )}
+      <div className="work-gallery-viewer" role="region" aria-roledescription="carousel" aria-label="Selected projects" onKeyDown={handleGalleryKeyDown}>
+        <div className="work-gallery-stage">
+          {projects.map((project, index) => {
+            const isActive = index === activeIndex
+            const isPrevious = index === (activeIndex - 1 + projects.length) % projects.length
+            const position = isActive ? 'center' : isPrevious ? 'left' : 'right'
+            return (
+              <div key={project.number} className={`work-slide work-slide-${position}`}>
+                {isActive ? (
+                  <Link to={project.path} className="work-active-image" aria-label={`View ${project.title} case study`}>
+                    <div className="work-browser-bar" aria-hidden="true"><span /><span /><span /><p>Project preview</p><FaArrowRight /></div>
+                    <div className="work-image-canvas"><img src={project.image} alt={project.imageAlt} decoding="async" /></div>
+                  </Link>
+                ) : (
+                  <button type="button" className={`work-preview work-preview-${position}`} onClick={() => setActiveIndex(index)} aria-label={`Select project: ${project.title}`}>
+                    <img src={project.image} alt="" decoding="async" />
+                    <span className="work-preview-number" aria-hidden="true">{project.number}</span>
+                  </button>
+                )}
+              </div>
+            )
+          })}
         </div>
 
-        <h3>{project.title}</h3>
+        <div className="work-gallery-controls">
+          <button type="button" className="work-arrow" onClick={() => changeProject(-1)} aria-label="Previous project"><FaChevronLeft aria-hidden="true" /></button>
+          <p className="work-position"><span>{activeProject.number}</span> / 03</p>
+          <button type="button" className="work-arrow" onClick={() => changeProject(1)} aria-label="Next project"><FaChevronRight aria-hidden="true" /></button>
+        </div>
+        <p className="work-screen-reader" aria-live="polite" aria-atomic="true">Project {activeIndex + 1} of {projects.length}: {activeProject.title}</p>
 
-        <p className="project-type">
-          {project.type}
+        <div className="work-project-details">
+          <div className="work-details-content" key={activeProject.number}>
+          <p className="work-project-type">{activeProject.type}<span aria-hidden="true"> / </span>{activeProject.context}</p>
+          <h3>{activeProject.title}</h3>
+          <p className="work-project-description">{activeProject.description}</p>
+          <div className="work-project-evidence">
+            <p className="work-project-role"><strong>What I worked on</strong>{activeProject.role}</p>
+            <p className="work-project-proof"><strong>{activeProject.type === 'UX/UI Design' ? 'How I reviewed it' : 'How I tested it'}</strong>{activeProject.quality}</p>
+          </div>
+          <ul className="work-project-technologies" aria-label="Technologies and methods">
+            {activeProject.technologies.map((technology) => <li key={technology}>{technology}</li>)}
+          </ul>
+          </div>
+          <Link to={activeProject.path} className="work-case-link">View case study <FaArrowRight aria-hidden="true" /></Link>
+        </div>
 
-          {project.context && (
-            <>
-              <span
-                className="project-dot"
-                aria-hidden="true"
-              >
-                •
-              </span>
-
-              {project.context}
-            </>
-          )}
-        </p>
-
-        <p className="project-description">
-          {project.description}
-        </p>
-
-        <div className="project-technologies">
-          {project.technologies.map((technology) => (
-            <span key={technology}>
-              {technology}
-            </span>
+        <div className="work-project-selector" role="group" aria-label="Choose a project">
+          {projects.map((project, index) => (
+            <button type="button" key={project.number} className={activeIndex === index ? 'is-active' : ''} aria-pressed={activeIndex === index} onClick={() => setActiveIndex(index)}>
+              <span>{project.number}</span>{project.title}
+            </button>
           ))}
         </div>
-
-        <ProjectAction />
-      </div>
-    </Link>
-  )
-}
-
-function Projects() {
-  const featuredProject = projects.find(
-    (project) => project.featured
-  )
-
-  const otherProjects = projects.filter(
-    (project) => !project.featured
-  )
-
-  return (
-    <section
-      className="projects section-container section-divider"
-      id="projects"
-    >
-      <div className="section-heading projects-heading">
-        <p className="section-label">Projects</p>
-
-        <h2>Selected work.</h2>
-
-        <p className="section-description">
-          A selection of full-stack development and UX/UI projects.
-        </p>
-      </div>
-
-      {featuredProject && (
-        <ProjectCard
-          project={featuredProject}
-          featured
-        />
-      )}
-
-      <div className="projects-grid">
-        {otherProjects.map((project) => (
-          <ProjectCard
-            key={project.title}
-            project={project}
-          />
-        ))}
       </div>
     </section>
   )
