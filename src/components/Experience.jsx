@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { FaArrowRight, FaArrowUpRightFromSquare, FaJs, FaLaptopCode, FaWordpress } from 'react-icons/fa6'
+import { FaArrowRight, FaArrowUpRightFromSquare, FaJs, FaLaptopCode, FaWordpress, FaGraduationCap } from 'react-icons/fa6'
 
 const roles = [
   {
@@ -123,7 +123,13 @@ function Experience() {
             <article className="education-item education-refined-item" key={item.degree}>
               <div className="education-content">
                 <div className="education-degree-line">
-                  <h3>{item.degree}</h3>
+                  <h3>
+                    <FaGraduationCap
+                      className="education-degree-icon"
+                      aria-hidden="true"
+                    />
+                    {item.degree}
+                  </h3>
                   {item.result && <span className="education-result">{item.result}</span>}
                 </div>
                 <p>{item.university}</p>
