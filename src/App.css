@@ -4947,11 +4947,12 @@ body {
   font-size: .8rem;
   color: var(--color-text-supporting);}
 .work-gallery-viewer {
-  position: relative;}
+  position: relative;
+  container-type: inline-size;}
 .work-gallery-stage {
   position: relative;
   isolation: isolate;
-  height: clamp(300px, calc(38vw + 64px), 480px);
+  height: calc(32cqw + 44px);
   margin-top: 32px;}
 .work-active-image {
   position: absolute;
@@ -4989,21 +4990,50 @@ body {
   width: 12px;
   height: 12px;
   color: var(--color-text-link-accent);}
+
+/* Shared project preview: one ratio, no cropping, consistent inset. */
+.work-gallery {
+  --preview-ratio: 2 / 1;
+  --preview-inset: clamp(6px, 0.8vw, 10px);
+}
+
+.work-image-canvas,
+.work-gallery .work-preview {
+  position: relative;
+  box-sizing: border-box;
+  aspect-ratio: var(--preview-ratio);
+  padding: 0;
+  overflow: hidden;
+  background: var(--color-background-gallery);
+}
+
 .work-image-canvas {
-  padding: 12px;
-  aspect-ratio: 16 / 9;
-  background:
-    radial-gradient(
-      ellipse at top,
-      var(--color-background-gallery-glow),
-      var(--color-background-gallery));}
-.work-image-canvas img {
-  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+}
+
+.work-image-canvas img,
+.work-preview img {
+  position: absolute;
+  inset: var(--preview-inset);
+  display: block;
+  width: calc(100% - var(--preview-inset) * 2);
+  height: calc(100% - var(--preview-inset) * 2);
+  min-width: 0;
+  min-height: 0;
   object-fit: contain;
-  border-radius: 6px;
-  animation: work-preview-enter 220ms ease;}
+  object-position: center;
+  border-radius: 5px;
+}
+
+.work-image-canvas img {
+  animation: work-preview-enter 220ms ease;
+}
+
+.work-preview img {
+  opacity: .65;
+}
+
 @keyframes work-preview-enter {
   from {
     opacity: .65;
@@ -5017,7 +5047,7 @@ body {
   z-index: 1;
   top: 50%;
   width: 42%;
-  padding: 9px;
+  padding: 0;
   background: var(--color-background-project-preview);
   border: 1px solid var(--color-border-secondary);
   border-radius: 14px;
@@ -5033,13 +5063,7 @@ body {
   right: 0;
   transform: translateY(-50%) scale(.85) rotate(4deg);
   transform-origin: right center;}
-.work-preview img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: contain;
-  opacity: .65;
-  border-radius: 6px;}
+
 .work-preview-number {
   position: absolute;
   bottom: 16px;
@@ -5246,9 +5270,6 @@ body {
   .work-gallery {
     padding-top: 52px;
 }
-  .work-gallery-stage {
-    height: clamp(300px, calc(46vw + 64px), 440px);
-}
   .work-active-image {
     width: 72%;
 }
@@ -5302,9 +5323,7 @@ body {
   .work-browser-bar {
     padding: 10px 12px;
 }
-  .work-image-canvas {
-    padding: 8px;
-}
+
   .work-gallery-controls {
     margin-top: 20px;
 }
@@ -5330,9 +5349,7 @@ body {
 }
 }
 @media (prefers-reduced-motion: reduce) {
-  .work-image-canvas img {
-    animation: none;
-}
+
   .work-active-image,
   .work-preview,
   .work-arrow {
@@ -5434,10 +5451,7 @@ body {
   display: block;}
 .work-details-content {
   animation: portfolio-content-enter 350ms ease both;}
-.work-image-canvas {
-  overflow: hidden;}
-.work-image-canvas img {
-  transition: transform 250ms ease;}
+
 .work-case-link svg,
 .portfolio-hero .hero-buttons svg {
   transition: transform 180ms ease;}
@@ -7230,38 +7244,6 @@ html {
 }
 }
 
-/* Consistent preview proportions across all projects. */
-.work-gallery .work-image-canvas {
-  box-sizing: border-box;
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  padding: clamp(8px, 1.2vw, 14px);
-  overflow: hidden;
-  background: var(--color-background-gallery);}
-.work-gallery .work-image-canvas img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center;
-  border-radius: 5px;}
-.work-gallery .work-preview {
-  box-sizing: border-box;
-  aspect-ratio: 16 / 9;
-  padding: 8px;
-  overflow: hidden;
-  background: var(--color-background-gallery);}
-.work-gallery .work-preview img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;}
 .work-gallery .work-project-layout .work-project-type {
   margin-top: 0;}
 @media (min-width: 801px) {
@@ -7307,7 +7289,6 @@ html {
 .skill-info-tooltip[hidden] { display: none;}
 .skill-info-tooltip strong { color: var(--color-text-primary); font-size: .875rem; font-weight: 600;}
 .skill-info-tooltip p { margin: 6px 0 0; font-size: .875rem; line-height: 1.65;}
-
 
 /* Experience: original logo and external conference coverage. */
 .experience-timeline-section .career-evidence {
@@ -7388,7 +7369,6 @@ html {
   .experience-timeline-section .career-evidence { align-items: flex-start; flex-direction: column; }
 }
 
-
 /* Programme logo preview: native modal dialog and keyboard focus. */
 .experience-timeline-section .career-logo-trigger {
   position: relative;
@@ -7446,3 +7426,7 @@ html {
 .programme-logo-large { display: grid; place-items: center; margin-top: 20px; padding: 20px; border-radius: 10px; background: #fff; }
 .programme-logo-large img { display: block; width: 100%; max-width: 380px; max-height: 60dvh; object-fit: contain; }
 .programme-logo-caption { margin: 16px 0 0; color: var(--color-text-muted); font-size: .875rem; line-height: 1.65; }
+
+@media (prefers-reduced-motion: reduce) {
+  .work-image-canvas img { animation: none; }
+}

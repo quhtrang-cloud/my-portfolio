@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaArrowRight, FaArrowUpRightFromSquare, FaChevronLeft, FaChevronRight } from 'react-icons/fa6'
-import healthcareImage from '../assets/projects/healthcare.jpg'
+import healthcareImage from '../assets/projects/healthcare.png'
 import pompeyImage from '../assets/projects/furniture-homepage.png'
 import hampshireImage from '../assets/projects/hampshire.jpg'
 import portfolioImage from '../assets/projects/portfolio.png'
