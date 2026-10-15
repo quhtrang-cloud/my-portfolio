@@ -1,5 +1,10 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { FaArrowRight, FaArrowUpRightFromSquare, FaJs, FaLaptopCode, FaWordpress, FaGraduationCap } from 'react-icons/fa6'
+import { FaArrowRight, FaArrowUpRightFromSquare, FaJs, FaLaptopCode, FaWordpress, FaGraduationCap, FaMagnifyingGlassPlus, FaXmark } from 'react-icons/fa6'
+
+import programmeLogo from '../assets/experience/lhcsdp-logo.png'
+
+const programmeArticleUrl = 'https://suckhoedoisong.vn/hieu-qua-thuc-tien-cua-dau-tu-phat-trien-mang-luoi-y-te-co-so-vung-kho-khan-16925091512530069.htm'
 
 const roles = [
   {
@@ -7,10 +12,12 @@ const roles = [
     organisation: 'Ministry of Health',
     location: 'Hanoi, Vietnam',
     period: '2020 – 2023',
+    evidenceUrl: programmeArticleUrl,
     points: [
-      'Contributed to the master plan, annual work plans and implementation schedules for an ADB-funded healthcare programme delivered across 16 provinces.',
-      'Coordinated with provincial programme teams and health authorities to support implementation, monitoring and evaluation, and prepare progress reports.',
-      'Helped coordinate training workshops and conferences, and designed the official programme logo used across materials and communications.',
+      'Contributed to the programme master plan, annual work plans and implementation schedules for an ADB-funded healthcare programme across 16 provinces.',
+      'Provided planning guidance to provincial programme teams, monitored implementation progress and compiled monitoring and evaluation reports.',
+      'Coordinated with health authorities and other stakeholders to organise training workshops, conferences and capacity-building activities.',
+      'Designed the official programme logo and event backdrops, with the logo used in printed materials and programme communications.',
     ],
   },
   {
@@ -20,7 +27,8 @@ const roles = [
     period: '2019',
     points: [
       'Maintained and updated WordPress content, applying stakeholder feedback to improve page layouts, visual design and user experience.',
-      'Designed website banners and promotional assets for online campaigns, working with the social media team to maintain consistent branding.',
+      'Designed website banners and promotional assets for online campaigns.',
+      'Collaborated with the social media team to maintain consistent branding across the website and social channels.',
       'Supported customer service, sales transactions and stocktaking within the company’s retail operations.',
     ],
   },
@@ -84,6 +92,31 @@ const certifications = [
 ]
 
 function Experience() {
+  const logoDialogRef = useRef(null)
+  const logoTriggerRef = useRef(null)
+  const scrollLockRef = useRef(null)
+
+  const restorePageScroll = () => {
+    if (scrollLockRef.current !== null) {
+      document.body.style.overflow = scrollLockRef.current
+      scrollLockRef.current = null
+    }
+  }
+
+  const openLogo = () => {
+    const dialog = logoDialogRef.current
+    if (!dialog || dialog.open) return
+    dialog.showModal()
+    scrollLockRef.current = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+  }
+
+  const closeLogo = () => logoDialogRef.current?.close()
+
+  useEffect(() => () => {
+    if (scrollLockRef.current !== null) document.body.style.overflow = scrollLockRef.current
+  }, [])
+
   return (
     <section
       className="experience section-container section-divider experience-timeline-section"
@@ -108,10 +141,53 @@ function Experience() {
               <ul className="career-points">
                 {role.points.map((point) => <li key={point}>{point}</li>)}
               </ul>
+              {role.evidenceUrl && (
+                <div className="career-evidence">
+                  <button type="button" className="career-evidence-logo career-logo-trigger"
+                    ref={logoTriggerRef} onClick={openLogo}
+                    aria-label="Enlarge LHCSDP programme logo" aria-haspopup="dialog">
+                    <img src={programmeLogo} alt="LHCSDP programme logo designed by Quynh Trang Nguyen" width="96" height="96" loading="lazy" decoding="async" />
+                    <span className="career-logo-zoom" aria-hidden="true"><FaMagnifyingGlassPlus /></span>
+                  </button>
+                  <div className="career-evidence-content">
+                  <a
+                    className="career-evidence-link"
+                    href={role.evidenceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View programme logo in use
+                    <FaArrowUpRightFromSquare aria-hidden="true" />
+                    <span className="career-evidence-sr"> (opens in a new tab)</span>
+                  </a>
+                  <p className="career-evidence-note">Conference photograph published by Sức khỏe &amp; Đời sống (Vietnamese).</p>
+                  </div>
+                </div>
+              )}
             </article>
           </li>
         ))}
       </ol>
+
+      <dialog ref={logoDialogRef} className="programme-logo-dialog"
+        aria-labelledby="programme-logo-title"
+        onClose={() => { restorePageScroll(); logoTriggerRef.current?.focus() }}
+        onClick={(event) => {
+          if (event.target !== event.currentTarget) return
+          const rect = event.currentTarget.getBoundingClientRect()
+          if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) closeLogo()
+        }}>
+        <div className="programme-logo-dialog-heading">
+          <h3 id="programme-logo-title">LHCSDP programme logo</h3>
+          <button type="button" className="programme-logo-close" onClick={closeLogo} autoFocus aria-label="Close logo preview">
+            <FaXmark aria-hidden="true" />
+          </button>
+        </div>
+        <div className="programme-logo-large">
+          <img src={programmeLogo} alt="LHCSDP programme logo designed by Quynh Trang Nguyen" />
+        </div>
+        <p className="programme-logo-caption">Official programme logo designed during my Planning Officer role.</p>
+      </dialog>
 
       <div className="education-block" aria-labelledby="education-title">
         <div className="education-heading">
