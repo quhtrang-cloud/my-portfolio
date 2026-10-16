@@ -1,14 +1,43 @@
+
 import { useEffect, useId, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
+
 import {
-  FaWordpress, FaCircleInfo, FaReact, FaHtml5, FaCss3Alt, FaNodeJs, FaGitAlt, FaGithub,
-  FaFigma, FaCode, FaPenRuler, FaTableColumns, FaUsers,
-  FaArrowsRotate, FaImage, FaBoxOpen, FaBootstrap, FaDatabase,
-  FaFlask, FaPalette, FaLaptopCode, FaUniversalAccess,
+  FaWordpress,
+  FaCircleInfo,
+  FaReact,
+  FaHtml5,
+  FaCss3Alt,
+  FaNodeJs,
+  FaGitAlt,
+  FaGithub,
+  FaFigma,
+  FaCode,
+  FaPenRuler,
+  FaTableColumns,
+  FaUsers,
+  FaArrowsRotate,
+  FaImage,
+  FaBoxOpen,
+  FaBootstrap,
+  FaDatabase,
+  FaFlask,
+  FaPalette,
+  FaLaptopCode,
+  FaUniversalAccess,
+  FaRoute,
+  FaLock,
+  FaSitemap,
 } from 'react-icons/fa6'
+
 import {
-  SiJavascript, SiTypescript, SiExpress, SiPostgresql,
-  SiVercel, SiJest, SiVite,
+  SiJavascript,
+  SiTypescript,
+  SiExpress,
+  SiPostgresql,
+  SiVercel,
+  SiJest,
+  SiVite,
 } from 'react-icons/si'
 
 type Skill = {
@@ -27,9 +56,11 @@ const skillGroups: SkillGroup[] = [
   {
     number: '01',
     title: 'Front-End',
-    context: 'I build responsive interfaces with React, JavaScript and CSS, with TypeScript in selected portfolio components. My projects include keyboard navigation, visible focus states and responsive layouts.',
+    context:
+      'I build responsive interfaces using React, React Router, JavaScript and CSS, with TypeScript in selected portfolio components. My projects include keyboard navigation, visible focus states and responsive layouts.',
     skills: [
       { name: 'React', icon: <FaReact /> },
+      { name: 'React Router', icon: <FaRoute /> },
       { name: 'JavaScript ES6+', icon: <SiJavascript /> },
       { name: 'TypeScript', icon: <SiTypescript /> },
       { name: 'HTML5', icon: <FaHtml5 /> },
@@ -42,7 +73,8 @@ const skillGroups: SkillGroup[] = [
   {
     number: '02',
     title: 'Back-End & Database',
-    context: 'I used Node.js, Express and PostgreSQL in my healthcare booking and furniture retail projects.',
+    context:
+      'I used Node.js, Express and PostgreSQL in my healthcare booking and furniture retail projects, implementing authentication, role-based access controls and relational database operations.',
     skills: [
       { name: 'Node.js', icon: <FaNodeJs /> },
       { name: 'Express.js', icon: <SiExpress /> },
@@ -50,12 +82,14 @@ const skillGroups: SkillGroup[] = [
       { name: 'PostgreSQL', icon: <SiPostgresql /> },
       { name: 'SQL', icon: <FaDatabase /> },
       { name: 'Relational Database Design', icon: <FaDatabase /> },
+      { name: 'Authentication & Authorisation', icon: <FaLock /> },
     ],
   },
   {
     number: '03',
     title: 'Design & UX',
-    context: 'I applied user analysis, wireframing and Figma prototyping in the Hampshire Festival project. My web design internship also involved refining page layouts and creating digital campaign assets.',
+    context:
+      'I applied user analysis, information architecture, wireframing and Figma prototyping in the Hampshire Festival project. My web design internship also involved refining page layouts and creating digital campaign assets.',
     skills: [
       { name: 'Figma', icon: <FaFigma /> },
       { name: 'Adobe Photoshop', icon: <FaImage /> },
@@ -63,12 +97,14 @@ const skillGroups: SkillGroup[] = [
       { name: 'Wireframing', icon: <FaTableColumns /> },
       { name: 'Prototyping', icon: <FaPenRuler /> },
       { name: 'User-Centred Design', icon: <FaUsers /> },
+      { name: 'Information Architecture', icon: <FaSitemap /> },
     ],
   },
   {
     number: '04',
     title: 'Tools & Workflow',
-    context: 'I use Git and GitHub for version control, Vite for portfolio builds and Vercel for deployment. I added tests with Jest and Supertest, practised Scrum in team projects and maintained WordPress content during my internship.',
+    context:
+      'I use Git and GitHub for version control, Vite for portfolio builds and Vercel for deployment. I added tests with Jest and Supertest, practised Scrum in team projects and maintained WordPress content during my internship.',
     skills: [
       { name: 'Git', icon: <FaGitAlt /> },
       { name: 'GitHub', icon: <FaGithub /> },
@@ -85,21 +121,38 @@ const skillGroups: SkillGroup[] = [
   },
 ]
 
-function SkillInfo({ title, children }: { title: string; children: ReactNode }) {
+function SkillInfo({
+  title,
+  children,
+}: {
+  title: string
+  children: ReactNode
+}) {
   const [open, setOpen] = useState(false)
   const id = useId()
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!open) return
+
     const dismiss = (event: PointerEvent) => {
-      if (event.target instanceof Node && !ref.current?.contains(event.target)) setOpen(false)
+      if (
+        event.target instanceof Node &&
+        !ref.current?.contains(event.target)
+      ) {
+        setOpen(false)
+      }
     }
+
     const escape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpen(false)
+      if (event.key === 'Escape') {
+        setOpen(false)
+      }
     }
+
     document.addEventListener('pointerdown', dismiss)
     document.addEventListener('keydown', escape)
+
     return () => {
       document.removeEventListener('pointerdown', dismiss)
       document.removeEventListener('keydown', escape)
@@ -107,17 +160,46 @@ function SkillInfo({ title, children }: { title: string; children: ReactNode }) 
   }, [open])
 
   return (
-    <div className="skill-info" ref={ref}
-      onPointerEnter={(event) => { if (event.pointerType === 'mouse') setOpen(true) }}
-      onPointerLeave={() => { if (!ref.current?.contains(document.activeElement)) setOpen(false) }}
-      onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false) }}>
-      <button type="button" className="skill-info-button"
-        aria-label={`How I use ${title} skills`} aria-expanded={open} aria-controls={id}
-        onFocus={(event) => { if (event.currentTarget.matches(':focus-visible')) setOpen(true) }}
-        onClick={() => setOpen(true)}>
+    <div
+      className="skill-info"
+      ref={ref}
+      onPointerEnter={(event) => {
+        if (event.pointerType === 'mouse') {
+          setOpen(true)
+        }
+      }}
+      onPointerLeave={() => {
+        if (!ref.current?.contains(document.activeElement)) {
+          setOpen(false)
+        }
+      }}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setOpen(false)
+        }
+      }}
+    >
+      <button
+        type="button"
+        className="skill-info-button"
+        aria-label={`How I use ${title} skills`}
+        aria-expanded={open}
+        aria-controls={id}
+        onFocus={(event) => {
+          if (event.currentTarget.matches(':focus-visible')) {
+            setOpen(true)
+          }
+        }}
+        onClick={() => setOpen((previous) => !previous)}
+      >
         <FaCircleInfo aria-hidden="true" />
       </button>
-      <div id={id} className="skill-info-tooltip" hidden={!open}>
+
+      <div
+        id={id}
+        className="skill-info-tooltip"
+        hidden={!open}
+      >
         <strong>In practice</strong>
         <p>{children}</p>
       </div>
@@ -134,7 +216,11 @@ function Skills() {
     >
       <div className="section-heading">
         <p className="section-label">Skills</p>
-        <h2 id="skills-title">Technologies and tools I work with.</h2>
+
+        <h2 id="skills-title">
+          Technologies and tools I work with.
+        </h2>
+
         <p className="skills-tagline-original">
           Always learning. Always <span>improving.</span>
         </p>
@@ -142,16 +228,38 @@ function Skills() {
 
       <div className="skills-grid">
         {skillGroups.map((group) => (
-          <article className="skill-card" key={group.number}>
+          <article
+            className="skill-card"
+            key={group.number}
+          >
             <div className="skill-card-heading">
-              <span className="skill-number" aria-hidden="true">{group.number}</span>
+              <span
+                className="skill-number"
+                aria-hidden="true"
+              >
+                {group.number}
+              </span>
+
               <h3>{group.title}</h3>
-              <SkillInfo title={group.title}>{group.context}</SkillInfo>
+
+              <SkillInfo title={group.title}>
+                {group.context}
+              </SkillInfo>
             </div>
+
             <div className="skill-list">
               {group.skills.map((skill) => (
-                <div className="skill-item" key={skill.name}>
-                  <span className="skill-icon" aria-hidden="true">{skill.icon}</span>
+                <div
+                  className="skill-item"
+                  key={skill.name}
+                >
+                  <span
+                    className="skill-icon"
+                    aria-hidden="true"
+                  >
+                    {skill.icon}
+                  </span>
+
                   <span>{skill.name}</span>
                 </div>
               ))}
