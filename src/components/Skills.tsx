@@ -1,4 +1,3 @@
-
 import { useEffect, useId, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 
@@ -28,6 +27,9 @@ import {
   FaRoute,
   FaLock,
   FaSitemap,
+  FaUserGroup,
+  FaClipboardCheck,
+  FaGlobe,
 } from 'react-icons/fa6'
 
 import {
@@ -39,6 +41,8 @@ import {
   SiJest,
   SiVite,
 } from 'react-icons/si'
+
+import { VscVscode } from 'react-icons/vsc'
 
 type Skill = {
   name: string
@@ -89,7 +93,7 @@ const skillGroups: SkillGroup[] = [
     number: '03',
     title: 'Design & UX',
     context:
-      'I applied user analysis, information architecture, wireframing and Figma prototyping in the Hampshire Festival project. My web design internship also involved refining page layouts and creating digital campaign assets.',
+      'I applied user analysis, personas, user flows, information architecture, wireframing, Figma prototyping and heuristic evaluation in my academic UX projects. My web design internship also involved refining page layouts and creating digital campaign assets.',
     skills: [
       { name: 'Figma', icon: <FaFigma /> },
       { name: 'Adobe Photoshop', icon: <FaImage /> },
@@ -98,24 +102,28 @@ const skillGroups: SkillGroup[] = [
       { name: 'Prototyping', icon: <FaPenRuler /> },
       { name: 'User-Centred Design', icon: <FaUsers /> },
       { name: 'Information Architecture', icon: <FaSitemap /> },
+      { name: 'User Flows', icon: <FaRoute /> },
+      { name: 'Personas', icon: <FaUserGroup /> },
+      { name: 'Heuristic Evaluation', icon: <FaClipboardCheck /> },
     ],
   },
   {
     number: '04',
     title: 'Tools & Workflow',
     context:
-      'I use Git and GitHub for version control, Vite for portfolio builds and Vercel for deployment. I added tests with Jest and Supertest, practised Scrum in team projects and maintained WordPress content during my internship.',
+      'I use Git and GitHub for version control, Vite for portfolio builds and Vercel for deployment. I have used Jest and Supertest for automated testing, performed manual and cross-browser testing, practised Scrum in team projects and maintained WordPress content during my internship.',
     skills: [
       { name: 'Git', icon: <FaGitAlt /> },
       { name: 'GitHub', icon: <FaGithub /> },
       { name: 'Jest', icon: <SiJest /> },
       { name: 'Supertest', icon: <FaFlask /> },
-      { name: 'Testing & Debugging', icon: <FaCode /> },
+      { name: 'Manual Testing', icon: <FaClipboardCheck /> },
+      { name: 'Cross-Browser Testing', icon: <FaGlobe /> },
       { name: 'Agile / Scrum', icon: <FaArrowsRotate /> },
       { name: 'Vite', icon: <SiVite /> },
       { name: 'Vercel', icon: <SiVercel /> },
       { name: 'WordPress', icon: <FaWordpress /> },
-      { name: 'VS Code', icon: <FaCode /> },
+      { name: 'VS Code', icon: <VscVscode /> },
       { name: 'npm', icon: <FaBoxOpen /> },
     ],
   },
@@ -136,18 +144,13 @@ function SkillInfo({
     if (!open) return
 
     const dismiss = (event: PointerEvent) => {
-      if (
-        event.target instanceof Node &&
-        !ref.current?.contains(event.target)
-      ) {
+      if (event.target instanceof Node && !ref.current?.contains(event.target)) {
         setOpen(false)
       }
     }
 
     const escape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setOpen(false)
-      }
+      if (event.key === 'Escape') setOpen(false)
     }
 
     document.addEventListener('pointerdown', dismiss)
@@ -164,19 +167,13 @@ function SkillInfo({
       className="skill-info"
       ref={ref}
       onPointerEnter={(event) => {
-        if (event.pointerType === 'mouse') {
-          setOpen(true)
-        }
+        if (event.pointerType === 'mouse') setOpen(true)
       }}
       onPointerLeave={() => {
-        if (!ref.current?.contains(document.activeElement)) {
-          setOpen(false)
-        }
+        if (!ref.current?.contains(document.activeElement)) setOpen(false)
       }}
       onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) {
-          setOpen(false)
-        }
+        if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false)
       }}
     >
       <button
@@ -186,20 +183,14 @@ function SkillInfo({
         aria-expanded={open}
         aria-controls={id}
         onFocus={(event) => {
-          if (event.currentTarget.matches(':focus-visible')) {
-            setOpen(true)
-          }
+          if (event.currentTarget.matches(':focus-visible')) setOpen(true)
         }}
         onClick={() => setOpen((previous) => !previous)}
       >
         <FaCircleInfo aria-hidden="true" />
       </button>
 
-      <div
-        id={id}
-        className="skill-info-tooltip"
-        hidden={!open}
-      >
+      <div id={id} className="skill-info-tooltip" hidden={!open}>
         <strong>In practice</strong>
         <p>{children}</p>
       </div>
@@ -216,11 +207,7 @@ function Skills() {
     >
       <div className="section-heading">
         <p className="section-label">Skills</p>
-
-        <h2 id="skills-title">
-          Technologies and tools I work with.
-        </h2>
-
+        <h2 id="skills-title">Technologies and tools I work with.</h2>
         <p className="skills-tagline-original">
           Always learning. Always <span>improving.</span>
         </p>
@@ -228,38 +215,21 @@ function Skills() {
 
       <div className="skills-grid">
         {skillGroups.map((group) => (
-          <article
-            className="skill-card"
-            key={group.number}
-          >
+          <article className="skill-card" key={group.number}>
             <div className="skill-card-heading">
-              <span
-                className="skill-number"
-                aria-hidden="true"
-              >
+              <span className="skill-number" aria-hidden="true">
                 {group.number}
               </span>
-
               <h3>{group.title}</h3>
-
-              <SkillInfo title={group.title}>
-                {group.context}
-              </SkillInfo>
+              <SkillInfo title={group.title}>{group.context}</SkillInfo>
             </div>
 
             <div className="skill-list">
               {group.skills.map((skill) => (
-                <div
-                  className="skill-item"
-                  key={skill.name}
-                >
-                  <span
-                    className="skill-icon"
-                    aria-hidden="true"
-                  >
+                <div className="skill-item" key={skill.name}>
+                  <span className="skill-icon" aria-hidden="true">
                     {skill.icon}
                   </span>
-
                   <span>{skill.name}</span>
                 </div>
               ))}
