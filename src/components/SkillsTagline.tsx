@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 
-const words = ['improving.', 'building.', 'exploring.', 'improving.']
+const words = ['improving.', 'building.', 'exploring.']
 
 export default function SkillsTagline() {
   const ref = useRef<HTMLParagraphElement>(null)
+  const [paused, setPaused] = useState(false)
   const [step, setStep] = useState(0)
   const [visible, setVisible] = useState(false)
   const [reduced, setReduced] = useState(true)
@@ -26,22 +27,31 @@ export default function SkillsTagline() {
     }
   }, [])
 
-  useEffect(() => {
-    if (reduced || !visible || !pageVisible || step === words.length - 1) return
-    const timer = window.setTimeout(() => setStep(value => value + 1), 1500)
-    return () => window.clearTimeout(timer)
-  }, [step, reduced, visible, pageVisible])
 
   return (
+    <div className="skills-tagline-row" data-paused={paused || !visible || !pageVisible || reduced}>
     <p className="skills-tagline-original" ref={ref}>
       <span className="skills-tagline-accessible">Always learning. Always improving.</span>
       <span className="skills-tagline-visual" aria-hidden="true">
         Always learning. Always{' '}
         <span className="skills-tagline-word">
           <span className="skills-tagline-measure">improving.</span>
-          <span className="skills-tagline-current" key={reduced ? 'static' : step}>{reduced ? words[0] : words[step]}</span>
+          <span className="skills-tagline-current" key={reduced ? 'static' : step}
+            onAnimationEnd={(event) => {
+              if (event.target === event.currentTarget && !reduced) {
+                setStep(value => (value + 1) % words.length)
+              }
+            }}>{reduced ? words[0] : words[step]}</span>
         </span>
       </span>
     </p>
+    {!reduced && (
+      <button type="button" className="skills-tagline-toggle"
+        aria-label={paused ? 'Resume changing words' : 'Pause changing words'}
+        onClick={() => setPaused(value => !value)}>
+        <span aria-hidden="true">{paused ? '▶' : 'Ⅱ'}</span>
+      </button>
+    )}
+    </div>
   )
 }
