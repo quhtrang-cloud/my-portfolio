@@ -17,6 +17,7 @@ const roles = [
       'Contributed to the programme master plan, annual work plans and implementation schedules for an ADB-funded healthcare programme across 16 provinces.',
       'Provided planning guidance to provincial programme teams, monitored implementation progress and compiled monitoring and evaluation reports.',
       'Coordinated with health authorities and other stakeholders to organise training workshops, conferences and capacity-building activities.',
+      'Hosted Zoom meetings with provincial teams and provided technical support for connectivity issues and presentation equipment.',
       'Designed the official programme logo and event backdrops, with the logo used in printed materials and programme communications.',
     ],
   },
