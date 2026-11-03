@@ -67,7 +67,7 @@ const certifications = [
   {
     title: 'JavaScript Certification',
     icon: FaJs,
-    focus: 'Coursework covering JavaScript programming, DOM manipulation, events, accessibility, form validation and asynchronous programming. Further topics included local storage, object-oriented and functional programming, data structures and algorithms.',
+    focus: 'Coursework covering JavaScript fundamentals, DOM manipulation, events, accessibility and form validation. Further topics included asynchronous programming and the Fetch API, local storage, object-oriented and functional programming, data structures and algorithms.',
     issuer: 'freeCodeCamp',
     date: 'June 2026',
     dateTime: '2026-06',
@@ -76,7 +76,7 @@ const certifications = [
   {
     title: 'Responsive Web Design Certification',
     icon: FaLaptopCode,
-    focus: 'Coursework covering semantic HTML, forms, tables, accessible media, ARIA and HTML’s role in SEO. CSS topics included responsive layouts, Flexbox and Grid, supported by practical web projects.',
+    focus: 'Coursework covering semantic HTML, forms, accessibility and SEO fundamentals. CSS topics included responsive layouts, Flexbox, Grid, typography and animations, alongside visual hierarchy and user-centred design principles, applied through practical web projects.',
     issuer: 'freeCodeCamp',
     date: 'March 2026',
     dateTime: '2026-03',

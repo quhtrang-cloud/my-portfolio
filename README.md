@@ -25,7 +25,7 @@ Explore project previews, detailed case studies and the experience behind my wor
 | --- | --- |
 | Interface | React, JavaScript (ES6+), TypeScript, HTML5, CSS3 |
 | Routing and icons | React Router, React Icons |
-| Browser testing | Playwright Test, Chromium |
+| Browser testing | Playwright Test, Chromium, Firefox, WebKit |
 | Development | Vite, npm, ESLint, Git and GitHub |
 | Hosting | Vercel |
 
@@ -50,6 +50,20 @@ An academic prototype exploring more flexible GP appointment discovery and booki
 Database queries and external services are mocked in the automated tests; live integrations are not tested end to end. This is a prototype, not a deployed clinical service.
 
 [Read the healthcare case study](https://my-portfolio-ivory-ten-46.vercel.app/projects/healthcare-booking-system)
+
+### IP Address Tracker
+
+**Personal project - React and TypeScript application**
+
+A responsive IP address and domain lookup app displaying approximate geolocation and network information on an interactive Leaflet map. Features include public IP lookup, recent searches, persistent themes, request cancellation and error feedback.
+
+**My contribution:** interface design, React and TypeScript development, map and API integration, server-side lookup handling, automated browser tests and CI configuration.
+
+**Technologies:** React, TypeScript, Vite, CSS, React Leaflet, Leaflet, GeoIPify API, Vercel Functions, Playwright and GitHub Actions.
+
+**Evaluation:** 12 Playwright scenarios configured across Chromium, Firefox and WebKit, covering lookups, input validation, error handling, history, theme persistence and request cancellation. Lookup responses are mocked, so these tests do not validate the live geolocation service or production backend end to end. GitHub Actions runs project checks and browser tests in the separate IP Tracker repository.
+
+[Live demo](https://ip-address-trac-lovat.vercel.app/) · [Source code](https://github.com/quhtrang-cloud/ip-address-tracker)
 
 ### Pompey Furniture Company
 
@@ -85,13 +99,13 @@ The gallery also includes this React portfolio, with a direct link to its [sourc
 
 | Path | Purpose |
 | --- | --- |
-| `public/` | Public assets, downloadable CV, favicon and `robots.txt` |
+| `public/` | Public assets, downloadable CV, self-hosted fonts, favicon and `robots.txt` |
 | `src/assets/` | Portrait, project screenshots, experience assets and the README test-report image |
 | `src/components/` | Home sections and shared navigation, theme, motion and interaction components |
 | `src/pages/` | Case-study pages: `HealthcareProject.jsx`, `FurnitureProject.jsx` and `HampshireFestivalProject.jsx` |
 | `src/App.jsx` | Application routes and home layout |
 | `src/App.css` | Shared colour variables, portfolio and case-study styles |
-| `src/index.css` | Global base styles |
+| `src/index.css` | Font definitions, global reset and base styles |
 | `src/main.jsx` | Application entry point |
 | `tests/e2e/` | Playwright tests for projects, contact, theme and narrow-screen navigation |
 | `playwright.config.js` | Browser, local server, reporting and worker configuration |
@@ -131,25 +145,27 @@ JavaScript files are not type-checked while `checkJs` is disabled. Type checking
 
 ## Portfolio testing
 
-The portfolio currently includes **12 Playwright tests across four spec files**, run on Chromium against the local application.
+The portfolio includes **12 Playwright test scenarios across four spec files**, run against the local application on **Chromium, Firefox and WebKit**, giving **36 total test executions**.
+
+The latest reported local run on **3 November 2026** completed with **36 passed, 0 failed and 0 skipped**.
 
 | Spec file | Tests | Scope |
 | --- | ---: | --- |
-| `projects.spec.js` | 3 | Select Pompey and open its case study; use Next/Previous controls; cycle through all four projects in both directions using arrow keys, including wraparound |
+| `projects.spec.js` | 3 | Select Pompey and open its case study; use Next/Previous controls; cycle through all five projects in both directions using arrow keys, including wraparound |
 | `contact.spec.js` | 2 | Copy the correct email address and display success feedback; display guidance and keep the control usable when a clipboard write is rejected |
 | `theme.spec.js` | 1 | Switch between light and dark themes and preserve each selection after reloading |
 | `mobile-navigation.spec.js` | 6 | Check each navbar link at a 390 × 844 viewport, including its destination, target heading in the viewport and active navigation state |
 
-The successful clipboard test uses the browser's clipboard API with permissions granted in the test context. The failure test simulates a rejected clipboard write to exercise error handling.
+The successful clipboard test uses the browser clipboard on Chromium with permissions granted in the test context. Firefox and WebKit use a mocked clipboard to check the value passed by the application and the success feedback. The failure test simulates a rejected clipboard write on all three engines. Mocked clipboard tests do not verify the operating system clipboard.
 
-The narrow-screen tests use a resized Chromium viewport. They check navigation behaviour rather than complete mobile-device compatibility or visual layout quality. The suite also does not establish full accessibility conformance; visual review, keyboard exploration and testing on other browsers and real devices remain separate checks.
+The narrow-screen tests use a 390 × 844 viewport on each configured browser engine. They check navigation behaviour rather than complete mobile-device compatibility or visual layout quality. The suite also does not establish full accessibility conformance; visual review, keyboard exploration and testing on other browsers and real devices remain separate checks.
 
 ### Run the browser tests
 
-After installing the project dependencies, install the test browser:
+After installing the project dependencies, install the test browsers:
 
 ```bash
-npx playwright install chromium
+npx playwright install chromium firefox webkit
 ```
 
 Run all tests:
@@ -164,6 +180,8 @@ Useful commands:
 
 | Command | Purpose |
 | --- | --- |
+| `npx playwright test --project=firefox` | Runs tests on Firefox only |
+| `npx playwright test --project=webkit` | Runs tests on WebKit only |
 | `npx playwright test --headed` | Runs tests with the browser window visible |
 | `npx playwright test tests/e2e/contact.spec.js` | Runs the contact tests only |
 | `npx playwright test --list` | Lists the discovered tests without running them |
@@ -174,11 +192,12 @@ Traces are retained for failed tests. Use the `npx playwright show-trace` comman
 Generated reports and test results are excluded from Git. The screenshot below is a static example of a local run, rather than a live CI status.
 
 <details>
+
 <summary>View an example Playwright test report</summary>
 
-![Playwright HTML report showing 12 passing tests on Chromium](src/assets/playwright-report.png)
+![Playwright HTML report showing 36 passing test executions across Chromium, Firefox and WebKit](src/assets/playwright-report.png)
 
-Example local run covering gallery interactions, case-study navigation, clipboard feedback, theme persistence and section navigation at a narrow viewport.
+Local run on 3 November 2026: 12 scenarios executed across three browser engines. The report screenshot is stored at `src/assets/playwright-report.png`.
 
 </details>
 
@@ -186,10 +205,10 @@ Example local run covering gallery interactions, case-study navigation, clipboar
 
 The portfolio is hosted on Vercel, with automatic deployment from the connected GitHub repository's `main` branch. React Router provides the home and case-study routes.
 
-The Playwright commands above run locally. Automated test execution through GitHub Actions has not yet been configured.
+The Playwright commands above run locally. GitHub Actions is not configured for this portfolio repository. The CI workflow described for IP Address Tracker belongs to that separate repository. Passing local tests does not create an automated deployment gate.
 
 ## Author
 
 **Quynh Trang Nguyen**
 
-[Portfolio](https://my-portfolio-ivory-ten-46.vercel.app/) · [LinkedIn](https://www.linkedin.com/in/quynh-trang-nguyen-21a559334/)
+[LinkedIn](https://www.linkedin.com/in/quynh-trang-nguyen-21a559334/)

@@ -11,6 +11,7 @@ import healthcareImage from '../assets/projects/healthcare.png'
 import pompeyImage from '../assets/projects/furniture-homepage.png'
 import hampshireImage from '../assets/projects/hampshire.jpg'
 import portfolioImage from '../assets/projects/portfolio.png'
+import ipTrackerImage from '../assets/projects/ip-address-tracker.png'
 
 const projects = [
   {
@@ -18,11 +19,11 @@ const projects = [
     title: 'Healthcare Booking System',
     type: 'Full-Stack Web Application',
     context: 'Individual Project',
-    role: 'I researched requirements, mapped user journeys, and developed the application and database.',
+    role: 'I researched requirements, mapped user journeys, designed the interface, and developed the application and database.',
     quality:
-      'I checked key workflows against requirements and added 27 automated tests using Jest and Supertest.',
+      'I checked core workflows against requirements and added 27 Jest and Supertest tests covering authentication, scheduling rules and selected routes, with database queries and external services mocked.',
     description:
-      'I built this prototype to explore a simpler way to find and manage GP appointments, with scheduling suggestions, appointment swaps and Google Calendar integration.',
+      'I built this prototype to explore more flexible GP appointment booking, with city-wide search, rule-based scheduling suggestions, administrator-approved appointment swaps and Google Calendar integration.',
     technologies: [
       'JavaScript',
       'Node.js',
@@ -36,6 +37,21 @@ const projects = [
   },
   {
     number: '02',
+    title: 'IP Address Tracker',
+    type: 'Front-End Web Application',
+    context: 'Personal Project',
+    role: 'I built the React and TypeScript interface, integrated Leaflet maps and a server-side geolocation lookup, and implemented recent searches, theme persistence and request cancellation.',
+    quality: 'I added 12 Playwright scenarios across Chromium, Firefox and WebKit covering lookups, validation, error feedback, saved history and request cancellation. API responses are mocked; GitHub Actions runs the checks and tests.',
+    qualityLabel: 'Testing and workflow',
+    description: 'A responsive IP address and domain lookup app showing approximate geolocation and network details on an interactive map, with recent searches and a public IP lookup option.',
+    technologies: ['React', 'TypeScript', 'Leaflet', 'Vercel Functions', 'Playwright', 'GitHub Actions'],
+    image: ipTrackerImage,
+    imageAlt: 'IP Address Tracker showing search results and an interactive location map',
+    liveUrl: 'https://ip-address-trac-lovat.vercel.app/',
+    sourceUrl: 'https://github.com/quhtrang-cloud/ip-address-tracker',
+  },
+  {
+    number: '03',
     title: 'Pompey Furniture Company',
     type: 'Full-Stack Web Application',
     context: 'Team Project',
@@ -56,7 +72,7 @@ const projects = [
     path: '/projects/furniture-retail-management-system',
   },
   {
-    number: '03',
+    number: '04',
     title: 'React Developer Portfolio',
     type: 'Front-End Web Application',
     context: 'Personal Project',
@@ -81,7 +97,7 @@ const projects = [
     sourceUrl: 'https://github.com/quhtrang-cloud/my-portfolio',
   },
   {
-    number: '04',
+    number: '05',
     title: 'Hampshire Festival App',
     type: 'UX/UI Design',
     context: 'Team Project',
@@ -111,7 +127,7 @@ function ProjectPreview({ project }) {
         <span />
         <span />
         <p>Project preview</p>
-        {project.sourceUrl ? (
+        {project.sourceUrl || project.liveUrl ? (
           <FaArrowUpRightFromSquare />
         ) : (
           <FaArrowRight />
@@ -128,14 +144,19 @@ function ProjectPreview({ project }) {
     </>
   )
 
-  if (project.sourceUrl) {
+  if (project.liveUrl || project.sourceUrl) {
+    const previewUrl = project.liveUrl || project.sourceUrl
+    const previewLabel = project.liveUrl
+      ? `Open ${project.title} live demo (opens in a new tab)`
+      : `View ${project.title} source on GitHub (opens in a new tab)`
+
     return (
       <a
-        href={project.sourceUrl}
+        href={previewUrl}
         className="work-active-image"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`View ${project.title} source on GitHub (opens in a new tab)`}
+        aria-label={previewLabel}
       >
         {content}
       </a>

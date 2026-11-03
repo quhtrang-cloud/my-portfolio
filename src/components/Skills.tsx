@@ -2,7 +2,6 @@ import { useEffect, useId, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import SkillsTagline from './SkillsTagline'
 import { VscVscode } from 'react-icons/vsc'
-
 import {
   FaWordpress,
   FaCircleInfo,
@@ -33,8 +32,10 @@ import {
   FaUserGroup,
   FaClipboardCheck,
   FaGlobe,
+  FaMapLocationDot,
+  FaCloud,
+  FaGears,
 } from 'react-icons/fa6'
-
 import {
   SiJavascript,
   SiTypescript,
@@ -57,12 +58,17 @@ type SkillGroup = {
   skills: Skill[]
 }
 
+type SkillInfoProps = {
+  title: string
+  children: ReactNode
+}
+
 const skillGroups: SkillGroup[] = [
   {
     number: '01',
     title: 'Front-End',
     context:
-      'I build responsive interfaces using React, React Router, JavaScript and CSS, with TypeScript in selected portfolio components. My projects include keyboard navigation, visible focus states and responsive layouts.',
+      'I build responsive interfaces using React, JavaScript and TypeScript. My IP Address Tracker integrates Leaflet maps, API-driven results, recent searches and request cancellation. My projects also include keyboard navigation and visible focus states.',
     skills: [
       { name: 'React', icon: <FaReact /> },
       { name: 'React Router', icon: <FaRoute /> },
@@ -71,6 +77,7 @@ const skillGroups: SkillGroup[] = [
       { name: 'HTML5', icon: <FaHtml5 /> },
       { name: 'CSS3', icon: <FaCss3Alt /> },
       { name: 'Bootstrap', icon: <FaBootstrap /> },
+      { name: 'Leaflet', icon: <FaMapLocationDot /> },
       { name: 'Responsive Web Design', icon: <FaLaptopCode /> },
       { name: 'Web Accessibility', icon: <FaUniversalAccess /> },
     ],
@@ -79,14 +86,15 @@ const skillGroups: SkillGroup[] = [
     number: '02',
     title: 'Back-End & Database',
     context:
-      'I used Node.js, Express and PostgreSQL in my healthcare booking and furniture retail projects, implementing authentication, role-based access controls and relational database operations.',
+      'I used Node.js, Express and PostgreSQL in my healthcare and furniture projects, implementing authentication, role-based access controls and relational database operations. For IP Address Tracker, I used a Vercel Function to handle geolocation requests with a server-side API key.',
     skills: [
       { name: 'Node.js', icon: <FaNodeJs /> },
       { name: 'Express.js', icon: <SiExpress /> },
       { name: 'REST APIs', icon: <FaCode /> },
+      { name: 'Vercel Functions', icon: <FaCloud /> },
       { name: 'PostgreSQL', icon: <SiPostgresql /> },
       { name: 'SQL', icon: <FaDatabase /> },
-      { name: 'Relational Database Design', icon: <FaDatabase /> },
+      { name: 'Relational Database Design', icon: <FaTableColumns /> },
       { name: 'Authentication & Authorisation', icon: <FaLock /> },
     ],
   },
@@ -112,10 +120,11 @@ const skillGroups: SkillGroup[] = [
     number: '04',
     title: 'Tools & Workflow',
     context:
-      'I use Git and GitHub for version control, Vite for portfolio builds and Vercel for deployment. I added Jest and Supertest tests to my healthcare project and Playwright browser tests to my portfolio, covering navigation, clipboard feedback and theme persistence. My experience also includes manual and cross-browser testing, Scrum in team projects and WordPress content maintenance during my internship.',
+      'I use Git and GitHub for version control, Vite for builds and Vercel for deployment. My projects include Jest and Supertest tests, plus Playwright tests across Chromium, Firefox and WebKit. I configured GitHub Actions to run checks and browser tests for IP Address Tracker. I have also performed manual testing, used Scrum in team projects and maintained WordPress content during my internship.',
     skills: [
       { name: 'Git', icon: <FaGitAlt /> },
       { name: 'GitHub', icon: <FaGithub /> },
+      { name: 'GitHub Actions', icon: <FaGears /> },
       { name: 'Jest', icon: <SiJest /> },
       { name: 'Supertest', icon: <FaFlask /> },
       { name: 'Playwright', icon: <FaCircleCheck /> },
@@ -130,11 +139,6 @@ const skillGroups: SkillGroup[] = [
     ],
   },
 ]
-
-type SkillInfoProps = {
-  title: string
-  children: ReactNode
-}
 
 function SkillInfo({ title, children }: SkillInfoProps) {
   const [open, setOpen] = useState(false)
@@ -154,9 +158,7 @@ function SkillInfo({ title, children }: SkillInfoProps) {
     }
 
     const escape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setOpen(false)
-      }
+      if (event.key === 'Escape') setOpen(false)
     }
 
     document.addEventListener('pointerdown', dismiss)
@@ -173,9 +175,7 @@ function SkillInfo({ title, children }: SkillInfoProps) {
       className="skill-info"
       ref={ref}
       onPointerEnter={(event) => {
-        if (event.pointerType === 'mouse') {
-          setOpen(true)
-        }
+        if (event.pointerType === 'mouse') setOpen(true)
       }}
       onPointerLeave={() => {
         if (!ref.current?.contains(document.activeElement)) {
@@ -204,11 +204,7 @@ function SkillInfo({ title, children }: SkillInfoProps) {
         <FaCircleInfo aria-hidden="true" />
       </button>
 
-      <div
-        id={id}
-        className="skill-info-tooltip"
-        hidden={!open}
-      >
+      <div id={id} className="skill-info-tooltip" hidden={!open}>
         <strong>In practice</strong>
         <p>{children}</p>
       </div>
@@ -225,43 +221,25 @@ function Skills() {
     >
       <div className="section-heading">
         <p className="section-label">Skills</p>
-        <h2 id="skills-title">
-          Technologies and tools I work with.
-        </h2>
+        <h2 id="skills-title">Technologies and tools I work with.</h2>
         <SkillsTagline />
       </div>
 
       <div className="skills-grid">
         {skillGroups.map((group) => (
-          <article
-            className="skill-card"
-            key={group.number}
-          >
+          <article className="skill-card" key={group.number}>
             <div className="skill-card-heading">
-              <span
-                className="skill-number"
-                aria-hidden="true"
-              >
+              <span className="skill-number" aria-hidden="true">
                 {group.number}
               </span>
-
               <h3>{group.title}</h3>
-
-              <SkillInfo title={group.title}>
-                {group.context}
-              </SkillInfo>
+              <SkillInfo title={group.title}>{group.context}</SkillInfo>
             </div>
 
             <div className="skill-list">
               {group.skills.map((skill) => (
-                <div
-                  className="skill-item"
-                  key={skill.name}
-                >
-                  <span
-                    className="skill-icon"
-                    aria-hidden="true"
-                  >
+                <div className="skill-item" key={skill.name}>
+                  <span className="skill-icon" aria-hidden="true">
                     {skill.icon}
                   </span>
                   <span>{skill.name}</span>
