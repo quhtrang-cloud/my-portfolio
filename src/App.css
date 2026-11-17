@@ -6,47 +6,6 @@
 :root {
   --space-section: 56px;
   color-scheme: dark;
-}
-
-:root[data-theme="light"] {
-  color-scheme: light;
-  --color-border-default: #d4dfe3;
-  --color-accent: #086c91;
-  --color-text-primary: #192b38;
-  --color-text-muted: #536975;
-  --color-text-body: #364d5a;
-  --color-accent-emphasis: #075977;
-  --color-text-navigation: #273f4c;
-  --color-background-page: #f5f7f7;
-  --color-text-supporting: #4a6371;
-  --color-text-strong: #192b38;
-  --color-background-panel: #ffffff;
-  --color-background-base: #f5f7f7;
-  --color-divider-section: #ccd9df;
-  --color-background-surface: #edf2f3;
-  --color-border-secondary: #b9cbd3;
-  --color-text-button: #192b38;
-  --color-text-subtle: #536975;
-  --color-border-surface: #ccd9df;
-  --color-border-control: #819ba8;
-  --color-background-tag: #e8f0f2;
-  --color-text-link-hover: #05465e;
-  --color-text-link-accent: #086c91;
-  --color-text-link-soft: #075977;
-  --color-background-control-hover: #e4eef1;
-  --color-border-project-preview: #a4bcc6;
-  --color-background-gallery: #eaf0f2;
-  --color-text-detail: #536975;
-  --color-background-project-frame: #edf2f3;
-  --color-background-browser-bar: #e1ebee;
-  --color-browser-dot: #536975;
-  --color-text-browser-label: #364d5a;
-  --color-background-project-preview: #edf2f3;
-  --color-text-project-counter: #536975;
-  --color-accent-rgb: 8, 108, 145;
-}
-
-:root {
   --portfolio-bg: var(--color-background-page);
   --portfolio-surface: var(--color-background-surface);
   --portfolio-line: var(--color-border-surface);
@@ -88,6 +47,46 @@
   --color-accent-rgb: 85, 185, 213;
 }
 
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-border-default: #d4dfe3;
+  --color-accent: #086c91;
+  --color-text-primary: #192b38;
+  --color-text-muted: #536975;
+  --color-text-body: #364d5a;
+  --color-accent-emphasis: #075977;
+  --color-text-navigation: #273f4c;
+  --color-background-page: #f5f7f7;
+  --color-text-supporting: #4a6371;
+  --color-text-strong: #192b38;
+  --color-background-panel: #ffffff;
+  --color-background-base: #f5f7f7;
+  --color-divider-section: #ccd9df;
+  --color-background-surface: #edf2f3;
+  --color-border-secondary: #b9cbd3;
+  --color-text-button: #192b38;
+  --color-text-subtle: #536975;
+  --color-border-surface: #ccd9df;
+  --color-border-control: #819ba8;
+  --color-background-tag: #e8f0f2;
+  --color-text-link-hover: #05465e;
+  --color-text-link-accent: #086c91;
+  --color-text-link-soft: #075977;
+  --color-background-control-hover: #e4eef1;
+  --color-border-project-preview: #a4bcc6;
+  --color-background-gallery: #eaf0f2;
+  --color-text-detail: #536975;
+  --color-background-project-frame: #edf2f3;
+  --color-background-browser-bar: #e1ebee;
+  --color-browser-dot: #536975;
+  --color-text-browser-label: #364d5a;
+  --color-background-project-preview: #edf2f3;
+  --color-text-project-counter: #536975;
+  --color-accent-rgb: 8, 108, 145;
+  --color-action: #086c91;
+  --color-action-hover: #075977;
+}
+
 @media (max-width: 900px) {
   :root {
     --space-section: 48px;
@@ -116,7 +115,7 @@ html {
 }
 
 body {
-  min-width: 320px;
+  min-width: 0;
   min-height: 100vh;
   background: var(--color-background-base);
   color: var(--color-text-primary);
@@ -631,7 +630,7 @@ h3 {
   height: 30px;
   border-radius: 50%;
   background: var(--color-background-page);
-  color: var(--color-text-primary);
+  color: #e8bc70;
   transform: translateX(20px);
   transition: transform 200ms ease;
 }
@@ -8178,4 +8177,35 @@ button:focus-visible > .hampshire-zoom-icon {
     opacity: 0;
     transform: translateY(-14%);
   }
+}
+
+/* WCAG 2.2 AA refinements: retain original navy/cyan visual identity. */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-accent-emphasis);
+  outline-offset: 3px;
+}
+
+/* Ensure keyboard focus is visible on the theme switch and logo. */
+.portfolio-theme-toggle:focus-visible,
+.portfolio-navbar .logo:focus-visible {
+  outline: 3px solid var(--color-accent-emphasis);
+  outline-offset: 4px;
+}
+
+/* Keep a warm moon only; primary accents remain cyan. */
+:root:not([data-theme="light"]) .portfolio-theme-knob {
+  color: #e8bc70;
+}
+
+/* Avoid relying on colour alone to distinguish inline links. */
+.about-personal-story p a,
+.section-description a {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+@media (forced-colors: active) {
+  .portfolio-theme-toggle { border: 2px solid ButtonText; }
+  .portfolio-theme-knob { border: 1px solid ButtonText; }
+  .portfolio-navbar .nav-links a.active { text-decoration: underline; }
 }

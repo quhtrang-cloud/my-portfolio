@@ -8,16 +8,25 @@ Explore project previews, detailed case studies and the experience behind my wor
 
 ## Portfolio features
 
-- **Interactive project gallery:** layered previews, previous/next controls and a project selector alongside the active summary. Gallery controls support keyboard navigation.
+- **Interactive project gallery:** six projects with a featured three-preview layout for Healthcare, a selectable project list, and previous/next controls that wrap between the first and last projects. Controls are operable by keyboard.
+
 - **Project case studies:** dedicated pages covering context, individual contributions, design decisions, implementation, evaluation and reflection, with section navigation and scroll-based active states.
+
 - **Responsive themes:** layouts for desktop, tablet and mobile, with light and dark modes and a saved theme preference.
+
 - **Accessibility-aware interactions:** semantic markup, visible focus states, descriptive controls and reduced-motion support.
+
 - **Skills in context:** grouped skills with information controls explaining how I have applied them. Context panels support hover, keyboard focus and touch, with Escape-key and outside-click dismissal.
+
 - **Image exploration:** enlarged case-study images with zoom and Escape-key dismissal, plus a programme-logo preview within professional experience.
+
 - **Professional background:** experience, education and certifications, with links to available online certificates.
+
 - **Contact options:** email, LinkedIn and GitHub, plus an email-copy control with success and failure feedback.
+
 - **Maintainable styling:** shared CSS colour variables named by purpose, reusable components and incremental TypeScript adoption.
-- **Browser testing:** Playwright tests covering gallery interactions, case-study navigation, clipboard feedback, theme persistence and section navigation at a narrow viewport.
+
+- **Browser testing:** Playwright tests covering project selection, featured previews, circular navigation, keyboard-operated controls, case-study links, clipboard feedback, theme persistence and narrow-screen navigation.
 
 ## Technology stack
 
@@ -50,6 +59,20 @@ An academic prototype exploring more flexible GP appointment discovery and booki
 Database queries and external services are mocked in the automated tests; live integrations are not tested end to end. This is a prototype, not a deployed clinical service.
 
 [Read the healthcare case study](https://my-portfolio-ivory-ten-46.vercel.app/projects/healthcare-booking-system)
+
+### Rowmora
+
+**Personal project · React and TypeScript application**
+
+A responsive tool for comparing CSV and Excel spreadsheets. Users can import files, select worksheets, map matching columns and review missing, changed or duplicate records, then export comparison results.
+
+**My contribution:** product and interface design, React and TypeScript development, file-import and comparison workflows, record review and export functionality.
+
+**Technologies:** React, TypeScript, Vite, CSS Modules, PapaParse, CSV and Excel file handling.
+
+**Implementation notes:** the interface supports side-by-side comparison and checks for missing or duplicate matching keys. Keyboard-operable controls and visible focus states are included. These implementation details are not a claim of full WCAG conformance.
+
+[Live demo](https://rowmora-csv-compare.vercel.app/) · [Source code](https://github.com/quhtrang-cloud/rowmora-data-reconciliation)
 
 ### IP Address Tracker
 
@@ -93,7 +116,7 @@ Explores festival discovery, personal planning and event management for visitors
 
 [Read the festival case study](https://my-portfolio-ivory-ten-46.vercel.app/projects/hampshire-festival-app)
 
-The gallery also includes this React portfolio, with a direct link to its [source code](https://github.com/quhtrang-cloud/my-portfolio). Its implementation and testing are documented in this repository.
+The six-project gallery also includes this React portfolio, with a direct link to its [source code](https://github.com/quhtrang-cloud/my-portfolio). Its implementation and testing are documented in this repository.
 
 ## Repository structure
 
@@ -123,11 +146,13 @@ The production build generates `dist/`; dependency installation generates `node_
 ## Run locally
 
 Install a Node.js version compatible with the project's Vite and Playwright versions, together with npm, then run:
-
 ```bash
 git clone https://github.com/quhtrang-cloud/my-portfolio.git
+
 cd my-portfolio
+
 npm ci
+
 npm run dev
 ```
 
@@ -145,13 +170,13 @@ JavaScript files are not type-checked while `checkJs` is disabled. Type checking
 
 ## Portfolio testing
 
-The portfolio includes **12 Playwright test scenarios across four spec files**, run against the local application on **Chromium, Firefox and WebKit**, giving **36 total test executions**.
+The portfolio currently defines **15 Playwright test scenarios across four spec files**, configured for **Chromium, Firefox and WebKit** (**45 test executions** when the full suite is run).
 
-The latest reported local run on **3 November 2026** completed with **36 passed, 0 failed and 0 skipped**.
+On **17 November 2026**, the updated `projects.spec.js` suite completed with **18 passed** (6 scenarios × 3 browser engines). The full-suite discovery command listed all 45 test executions; a passing full-suite run has not yet been confirmed for this update. The earlier full-suite run on **3 November 2026** reported **36 passed** for the previous 12-scenario version.
 
 | Spec file | Tests | Scope |
 | --- | ---: | --- |
-| `projects.spec.js` | 3 | Select Pompey and open its case study; use Next/Previous controls; cycle through all five projects in both directions using arrow keys, including wraparound |
+| `projects.spec.js` | 6 | Select Pompey and open its case study; navigate all six projects with wraparound; select featured previews; verify keyboard-operated navigation and Rowmora demo/source links |
 | `contact.spec.js` | 2 | Copy the correct email address and display success feedback; display guidance and keep the control usable when a clipboard write is rejected |
 | `theme.spec.js` | 1 | Switch between light and dark themes and preserve each selection after reloading |
 | `mobile-navigation.spec.js` | 6 | Check each navbar link at a 390 × 844 viewport, including its destination, target heading in the viewport and active navigation state |
@@ -163,13 +188,11 @@ The narrow-screen tests use a 390 × 844 viewport on each configured browser eng
 ### Run the browser tests
 
 After installing the project dependencies, install the test browsers:
-
 ```bash
 npx playwright install chromium firefox webkit
 ```
 
 Run all tests:
-
 ```bash
 npx playwright test
 ```
@@ -189,13 +212,13 @@ Useful commands:
 
 Traces are retained for failed tests. Use the `npx playwright show-trace` command and trace path printed with a failure to inspect the recorded run. Inspect or save failure evidence before running the suite again, as a new run can replace previous test output.
 
-Generated reports and test results are excluded from Git. The screenshot below is a static example of a local run, rather than a live CI status.
+Generated reports and test results are excluded from Git. The screenshot below shows an earlier local run of the 12-scenario suite, rather than the current 15-scenario suite or a live CI status.
 
 <details>
 
 <summary>View an example Playwright test report</summary>
 
-![Playwright HTML report showing 36 passing test executions across Chromium, Firefox and WebKit](src/assets/playwright-report.png)
+![Earlier Playwright HTML report showing 36 passing test executions across Chromium, Firefox and WebKit](src/assets/playwright-report.png)
 
 Local run on 3 November 2026: 12 scenarios executed across three browser engines. The report screenshot is stored at `src/assets/playwright-report.png`.
 

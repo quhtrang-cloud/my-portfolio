@@ -12,6 +12,7 @@ import pompeyImage from '../assets/projects/furniture-homepage.png'
 import hampshireImage from '../assets/projects/hampshire.jpg'
 import portfolioImage from '../assets/projects/portfolio.png'
 import ipTrackerImage from '../assets/projects/ip-address-tracker.png'
+import rowmoraImage from '../assets/projects/rowmora.png'
 
 const projects = [
   {
@@ -37,6 +38,21 @@ const projects = [
   },
   {
     number: '02',
+    title: 'Rowmora',
+    type: 'Front-End Web Application',
+    context: 'Personal Project',
+    role: 'I designed and built the React and TypeScript application, from CSV/Excel import and column mapping to record comparison, issue review and downloadable results.',
+    quality: 'I added checks for missing and duplicate matching keys, side-by-side field differences and Excel/CSV exports. The interface includes keyboard-operable controls and visible focus indicators.',
+    qualityLabel: 'Data validation and accessibility',
+    description: 'A responsive spreadsheet comparison tool that helps users match records, spot differences and investigate data that needs a closer look.',
+    technologies: ['React', 'TypeScript', 'CSS Modules', 'PapaParse', 'Excel / CSV'],
+    image: rowmoraImage,
+    imageAlt: 'Rowmora showing column mapping, comparison summaries, records needing review and export options',
+    liveUrl: 'https://rowmora-csv-compare.vercel.app/',
+    sourceUrl: 'https://github.com/quhtrang-cloud/rowmora-data-reconciliation',
+  },
+  {
+    number: '03',
     title: 'IP Address Tracker',
     type: 'Front-End Web Application',
     context: 'Personal Project',
@@ -51,7 +67,7 @@ const projects = [
     sourceUrl: 'https://github.com/quhtrang-cloud/ip-address-tracker',
   },
   {
-    number: '03',
+    number: '04',
     title: 'Pompey Furniture Company',
     type: 'Full-Stack Web Application',
     context: 'Team Project',
@@ -72,7 +88,7 @@ const projects = [
     path: '/projects/furniture-retail-management-system',
   },
   {
-    number: '04',
+    number: '05',
     title: 'React Developer Portfolio',
     type: 'Front-End Web Application',
     context: 'Personal Project',
@@ -97,7 +113,7 @@ const projects = [
     sourceUrl: 'https://github.com/quhtrang-cloud/my-portfolio',
   },
   {
-    number: '05',
+    number: '06',
     title: 'Hampshire Festival App',
     type: 'UX/UI Design',
     context: 'Team Project',
@@ -119,6 +135,10 @@ const projects = [
   },
 ]
 
+// Featured side previews on the opening slide. Navigation stays sequential.
+const featuredLeftIndex = 1 // Rowmora
+const featuredRightIndex = 2 // IP Address Tracker
+
 function ProjectPreview({ project }) {
   const content = (
     <>
@@ -126,7 +146,7 @@ function ProjectPreview({ project }) {
         <span />
         <span />
         <span />
-        <p>Project preview</p>
+        <p>{project.liveUrl ? 'Open live demo' : project.sourceUrl ? 'View source' : 'View case study'}</p>
         {project.sourceUrl || project.liveUrl ? (
           <FaArrowUpRightFromSquare />
         ) : (
@@ -208,14 +228,21 @@ function Projects() {
       ? 'How I reviewed it'
       : 'How I tested it')
 
+  // On the opening slide, the side images highlight two strong projects.
+  // Arrow navigation always follows the numbered order and wraps at the ends.
+  const previousIndex = (activeIndex - 1 + projects.length) % projects.length
+  const nextIndex = (activeIndex + 1) % projects.length
+  const leftPreviewIndex = activeIndex === 0 ? featuredLeftIndex : previousIndex
+  const rightPreviewIndex = activeIndex === 0 ? featuredRightIndex : nextIndex
+
   const changeProject = (direction) => {
-    setActiveIndex(
-      (current) =>
-        (current + direction + projects.length) % projects.length,
+    setActiveIndex((current) =>
+      (current + direction + projects.length) % projects.length,
     )
   }
 
   const handleGalleryKeyDown = (event) => {
+    if (event.target.closest('a, button, input, textarea, select')) return
     if (
       event.altKey ||
       event.ctrlKey ||
@@ -262,16 +289,14 @@ function Projects() {
         role="region"
         aria-roledescription="carousel"
         aria-label="Selected projects"
+        aria-description="Side images are clickable project shortcuts. Previous and Next move through the numbered projects in a loop."
         onKeyDown={handleGalleryKeyDown}
       >
         <div className="work-gallery-stage">
           {projects.map((project, index) => {
             const isActive = index === activeIndex
-            const isPrevious =
-              index ===
-              (activeIndex - 1 + projects.length) % projects.length
-            const isNext =
-              index === (activeIndex + 1) % projects.length
+            const isPrevious = index === leftPreviewIndex
+            const isNext = index === rightPreviewIndex
 
             if (!isActive && !isPrevious && !isNext) {
               return null
@@ -295,7 +320,7 @@ function Projects() {
                     type="button"
                     className={`work-preview work-preview-${position}`}
                     onClick={() => setActiveIndex(index)}
-                    aria-label={`Select project: ${project.title}`}
+                    aria-label={`Show project ${project.number}: ${project.title}`}
                   >
                     <img
                       src={project.image}
@@ -314,7 +339,7 @@ function Projects() {
             type="button"
             className="work-arrow"
             onClick={() => changeProject(-1)}
-            aria-label="Previous project"
+            aria-label={`Previous project: ${projects[previousIndex].title}`}
           >
             <FaChevronLeft aria-hidden="true" />
           </button>
@@ -329,7 +354,7 @@ function Projects() {
             type="button"
             className="work-arrow"
             onClick={() => changeProject(1)}
-            aria-label="Next project"
+            aria-label={`Next project: ${projects[nextIndex].title}`}
           >
             <FaChevronRight aria-hidden="true" />
           </button>
@@ -340,7 +365,7 @@ function Projects() {
           aria-live="polite"
           aria-atomic="true"
         >
-          Project {activeIndex + 1} of {projects.length}:{' '}
+          Selected project {activeProject.number} of {String(projects.length).padStart(2, '0')}: {' '}
           {activeProject.title}
         </p>
 
