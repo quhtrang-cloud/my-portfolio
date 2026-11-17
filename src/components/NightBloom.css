@@ -1,0 +1,82 @@
+/* Decorative night-blooming cereus in the Hero portrait. */
+.night-bloom {
+  position: absolute;
+  z-index: 3;
+  right: 14px;
+  bottom: 0%;
+  width: clamp(72px, 9vw, 104px);
+  pointer-events: none;
+  transform: rotate(8deg);
+  transform-origin: 50% 85%;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.13));
+}
+
+.night-bloom-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.night-bloom-petal {
+  transform-box: view-box;
+  transform-origin: 100px 116px;
+  transform: rotate(var(--open-angle)) scaleX(1);
+  transition: transform 1400ms cubic-bezier(0.2, 0.65, 0.2, 1);
+}
+
+.night-bloom-petal-inner {
+  transition-duration: 1150ms;
+}
+
+.night-bloom-stamens {
+  opacity: 1;
+  transition: opacity 500ms ease 650ms;
+}
+
+/* Light mode closes the flower; dark mode is the default. */
+:root[data-theme="light"] .night-bloom-petal {
+  transform: rotate(var(--closed-angle)) scaleX(0.36);
+}
+
+:root[data-theme="light"] .night-bloom-petal-inner {
+  transform: rotate(var(--closed-angle)) scaleX(0.22);
+}
+
+:root[data-theme="light"] .night-bloom-stamens {
+  opacity: 0;
+  transition-delay: 0ms;
+}
+
+/* Lift the handwritten location note to clear the flower. */
+.hero-intro .hero-intro-location {
+  top: 40%;
+}
+
+@media (max-width: 900px) {
+  .night-bloom {
+    right: 12px;
+    bottom: 7%;
+    width: 73px;
+  }
+
+  /* App.css switches this note to static positioning at this breakpoint. */
+  .hero-intro .hero-intro-location {
+    top: auto;
+  }
+}
+
+@media (max-width: 680px) {
+  .night-bloom {
+    right: 10px;
+    bottom: 6%;
+    width: 69px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .night-bloom-petal,
+  .night-bloom-stamens {
+    transition: none;
+  }
+}

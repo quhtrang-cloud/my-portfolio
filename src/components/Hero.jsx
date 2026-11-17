@@ -1,8 +1,9 @@
 import HeroTypewriter from './HeroTypewriter'
+import NightBloom from './NightBloom'
 import { FaArrowRight, FaArrowUpRightFromSquare } from 'react-icons/fa6'
 import profileImage from '../assets/profile.jpg'
 
-const technologies = ['React', 'JavaScript', 'TypeScript', 'Node.js', 'PostgreSQL']
+const technologies = ['React', 'TypeScript', 'Playwright', 'Node.js', 'PostgreSQL']
 
 function Hero({ name = 'Trang', job = 'Graduate Web Developer' }) {
   return (
@@ -15,14 +16,15 @@ function Hero({ name = 'Trang', job = 'Graduate Web Developer' }) {
             <span className="hero-intro-letter" key={`${letter}-${index}`} aria-hidden="true" style={{ animationDelay: `${0.15 + index * 0.12}s` }}>
               {letter === ' ' ? '\u00A0' : letter}
             </span>
-          ))}<span className="hero-intro-dot" aria-hidden="true">.</span>
+          ))}
+          <span className="hero-intro-dot" aria-hidden="true">.</span>
         </h1>
         <h2 className="hero-intro-job">{job}</h2>
         <p className="hero-intro-summary">
-          I build responsive interfaces with React and TypeScript, backed by project experience in full-stack development and software testing.
+          I build responsive web interfaces with React and TypeScript, with hands-on experience in full-stack development and software testing.
         </p>
         <ul className="hero-intro-technologies" aria-label="Core technologies">
-          {technologies.map(technology => <li key={technology}>{technology}</li>)}
+          {technologies.map((technology) => <li key={technology}>{technology}</li>)}
         </ul>
         <div className="hero-intro-actions">
           <a className="hero-intro-button hero-intro-button-primary" href="#projects">
@@ -35,6 +37,7 @@ function Hero({ name = 'Trang', job = 'Graduate Web Developer' }) {
       </div>
       <figure className="hero-intro-portrait">
         <div className="hero-intro-artwork">
+          <NightBloom />
           <span className="hero-intro-dots" aria-hidden="true" />
           <div className="hero-intro-frame">
             <img src={profileImage} alt="Portrait of Quynh Trang Nguyen" fetchPriority="high" decoding="async" />

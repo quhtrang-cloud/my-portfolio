@@ -943,7 +943,7 @@ h3 {
   border-radius: 24px;
   background: var(--hero-frame-background);
   display: grid;
-  aspect-ratio: 6 / 7;
+  aspect-ratio: 4 / 5;
 }
 
 .hero-intro-frame img {
@@ -984,7 +984,7 @@ h3 {
 
 .hero-intro-location {
   position: absolute;
-  top: 47%;
+  top: 40%;
   right: -8px;
   width: 90px;
   color: var(--hero-note-color);

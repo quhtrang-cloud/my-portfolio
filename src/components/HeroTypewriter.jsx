@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
-const phrases = ['Front-end focused', 'UX-aware', 'Quality-minded']
+const phrases = ['Front-end focused', 'UX-aware', 'QA-minded']
+const reducedMotionText = 'Front-end & QA focused'
 
 function HeroTypewriter() {
   const [typing, setTyping] = useState({ phrase: 0, length: phrases[0].length, deleting: false })
@@ -15,12 +16,18 @@ function HeroTypewriter() {
     const update = () => setReduced(media.matches)
     update()
     media.addEventListener('change', update)
-    const observer = typeof IntersectionObserver === 'undefined' ? null : new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting))
+
+    const observer = typeof IntersectionObserver === 'undefined'
+      ? null
+      : new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting))
+
     if (observer && ref.current) observer.observe(ref.current)
     else setVisible(true)
+
     const handleVisibility = () => setPageVisible(!document.hidden)
     handleVisibility()
     document.addEventListener('visibilitychange', handleVisibility)
+
     return () => {
       observer?.disconnect()
       media.removeEventListener('change', update)
@@ -30,26 +37,41 @@ function HeroTypewriter() {
 
   useEffect(() => {
     if (finished || reduced || !visible || !pageVisible) return
+
     const full = typing.length === phrases[typing.phrase].length
     const delay = !typing.deleting && full ? 2500 : typing.deleting ? 65 : 100
+
     const timer = window.setTimeout(() => {
       if (!typing.deleting && full && typing.phrase === phrases.length - 1) {
         setFinished(true)
         return
       }
+
       setTyping((current) => {
-        if (!current.deleting && current.length === phrases[current.phrase].length) return { ...current, deleting: true }
-        if (current.deleting && current.length === 0) return { phrase: (current.phrase + 1) % phrases.length, length: 0, deleting: false }
+        if (!current.deleting && current.length === phrases[current.phrase].length) {
+          return { ...current, deleting: true }
+        }
+        if (current.deleting && current.length === 0) {
+          return { phrase: (current.phrase + 1) % phrases.length, length: 0, deleting: false }
+        }
         return { ...current, length: current.length + (current.deleting ? -1 : 1) }
       })
     }, delay)
+
     return () => window.clearTimeout(timer)
   }, [typing, finished, reduced, visible, pageVisible])
 
+  const displayText = reduced
+    ? reducedMotionText
+    : phrases[typing.phrase].slice(0, typing.length)
+
   return (
     <div className="portfolio-typewriter" ref={ref}>
-      <p className="portfolio-eyebrow" aria-label="Front-end focused, UX-aware and quality-minded">
-        <span className="portfolio-typed-text" aria-hidden="true">{reduced || finished ? phrases[0] : phrases[typing.phrase].slice(0, typing.length)}{!reduced && !finished && <span className="portfolio-type-cursor">|</span>}</span>
+      <p className="portfolio-eyebrow" aria-label="Front-end focused, UX-aware and QA-minded">
+        <span className="portfolio-typed-text" aria-hidden="true">
+          {displayText}
+          {!reduced && !finished && <span className="portfolio-type-cursor">|</span>}
+        </span>
       </p>
     </div>
   )
