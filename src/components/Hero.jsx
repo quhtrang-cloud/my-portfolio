@@ -38,6 +38,7 @@ function Hero({ name = 'Trang', job = 'Graduate Web Developer' }) {
       <figure className="hero-intro-portrait">
         <div className="hero-intro-artwork">
           <NightBloom />
+          <span className="hero-refinement-sparkles" aria-hidden="true"><i /><i /><i /><i /></span>
           <span className="hero-intro-dots" aria-hidden="true" />
           <div className="hero-intro-frame">
             <img src={profileImage} alt="Portrait of Quynh Trang Nguyen" fetchPriority="high" decoding="async" />

@@ -1,0 +1,32 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#162132"/>
+
+  <!-- Two curved petals and the T stem -->
+  <g
+    fill="none"
+    stroke="#9FD5D2"
+    stroke-width="2.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M32 42 C18 41 13 31 13 20 C22 21 29 26 32 34"/>
+    <path d="M32 42 C46 41 51 31 51 20 C42 21 35 26 32 34"/>
+    <path d="M32 37 L32 53"/>
+  </g>
+
+  <!-- Central ivory petal -->
+  <path
+    d="M32 34 C25 26 27 17 32 12 C37 17 39 26 32 34Z"
+    fill="#E7EDE5"
+  />
+
+  <!-- Champagne detail -->
+  <path
+    d="M28.5 32.5 Q32 39 35.5 32.5"
+    fill="none"
+    stroke="#DCC48B"
+    stroke-width="2.2"
+    stroke-linecap="round"
+  />
+</svg>

@@ -1,0 +1,65 @@
+/* Literary note — restrained paper finish and soft shadow. */
+.literary-note {
+  box-sizing: border-box;
+  width: min(100%, 270px);
+  margin: 0;
+  padding: 24px 24px 21px;
+  background:
+    linear-gradient(145deg, rgb(255 255 255 / 12%), transparent 60%, rgb(125 96 48 / 4%)),
+    #f2e4ad;
+  color: #443f35;
+  border: 1px solid rgb(111 91 52 / 12%);
+  border-radius: 2px;
+  box-shadow:
+    0 2px 4px rgb(40 35 25 / 7%),
+    0 7px 16px rgb(40 35 25 / 10%);
+  transform: rotate(1deg);
+}
+
+.literary-note__eyebrow {
+  display: block;
+  margin-bottom: 20px;
+  color: #75664c;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  line-height: 1.5;
+}
+
+.literary-note__quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.12rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+}
+
+.literary-note__quote p { margin: 0; }
+
+.literary-note__source {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid rgb(91 76 48 / 22%);
+  color: #665943;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.literary-note__source cite { font-style: italic; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .literary-note {
+    transition: transform 220ms ease, box-shadow 220ms ease;
+  }
+  .literary-note:hover {
+    transform: rotate(0deg) translateY(-2px);
+    box-shadow:
+      0 3px 7px rgb(40 35 25 / 9%),
+      0 10px 20px rgb(40 35 25 / 13%);
+  }
+}
+

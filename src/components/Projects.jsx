@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import ProjectBug from './ProjectBug'
 import { Link } from 'react-router-dom'
 import {
   FaArrowRight,
@@ -390,6 +391,7 @@ function Projects() {
                 {project.title}
               </button>
             ))}
+            <ProjectBug />
           </div>
 
           <div

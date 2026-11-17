@@ -9,6 +9,7 @@ import {
   FaGithub,
   FaLinkedin,
 } from 'react-icons/fa6'
+import LiteraryNote from './LiteraryNote'
 
 const email = 'quhtrang@gmail.com'
 
@@ -61,64 +62,70 @@ function Contact() {
         </div>
       </div>
 
-      <div className="contact-links">
-        <div className="contact-email-row">
-          <span className="contact-link-left">
-            <FaEnvelope aria-hidden="true" />
-            <span>Email</span>
-          </span>
-          <div className="contact-email-actions">
-            <a className="contact-email-address contact-link-value" href={`mailto:${email}`}>
-              {email}
+      <div className="contact-bottom">
+        <div className="contact-links">
+          <div className="contact-email-row">
+            <span className="contact-link-left">
+              <FaEnvelope aria-hidden="true" />
+              <span>Email</span>
+            </span>
+            <div className="contact-email-actions">
+              <a className="contact-email-address contact-link-value" href={`mailto:${email}`}>
+                {email}
+              </a>
+              <button
+                type="button"
+                className="contact-copy-button"
+                onClick={copyEmail}
+                disabled={copyStatus === 'copying'}
+                aria-label="Copy email address"
+              >
+                {copyStatus === 'copied' ? <FaCheck aria-hidden="true" /> : <FaCopy aria-hidden="true" />}
+                <span>{copyStatus === 'copied' ? 'Copied' : copyStatus === 'copying' ? 'Copying…' : 'Copy email'}</span>
+              </button>
+            </div>
+            <a className="contact-send-link" href={`mailto:${email}`} aria-label="Send email to Quynh Trang Nguyen">
+              <FaPaperPlane className="contact-link-arrow" aria-hidden="true" />
             </a>
-            <button
-              type="button"
-              className="contact-copy-button"
-              onClick={copyEmail}
-              disabled={copyStatus === 'copying'}
-              aria-label="Copy email address"
-            >
-              {copyStatus === 'copied' ? <FaCheck aria-hidden="true" /> : <FaCopy aria-hidden="true" />}
-              <span>{copyStatus === 'copied' ? 'Copied' : copyStatus === 'copying' ? 'Copying…' : 'Copy email'}</span>
-            </button>
           </div>
-          <a className="contact-send-link" href={`mailto:${email}`} aria-label="Send email to Quynh Trang Nguyen">
-            <FaPaperPlane className="contact-link-arrow" aria-hidden="true" />
+
+          <a
+            href="https://www.linkedin.com/in/quynh-trang-nguyen-21a559334/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View my LinkedIn profile in a new tab"
+          >
+            <span className="contact-link-left">
+              <FaLinkedin aria-hidden="true" />
+              <span>LinkedIn</span>
+            </span>
+            <span className="contact-link-value">Let&apos;s connect on LinkedIn</span>
+            <FaArrowUpRightFromSquare className="contact-link-arrow" aria-hidden="true" />
+          </a>
+
+          <a
+            href="https://github.com/quhtrang-cloud"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Explore my code on GitHub in a new tab"
+          >
+            <span className="contact-link-left">
+              <FaGithub aria-hidden="true" />
+              <span>GitHub</span>
+            </span>
+            <span className="contact-link-value">View my code</span>
+            <FaArrowUpRightFromSquare className="contact-link-arrow" aria-hidden="true" />
           </a>
         </div>
 
-        <a
-          href="https://www.linkedin.com/in/quynh-trang-nguyen-21a559334/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="View my LinkedIn profile in a new tab"
-        >
-          <span className="contact-link-left">
-            <FaLinkedin aria-hidden="true" />
-            <span>LinkedIn</span>
-          </span>
-          <span className="contact-link-value">Let&apos;s connect on LinkedIn</span>
-          <FaArrowUpRightFromSquare className="contact-link-arrow" aria-hidden="true" />
-        </a>
+        <p className="contact-copy-status" role="status" aria-live="polite" aria-atomic="true">
+          {statusMessage}
+        </p>
 
-        <a
-          href="https://github.com/quhtrang-cloud"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Explore my code on GitHub in a new tab"
-        >
-          <span className="contact-link-left">
-            <FaGithub aria-hidden="true" />
-            <span>GitHub</span>
-          </span>
-          <span className="contact-link-value">View my code</span>
-          <FaArrowUpRightFromSquare className="contact-link-arrow" aria-hidden="true" />
-        </a>
+        <div className="contact-note">
+          <LiteraryNote />
+        </div>
       </div>
-
-      <p className="contact-copy-status" role="status" aria-live="polite" aria-atomic="true">
-        {statusMessage}
-      </p>
     </section>
   )
 }
