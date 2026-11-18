@@ -1,5 +1,5 @@
-/* Literary note — restrained paper finish and soft shadow. */
 .literary-note {
+  position: relative;
   box-sizing: border-box;
   width: min(100%, 270px);
   margin: 0;
@@ -16,9 +16,32 @@
   transform: rotate(1deg);
 }
 
+.literary-note__fold {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0 0 9px 9px;
+  border: 0;
+  border-bottom-left-radius: 6px;
+  background: linear-gradient(225deg, #e3d097 49%, #c9b782 50%, #f2e4ad 53%);
+  color: #62543d;
+  font: 600 15px/1 Georgia, serif;
+  cursor: pointer;
+}
+
+.literary-note__fold:focus-visible {
+  outline: 2px solid #665943;
+  outline-offset: 3px;
+}
+
 .literary-note__eyebrow {
   display: block;
   margin-bottom: 20px;
+  padding-right: 15px;
   color: #75664c;
   font-size: 0.65rem;
   font-weight: 600;
@@ -51,15 +74,41 @@
 
 .literary-note__source cite { font-style: italic; }
 
+.literary-note__reveal {
+  margin-top: 16px;
+  padding-top: 15px;
+  border-top: 1px dashed rgb(91 76 48 / 28%);
+}
+
+.literary-note__reveal[hidden] { display: none; }
+
+.literary-note__reveal-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #75664c;
+  font-size: 0.59rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+}
+
+.literary-note__reveal p {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.92rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .literary-note {
     transition: transform 220ms ease, box-shadow 220ms ease;
   }
-  .literary-note:hover {
+
+  .literary-note:hover,
+  .literary-note--open {
     transform: rotate(0deg) translateY(-2px);
     box-shadow:
       0 3px 7px rgb(40 35 25 / 9%),
       0 10px 20px rgb(40 35 25 / 13%);
   }
 }
-

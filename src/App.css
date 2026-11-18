@@ -812,7 +812,7 @@ h3 {
 .hero-intro-name {
   margin: 0 0 14px;
   color: var(--color-text-primary);
-  font-size: clamp(3.8rem, 7vw, 6rem);
+  font-size: clamp(3.8rem, 7vw, 5.5rem);
   font-weight: 800;
   line-height: 1.02;
   letter-spacing: -0.055em;
@@ -1171,12 +1171,32 @@ h3 {
     margin-inline: auto;
   }
 
+  .hero-intro-technologies {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .hero-intro-technologies li {
+    min-width: 0;
+    padding: 6px 5px;
+    font-size: clamp(0.55rem, 2.3vw, 0.7rem);
+    white-space: nowrap;
+  }
+
+  .hero-intro-location,
+  .hero-intro-availability {
+    width: calc(100% + 20px);
+    margin-left: 0;
+  }
+
   .hero-intro-portrait {
     width: 100%;
   }
 
   .hero-intro-name {
-    font-size: clamp(3.6rem, 15vw, 5rem);
+    font-size: clamp(3.4rem, 14vw, 4.6rem);
   }
 
   .hero-intro-summary {

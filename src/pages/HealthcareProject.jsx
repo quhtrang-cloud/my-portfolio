@@ -126,10 +126,20 @@ function HealthcareProject() {
         </div>
         {/* Hero image */}
         <div className="case-hero-image">
-          <img
-            src={healthcareImage}
-            alt="Healthcare Booking System homepage shown on desktop and mobile layouts"
-          />
+          <button
+            type="button"
+            className="solution-image-button"
+            onClick={() => openImage(healthcareImage, 'Healthcare Booking System homepage shown on desktop and mobile layouts')}
+            aria-label="Enlarge Healthcare Booking System homepage preview"
+          >
+            <img
+              src={healthcareImage}
+              alt="Healthcare Booking System homepage shown on desktop and mobile layouts"
+            />
+            <span className="solution-image-zoom">
+              <FaMagnifyingGlassPlus aria-hidden="true" />
+            </span>
+          </button>
         </div>
       </section>
       <ProjectSectionNav items={sectionNavItems} />
