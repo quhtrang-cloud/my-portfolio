@@ -7108,8 +7108,8 @@ h3 {
   flex: 0 0 auto;
   min-height: var(--project-nav-height);
   color: var(--color-text-supporting);
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.95rem;
+  font-weight: 500;
   line-height: 1.4;
   white-space: nowrap;
   text-decoration: none;

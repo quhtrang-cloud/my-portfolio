@@ -70,8 +70,8 @@ function NightBloom() {
       const flowerSvg = flower.querySelector('.night-bloom-svg')
       const matrix = flowerSvg?.getScreenCTM()
       const tip = matrix
-        ? new DOMPoint(100, 120).matrixTransform(matrix)
-        : { x: bloom.left + bloom.width * 0.51, y: bloom.top + bloom.height * (119 / 230) }
+        ? new DOMPoint(100, 125).matrixTransform(matrix)
+        : { x: bloom.left + bloom.width * 0.51, y: bloom.top + bloom.height * (125 / 230) }
       const tipX = tip.x - area.left
       const tipY = tip.y - area.top
       // Lower end aligns with the availability caption; the stem rises toward the bloom.
@@ -224,7 +224,9 @@ function NightBloom() {
     const resizeObserver = new ResizeObserver(onResize)
     resizeObserver.observe(artwork)
     resizeObserver.observe(frame)
+    resizeObserver.observe(flower)
     if (availability) resizeObserver.observe(availability)
+    window.addEventListener('resize', onResize, { passive: true })
     motionPreference.addEventListener?.('change', syncTheme)
     // Start closed, then open smoothly on dark mode; transitions work in both directions.
     readyFrame = window.requestAnimationFrame(() => {
@@ -239,6 +241,7 @@ function NightBloom() {
       stop()
       themeObserver.disconnect()
       resizeObserver.disconnect()
+      window.removeEventListener('resize', onResize)
       motionPreference.removeEventListener?.('change', syncTheme)
     }
   }, [])

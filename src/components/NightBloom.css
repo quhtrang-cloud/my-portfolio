@@ -43,8 +43,7 @@
 .night-bloom-stamens { fill: none; stroke: #d8bd83; stroke-width: 1.15; stroke-linecap: round; }
 .night-bloom-stamens circle { fill: #e9c989; stroke: none; }
 
-/* Use transitions, not competing keyframe animations: opening and closing
-   both take time, including when switching themes mid-animation. */
+/* Opening and closing transitions work in both theme directions. */
 .night-bloom-petal {
   transform-box: view-box;
   transform-origin: 100px 116px;
@@ -106,9 +105,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .night-bloom-petal,
-  .night-bloom-stamens {
-    transition: none !important;
-  }
+  .night-bloom-stamens { transition: none !important; }
   .night-bloom-butterfly-left,
   .night-bloom-butterfly-right { animation: none !important; }
 }
